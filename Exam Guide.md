@@ -5,6 +5,85 @@
 
 ---
 
+## 📄 两张卷子的结构
+
+| | **Paper 1** Computer Systems | **Paper 2** Algorithms, Programming and Logic |
+|---|---|---|
+| 时长 | 1 小时 45 分 | 1 小时 45 分 |
+| 分值 | **75 分** | **75 分** |
+| 占比 | **50%** | **50%** |
+| 考纲范围 | Topic 1–6 | Topic 7–10 |
+| 题型 | 简答 + 结构化 | 简答 + 结构化 + **写算法** |
+| 计算器 | ❌ 不允许 | ❌ 不允许 |
+| 对应笔记 | Unit 1–6 | Unit 7–10 + [Pseudocode Reference](Pseudocode%20Reference.md) |
+
+### ⚠️ Paper 2 的三条铁规
+
+**① 必须用伪代码作答**
+> 考纲原文：*"Where the solution to a problem involves coding, candidates are required to write solutions in **pseudocode**. Solutions written in **programming code will not be awarded marks**."*
+> → 用 Python / Java / VB 语法写答案 = **0 分**
+
+**② 唯一例外：最后一道 15 分 scenario 题**
+> 可以用伪代码，**或** Python / Visual Basic / Java 之一（其他语言不给分）
+> 题目基于 Topic 7–10 的**未见过**情境；考纲建议在这道题上花 **30 分钟**
+
+**③ 评分看逻辑不看语法，但格式还是得守**
+> 考纲原文：*"Knowledge of programming language syntax is **not** examined; in all cases the **logic is more important than the syntax**."*
+> → 变量名可以不同、小语法错可能不扣分；但**官方伪代码的格式**（`←`、THEN 缩进 2 格、`MOD(a,b)`）是"逻辑的表达方式"，照自己习惯写会丢分。详见 [Pseudocode Reference](Pseudocode%20Reference.md)
+
+---
+
+## ⚠️ 只做 2023 年以后的 Paper 2 卷子
+
+**2023 年考纲改革把 Paper 2 整个换掉了**。用老卷练手会练错方向。
+
+| | **2015–2022**（老卷，44 份）| **2023–2025**（新卷，21 份）| **2026+（你考的）** |
+|---|---|---|---|
+| 卷名 | Problem-solving and Programming | Algorithms, Programming and Logic | 同左 |
+| 总分 | 50 | **75** | **75** |
+| 结构 | **Section A（Q1 = 20 分场景大题）+ Section B** | **没有 Section A/B**，Q1…Q11 平铺 | 同左 |
+| 最后一题 | Section B 数据库题 | **固定 15 分 scenario 题** | 同左 |
+| 数据库 | **query-by-example (QBE) 网格** | **SQL**（`SELECT/FROM/WHERE`）| 同左 |
+| 逻辑门 / 真值表 | **完全没有** | **每份卷子都有** | 同左 |
+
+### 🚫 老卷里已经作废、别练的
+
+| 内容 | 为什么 |
+|---|---|
+| **QBE 网格题**（画表格写条件）| 新卷 **21/21 全用 SQL**，QBE 完全消失 |
+| **Section A 的 pre-release 场景题** | 新卷没有这个结构了；15 分题是**当场给的未见过情境** |
+| **"Identify three loop structures" 这类列举题** | 新卷改成了 tick / 连线选择题 |
+
+### 🆕 老卷里**根本没有**、2023 才加的（只做老卷会完全没准备）
+
+| 新增内容 | 证据 |
+|---|---|
+| **程序开发生命周期 PDLC** | `life cycle` 出现 10 次，**全部在 2023+**；老卷 44 份一次没考 |
+| **decomposition / abstraction** | 出现 6 次，**全部在 2023+** |
+| **2D 数组** | `two-dimensional (2D)` 首次出现于 2023-21-O/N |
+| **`ROUND` / `RANDOM` / `SUBSTRING` / `LENGTH` / `UCASE` / `LCASE`** | 出现 12 次，**全部在 2023+**（老卷只有 `MOD` 和 `DIV`）|
+| **文件处理**（`OPENFILE`/`READFILE`/`WRITEFILE`/`CLOSEFILE`）| 出现 5 次，**全部在 2023+** |
+| **可维护性**作为独立小题 | 出现 6 次，**全部在 2023+** |
+| **arithmetic / Boolean / logical operators** 分类 | 仅 2024-22-M/J、2025-23-M/J |
+| **bubble sort / linear search** 明文点名 | 仅 2024-22-F/M、2024-22-O/N、2025-22-F/M、2025-23-M/J |
+| **逻辑门 + 真值表** | 新卷 **21/21 全有**，老卷**完全没有**（2023 才把 Logic 并入 Paper 2）|
+
+> 💡 **练手优先级**：2023–2025 的 21 份 → 2026 年的 → 老卷只挑 trace table / flowchart / 找错改错 / validation / test data 这几个**没变的题型**练。
+
+### 🔁 贯穿 12 年、唯一没变的题型
+
+| 题型 | 覆盖率 | 典型分值 |
+|---|---|---|
+| **trace table 填表** | **61 / 65 份** | 4–5 |
+| **flowchart 流程图题** | 43 / 65 份 | 4–6 |
+| **找错并改正** | 43 / 65 份 | 4 |
+| **写算法 / 写程序** | **65 / 65 份** | 老卷 5–6 / 新卷 15 |
+| **validation + test data** | 各 37 / 65 份 | 4 |
+
+> ⚠️ **这五类怎么变都要考** —— 不管练新卷老卷，这几块都要练熟。
+
+---
+
 ## 🧭 指令词（Command Words）——决定你的答案长什么样
 
 | 指令词 | 中文 | 你要写什么 | 典型分值 |
@@ -50,6 +129,56 @@
 **② Repeat 的答案不得分** —— 题目已给的词再写不算分。题目说 "One example of primary storage is **cache**, give one **other**" → 写 cache = 0 分。
 
 **③ 不结合情境的通用答案不得分** —— ✅ **把题干里的数字、传感器名、设备名抄进答案。**
+
+---
+
+## 📝 Paper 2 判分规则（和 Paper 1 不一样）
+
+### ① 伪代码题按「**逻辑点**」给分，不按行数
+
+| 情况 | 结果 |
+|---|---|
+| 用了正确的结构（循环/判断/过程）但变量名不同 | ✅ 给分 |
+| 语法有小错但逻辑对 | ✅ 可能给分（*logic is more important than syntax*）|
+| 逻辑对但写成 Python / Java 语法 | ❌ **0 分**（非 scenario 题）|
+| 用自然语言 "if the score is higher than the maximum" | ❌ **0 分**（*"`x > y` is acceptable but `x is greater than y` is not"*）|
+
+### ② 写算法题的六个固定给分点
+
+| 给分点 | 说明 |
+|---|---|
+| **变量声明** | 用了 `DECLARE` 且类型正确 |
+| **初始化** | 累加/计数变量在循环前归零；最值用 `Array[1]` 初始化 |
+| **循环边界** | 不越界（冒泡排序到 N−1） |
+| **输入提示** | 每个 `INPUT` 前有 `OUTPUT "Enter..."` |
+| **正确输出** | 最后有 `OUTPUT` 结果 |
+| **结构正确** | 用了该用的循环/判断类型（FOR / WHILE / REPEAT） |
+
+> 💡 **一行代码往往值 1 分** —— 写不出完整答案就写你能写的部分，**部分分很容易拿**。
+
+### ③ 「找错改错」题必须**两栏都写**
+
+> | Error | Correction |
+> |---|---|
+> | The loop goes up to 8 but the array has only 8 elements | Change `FOR Index ← 1 TO 8` to `FOR Index ← 1 TO 7` |
+>
+> ⚠️ 只写 Error 不写 Correction = **一半分没了**
+> ⚠️ "the loop is wrong" = **0 分** —— 必须**引用具体代码**
+
+### ④ 三种错误类型（题目问 "State the type of error" 时只能从这三个里选）
+
+| 类型 | 特征 |
+|---|---|
+| **Syntax error** | 程序**跑不起来**（忘 `ENDIF`、`MOD x y`）|
+| **Logic error** | 程序**跑得起来但结果错**（用了 `>` 应该是 `<`）|
+| **Runtime error** | 运行时**崩溃**（除以 0、数组越界）|
+
+### ⑤ Trace table 题按**每一格**给分
+
+> - 每个变量**单独一列**
+> - **OUTPUT 单独一列**（忘了就丢分）
+> - 数组元素**逐个开列**（`A[1] | A[2] | A[3]`）
+> - 循环变量**每一轮都要记**
 
 ---
 
@@ -113,18 +242,26 @@
 
 **距考试 2 周以上** —— 按单元过正文 → 做完 📋 考纲对照清单 → 做该单元真题 → 回看陷阱表
 
-**距考试 3–7 天** —— 只刷各单元 **🧠 一页纸速记** + **⚠️ 高频失分点汇总**；重点补 **Unit 3**（分值最高）和 **Unit 6**（模板最固定）
+**距考试 3–7 天** —— 只刷各单元 **🧠 一页纸速记** + **⚠️ 高频失分点汇总**
+- **Paper 1**：重点补 **Unit 3**（分值最高）和 **Unit 6**（模板最固定）
+- **Paper 2**：**默写** [Pseudocode Reference](Pseudocode%20Reference.md) 的「⚡ 十条最容易丢分的硬性规定」+ Unit 7 的「六大方法速查表」
 
-**考前一晚 / 当天早上** —— 只看三样：
-1. 本页的**指令词表**和 **Mark Scheme 黑话表**
-2. Unit 3 的 **🧠 一页纸速记**
-3. Unit 6 的 **sensor → microprocessor → actuator 五步模板**
+**考前一晚 / 当天早上**
+- **两卷都看**：本页的**指令词表**、**Mark Scheme 黑话表**、**两张卷子结构**
+- **Paper 1**：Unit 3 的 🧠 一页纸速记 + Unit 6 的 sensor → microprocessor → actuator 五步模板
+- **Paper 2**：[Pseudocode Reference](Pseudocode%20Reference.md) 的 **⚡ 十条** + **🧠 一页纸速记**
 
-**考试中**
+**考试中（两卷通用）**
 - **先读指令词**，再读题目内容
 - **算分**：题目给几分就写几个点（3 分题写 3 个独立点，宁多勿少）
 - **画图题**：每一段都标英文，标签就是分
 - **不要空题**：写对方向的一部分也比留白强
+
+**考试中（Paper 2 专属）**
+- ⏱️ **时间分配**：前面所有小题 ≈ **75 分钟**，最后 15 分 scenario 题 ≈ **30 分钟**（考纲官方建议）
+- ✍️ **写算法前先在草稿区列变量清单** —— 漏声明变量是最大面积失分
+- 🔁 **写完检查这四样**：变量都 `DECLARE` 了吗？累加变量初始化了吗？循环会越界吗？用 `←` 了吗？
+- 🚫 **非 scenario 题千万别写 Python/Java 语法** —— 不给分
 
 ---
 
@@ -135,7 +272,8 @@
 | 网站 | 特点 | 费用 |
 |------|------|------|
 | [Save My Exams — CIE IGCSE CS](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/1-data-representation/number-systems/exam-questions/) | **按考纲章节组织**，和本笔记单元划分**一一对应** | 部分免费 |
-| [PapersDaddy — 0478 Topical](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1) | Paper 1 按考纲领域分类 | **免费下载** |
+| [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1) | Paper 1 按考纲领域分类 | **免费下载** |
+| [PapersDaddy — 0478 Topical Paper 2](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-2) | Paper 2 按考纲领域分类 | **免费下载** |
 | [Exam Papers Practice — 0478](https://www.exampaperspractice.co.uk/igcse-cie-computer-science-topic-questions/) | 已更新到 2026 考纲，带 mark scheme | 有免费样章 |
 | [Educate A Change — 0478 Topical](https://educateachange.com/past-papers/topical/igcse/computer-science-0478/) | **1957 道**主题分类题（2015–2025） | 部分免费 |
 | [Smart Exam Resources — 0478/0984](https://www.smartexamresources.com/course/caie-igcse-computer-science-0478-0984-9-1) | 主题分卷 + 主题 mark scheme | 付费 |
