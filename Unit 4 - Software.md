@@ -111,22 +111,25 @@
 **English（背这句）**
 > Operating systems provide both **the environment in which applications can be run** and enable a **human computer interface** to function in a non-complex way. They **disguise the complexity of software and hardware**. Operating systems ensure there is a **platform for running all applications in a safe and secure manner**.
 
-### OS 九大功能总览图
+### OS 九大功能总览图（严格按 2026–2028 考纲）
 
 ```
-                  Human computer interface (HCI)
-                            │
-   Security          ┌──────┴──────┐        Error handling
-(manages login,      │  Operating  │
-   passwords)        │   system    │      Platform for running
-                     │             │      application software
-  Interrupt handling └──────┬──────┘
-      routines              │              Management of user
-                     Multitasking            accounts
-    Memory management
-                     Managing files
-    Hardware management (including drivers)
+┌──────────────────────────────────────────────┐
+│                Operating system              │
+├──────────────────────────────────────────────┤
+│ 1. Managing files                            │
+│ 2. Handling interrupts                       │
+│ 3. Providing an interface (HCI)              │
+│ 4. Managing peripherals and drivers          │
+│ 5. Managing memory                           │
+│ 6. Managing multitasking                     │
+│ 7. Providing a platform for running apps     │
+│ 8. Providing system security                 │
+│ 9. Managing user accounts                    │
+└──────────────────────────────────────────────┘
 ```
+
+> ⚠️ **考纲的九项就是上面这九项**。`Error handling` 在不少教材里也会提到，但它**不在 2026–2028 考纲列出的九项里**；答题时优先写考纲九项，不要把 `Error handling` 当成第九项。
 
 ### 九大功能逐条背诵（按考试出现频率排序）
 
@@ -151,16 +154,16 @@
 |------|---------|
 | **Human computer interface (HCI)** | Allows a **human being to communicate with a computer**. The two most common types are the **command line interface (CLI)** and **graphical user interface (GUI)** |
 | **Hardware peripheral management** | Uses **device drivers** to allow input and output to take place. It manages the **queues and buffers** to ensure data is being handled correctly and that the CPU performs to its maximum |
-| **File management** | Maintains **file directories and file naming conventions**. Performs file maintenance tasks such as **open, close, delete, rename, copy**. Ensures **access rights** are maintained and correct **memory allocation** of the data when read from HDD/SSD and saved temporarily in RAM |
+| **File management** | Maintains **file directories and file naming conventions**. Performs file maintenance tasks such as **open, close, delete, rename, copy, create, move, save, sort**. Ensures **access rights** are maintained and correct **memory allocation** of the data when read from HDD/SSD and saved temporarily in RAM |
 | **Multitasking** | Allows a computer to **carry out more than one task simultaneously**. The OS needs to constantly monitor the status of each process by ensuring: **all resources are allocated specific processor time**; **all processes can be interrupted** as and when necessary; **priorities** are used so that a given resource is used in the most efficient manner |
-| **Error handling** | Deals with errors that occur during processing and produces appropriate error messages |
-| **Management of user accounts** | (see above) |
+| **Interrupt handling** | Checks the **priority** of each interrupt and decides whether to **service it now or continue the current task**. Higher-priority interrupts are serviced first using an **interrupt service routine (ISR)**; lower-priority interrupts wait/continue |
+| **Platform for running applications** | Provides the **environment and services** that application software needs to run. Applications run **on top of the operating system**, which manages their access to hardware and system resources |
 
 🔧 **答题模板：Apart from HCIs, name three other functions carried out by a typical OS** [3]
 > - **Multitasking**
 > - **Memory management**
 > - **File management**
-> - *(也可写：user account management / hardware management / interrupt handling / security / error handling)*
+> - *(也可写：user account management / hardware management / interrupt handling / security / platform for running applications)*
 
 ⚠️ **拼写警告（Teacher's comments 原文）**：
 > "be careful about your spelling of the terms since this could be crucial (for example, **user account manager is different from user account management**)."
@@ -216,7 +219,7 @@
 Teacher's comments 原话：
 > "their use of a screensaver is **no longer true**; they were originally developed to protect old **cathode-ray tube (CRT) monitors from "phosphor burn"** but this is **no longer an issue**, so it would be **impossible to award any marks**."
 
-✅ **现代用途只有两个**：**省电** + **安全（自动锁屏）**。
+✅ **现代主要用途：安全（自动锁屏/自动登出）**。省电是老式 CRT 时代的说法，部分教材仍会接受，但答题时**不要只写省电**。
 
 ---
 
@@ -237,10 +240,22 @@ Teacher's comments 原话：
 
 | 术语 | 内容 |
 |------|------|
-| **Firmware** 固件 | A program that provides **low-level control of devices** |
+| **Firmware** 固件 | Software **permanently stored in ROM/hardware** that provides **low-level control of devices** and normally cannot be changed by the user |
 | **BIOS** | Stored on **EEPROM**; tells the CPU where the OS can be found |
 | **EEPROM** | Electrically erasable programmable ROM — 存 BIOS |
 | **CMOS** | 存 **BIOS settings**（如时钟频率）；**靠电池供电** |
+
+**Firmware 的常考作用（Mark Scheme 接受点）**：
+> - **Stored permanently / non-volatile** in ROM or on a chip — not lost when power is switched off
+> - Contains the **boot / start-up instructions** (bootstrap / bootloader)
+> - Provides a **platform for the operating system** to run
+> - Provides **low-level control of hardware** / allows the computer to **communicate with hardware**
+> - Can provide **secure storage** (e.g. encryption keys / security routines)
+> - Can be **updated** (e.g. flash memory / EEPROM)
+
+**Firmware 的常见例子**：**bootstrap / bootloader**、**BIOS**、**embedded system 中的 OS**、**embedded system 中的程序**。
+
+**答题模板**：*"Firmware is software stored permanently in ROM that provides low-level control of hardware and contains the instructions needed to start the computer, e.g. the BIOS/bootstrap."*
 
 💡 **Apps 与 OS 的关系**：
 > Apps are **under the control of the operating system** and need to access **system software, such as device drivers**. Different parts of the operating system may need to be **loaded in and out of RAM** as software runs.
@@ -272,13 +287,15 @@ Teacher's comments 原话：
 | **Timing signal** 定时信号 | All operations are coordinated by **internal clock**; if any operation is **out of sync** (doesn't match timing signal) then an interrupt is sent |
 | **Input/output process** 输入输出 | An interrupt can be generated when a **hard disk drive or a printer, for example, are requesting more data to be sent** |
 | **Hardware fault** 硬件故障 | An interrupt can occur if, for example, **a printer has a printer jam, or it runs out of paper or ink** |
-| **User interaction** 用户交互 | For example, if a user **presses the `<BREAK>` key** this will send an interrupt signal to the microprocessor |
+| **User interaction** 用户交互 | For example, **pressing a key on the keyboard**, **moving the mouse** or **clicking a mouse button** sends an interrupt signal to the microprocessor; pressing the `<BREAK>` key can also generate an interrupt |
 | **Software error** 软件错误 | For example, if an **.exe file cannot be found**, or **two processes are trying to access the same memory locations**, or there is a **division by zero error** |
 
 ### 中断处理机制
 
 **English（背这句）**
 > Once an interrupt signal is received, the microprocessor either **continues with its existing task** or **temporarily pauses the task** in order to service the interrupt. To determine the order of servicing interrupts, each interrupt is given an **interrupt priority**.
+>
+> If the new interrupt has a **higher priority** than the current task, the processor **finishes the current FE cycle**, pauses the task, services the interrupt using an **ISR**, then **restores the original task**. If it has a **lower priority**, the processor **continues the current task** and the interrupt **waits/is serviced later**.
 >
 > **Buffers** are also used to allow several tasks to be done at the same time. For example, while printing a document, data is sent to a **buffer** to hold it temporarily. While the buffer contents are emptied to the printer, the **CPU can carry on with other tasks**. Once the buffer is empty, the printer **sends an interrupt to the CPU requesting more data**. The interrupt will then be serviced according to its priority using an **interrupt service routine (ISR)**. This allows the CPU to **stop its existing task, service the interrupt from the printer, and then restore the original task once the interrupt is cleared**.
 
@@ -296,11 +313,15 @@ Teacher's comments 原话：
 ### ISR 关键流程（背这个顺序）
 
 ```
-设备发中断信号 → CPU 暂停当前任务 → 按优先级排序
-    → 执行 ISR 处理中断 → 中断清除 → 恢复原来的任务
+设备发中断信号 → CPU 检查中断优先级
+    ├─ 更高优先级 → 完成当前 FE cycle → 暂停当前任务
+    │                 → 执行 ISR → 清除中断 → 恢复原来的任务
+    └─ 更低优先级 → 继续当前任务（中断排队，稍后处理）
 ```
 
 ⚠️ **注意 "restore the original task once the interrupt is cleared"** —— 恢复原任务这一步经常被漏写。
+⚠️ **注意 lower-priority 分支**：不是所有中断都会立刻打断当前任务；优先级较低时要写 **continue the current task / the interrupt waits**。
+⚠️ **Mark Scheme 常写 "finish the current FE cycle"**（不是 FDE cycle），引用原文时按这个写。
 
 ---
 
@@ -311,6 +332,13 @@ Teacher's comments 原话：
 **English（背这句）**
 > **High-level languages** are used by the majority of programmers as they make it much **easier and quicker to develop and maintain programs**. Examples: **Visual Basic, Python, Java**.
 > **Low-level languages** are used by programmers who need to develop **special routines that make best use of memory, the computer's instruction set and hardware**. Most programs are written in **assembly language**, which is translated into **machine code**.
+
+**HLL 定义（2–3 分模板，背这三句）**：
+> - Written using **human-readable / English-like statements**
+> - **Independent of the type of computer** (portable / machine-independent)
+> - Must be **translated into machine code** before it can be executed
+
+> ⚠️ 如果题目问 "Explain what is meant by a high-level language"，只写 "easy to use" 通常不够；要把 **readable / portable / needs translation** 这三点写出来。
 
 **对比表（背下来，这是送分题）**：
 
@@ -376,8 +404,21 @@ Teacher's comments 原话：
 
 | Translator | **Advantages 优点** | **Disadvantages 缺点** |
 |---|---|---|
-| **Interpreter** | **Easier and quicker to debug, test and edit programs during development** | Takes **longer to write, test and debug** programs during development |
-| **Compiler** | A compiled program: **can be stored ready for use**; **can be executed without the compiler**; **takes up less space in memory when it is executed**; **is executed in a shorter time** | Programs **cannot be run without the interpreter** (原文如此，即"没有编译器就跑不了"）; **can take longer to execute** |
+| **Interpreter** | **Easier and quicker to debug, test and edit** programs during development; changes can be tested **immediately without recompiling**; useful for beginners/learning | **Slower to execute** because each statement is translated **every time** it is run; the **interpreter must be present** to run the program; **stops at the first error** (only one error reported at a time); source code must be available |
+| **Compiler** | Produces an **executable file** that can be **stored and run without the compiler**; **executes faster**; can **optimise** the code; reports **all errors together** after compilation; the executable can be **tested repeatedly without recompiling**; can be **distributed** for general use | The **whole program must be compiled before it can be run**; **slower to debug/test during development** (edit → recompile → run); any change to the source code requires **recompilation**; errors are only reported **after compilation** |
+
+### 编译器的错误报告与开发优势（Mark Scheme 常考）
+
+**错误报告**
+> - The compiler attempts to translate the **whole program**.
+> - If errors are found, it produces an **error report** listing **all the errors** in the code (instead of an executable).
+> - The programmer must **correct the errors and recompile** before the program can be executed.
+
+**用编译器开发的好处**
+> - **All errors are reported together**, so the programmer can fix several at once.
+> - Once compiled, the **executable can be tested many times without translating again**.
+> - The compiled program can be **run on another system without the translator** (provided it is compatible).
+> - **Optimised code** produced by the compiler can **execute faster**.
 
 🔧 **答题模板：Tick the description — assembler / compiler / interpreter** [5]
 
@@ -451,7 +492,7 @@ Teacher's comments 原话：
 
 ### 模板 3：Explain the term + reasons why it is used [3]
 > **格式**：① 定义 → ② 用途 1 → ③ 用途 2
-> ⚠️ **注意过时答案**：screensaver 的"防烧屏"是**错的**，现代用途是**省电 + 安全**。
+> ⚠️ **注意过时答案**：screensaver 的"防烧屏"是**错的**；现代主要用途是**安全（自动登出）**，省电只是部分教材保留的旧说法。
 
 ### 模板 4：Buffer / Interrupt 填空或简答 [3-8]
 > **背熟那段标准填空文本**（见 §4.1.4）。
@@ -557,7 +598,7 @@ Teacher's comments 原话：
 
 | 失分点 | 正确写法 |
 |--------|---------|
-| Screensaver 说成"防止屏幕烧屏/phosphor burn" | ❌ **已过时，0 分**。现代用途 = **省电 + 安全（自动登出）** |
+| Screensaver 说成"防止屏幕烧屏/phosphor burn" | ❌ **已过时，0 分**。现代主要用途 = **安全（自动登出）**；省电为旧说法 |
 | 拼写错误：`user account manager` | ✅ **user account management** |
 | WIMP/post-WIMP 题扯到 CLI 比较 | ❌ 题目要求 **relative** = 两者互比，扯 CLI **不给分** |
 | "Explain why use LLL" 写成 "how to write LLL" | ✅ 只写**理由**（快、机器相关指令、省内存） |
@@ -585,9 +626,9 @@ Application software: 用 word / spreadsheet / database / photo-video editing / 
 【系统软件特点】控制管理硬件 / 提供运行平台 / 提供 HCI / 分配资源
 
 【OS 九大功能】★ 高频
-HCI (CLI vs GUI) / Security / Interrupt handling / Memory management
-Hardware management (drivers) / Platform for apps / Error handling
-Multitasking / User account management / File management
+Managing files / Handling interrupts / Providing an interface (HCI)
+Managing peripherals and drivers / Managing memory / Managing multitasking
+Providing a platform for running apps / Providing system security / Managing user accounts
   —— Memory management = 管 RAM + RAM↔HDD 数据搬移 + memory protection
   —— User account mgmt = 每用户独立内存区 + 用户名密码 + 权限层级
   —— Security = 更新软件 + 防病毒/防火墙 + 访问权限 + 数据恢复
@@ -598,7 +639,7 @@ GUI: 图标, 不用背命令, 适合新手 | 内存需求大
 WIMP = windows/icons/menu/pointing device (鼠标)
 post-WIMP = 触摸屏, 可 pinch & rotate, 不需指点设备
 
-【Screensaver】非活动后出现 → 自动登出 = 安全 + 省电
+【Screensaver】非活动后出现 → 自动登出 = 安全（省电为旧说法）
               ⚠ 不要说防烧屏(过时)
 
 【启动】BIOS(存 EEPROM, 是 firmware) → 告诉 CPU OS 在哪
@@ -634,7 +675,7 @@ Assembler   — LLL(汇编)→机器码, 产生可执行文件
 
 ## 🔗 延伸资源
 
-- 教材：[Hodder Study & Revision Guide — Chapter 4](csresource/2026_09_14_61.%20CAMBRIDGE%20IGCSE%20(0478-0984)%205.2%20Digital%20currencies/)
+- 课件：[Chapter 4 课件与反馈材料](../csresource/new/2026_10_19_Common%20Test%20U4%20-%20feedback%20v2/Chapter%204.pdf)
 - 真题：`csresource/.../Past Exam Papers/Questions by Year/` 中各年份 Paper 1
 - 在线练习（按考纲章节分类，与本单元一一对应）：
   - [Save My Exams — 4. Software](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/)

@@ -36,7 +36,7 @@
 | **Internet** | **World Wide Web (WWW)** |
 |--------------|--------------------------|
 | Users can **send and receive emails** | A **collection of multimedia web pages** and other information on websites |
-| Allows **online chatting** (via text, audio and video) | **http(s) protocols** are written using **hypertext mark-up language (HTML)** |
+| Allows **online chatting** (via text, audio and video) | **Web pages are written using hypertext mark-up language (HTML)**; HTTP/HTTPS are the **protocols** used to transfer them |
 | Makes use of **transmission protocols (TCP)** and **internet protocols (IPs)** | **Uniform resource locators (URLs)** are used to specify the location of web pages |
 | A worldwide collection of **interconnected networks and devices**（物理基础设施） | Web resources are **accessed by web browsers**; WWW uses the internet to access information from web servers |
 
@@ -401,13 +401,13 @@ protocol  |      domain name      |          web page/file name
 > - **Check the tone/spelling** of the email
 > - **Check the URL** that is attached to the link
 
-**防范措施**：awareness training；不点不明链接；用浏览器自带 anti-phishing 工具；保持浏览器和防火墙更新；用右上角小 x 关闭弹窗；点信息图标查看真实发件地址。
+**防范措施**：awareness training；不点不明链接；用浏览器自带 anti-phishing 工具；保持浏览器和防火墙更新；点信息图标查看真实发件地址。
 
 ### 7. Pharming 域名欺骗（与 phishing 的关键区别）
 
 **English**
 > **Pharming is malicious code installed on a user's computer or web server without their knowledge.** The user **doesn't need to take any action** to initiate the pharming attack; it is **initiated automatically by the stored code**. The creator of the malicious code can gain information by **sending the user's browser to a fake website without their knowledge**.
-> Pharming redirects the user's browser to a fake/malicious website often by using **DNS cache poisoning** (cache poisoning **changes genuine IP addresses on an infected website to fake IP addresses** that take the browser to the fake website).
+> Pharming redirects the user's browser to a fake/malicious website often by using **DNS cache poisoning** (cache poisoning **changes the genuine IP address stored in a DNS server's/resolver's cache for a domain name to a fake IP address** that takes the browser to the fake website).
 
 ⚠️⚠️ **Phishing vs Pharming 的核心区别（必考）**：
 | | **Phishing** | **Pharming** |
@@ -715,7 +715,7 @@ Biometrics — fingerprint / retina / face / voice
 
 ## 🔗 延伸资源
 
-- 教材：[Hodder Study & Revision Guide — Chapter 5](csresource/2026_09_14_61.%20CAMBRIDGE%20IGCSE%20(0478-0984)%205.2%20Digital%20currencies/)
+- 课件：[Unit 5 The internet and its uses 课件目录](../csresource/new/Slides/1%20Computer%20Systems/5%20The%20internet%20and%20its%20uses/)
 - 真题：`csresource/.../Past Exam Papers/Questions by Year/` 中各年份 Paper 1
 - 在线练习（按考纲章节分类，与本单元一一对应）：
   - [Save My Exams — 5. The internet and its uses](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/)

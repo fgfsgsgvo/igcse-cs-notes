@@ -685,13 +685,14 @@ phenotyping = observing plant physical characteristics to assess health and grow
 ## 🔗 延伸资源
 
 - 教材：[Cambridge IGCSE Computer Science Textbook — Chapter 6](../csresource/)
+- 真题：[Unit 6 按子主题真题 + Answer Key](../csresource/new/Past%20Exam%20Papers/Questions%20by%20Unit/Unit%206%20-%20Automated%20and%20emerging%20technologies%20%28159%20pts%29/)
 - 真题：`csresource/.../Past Exam Papers/Questions by Year/` 中各年份 Paper 1
 - 在线练习（按考纲章节分类，与本单元一一对应）：
   - [Save My Exams — 6. Automated and emerging technologies](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/)
   - [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)（免费下载）
   - [Physics and Maths Tutor — IGCSE Computer Science](https://www.physicsandmathstutor.com/computer-science-revision/igcse-cie/)
 
-> ⚠️ **注意**：本校课件只覆盖 Unit 1–5，**Unit 6 没有 slide 材料**。本单元内容来自教材 Chapter 6 + 真题 Mark Scheme。
+> ⚠️ **注意**：本校 slide 只覆盖 Unit 1–5，**Unit 6 没有 slide 材料**；但新资料里有 **Unit 6 按子主题整理的真题 + Answer Key**（6.1 Automation / 6.2 Robotics / 6.3 AI / 6.3 Expert systems）。本单元内容来自教材 Chapter 6 + 这些真题/答案。
 
 ---
 

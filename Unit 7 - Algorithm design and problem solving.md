@@ -590,7 +590,7 @@ OUTPUT "The average is ", Average
 > 验证**不能保证数据是对的**，只能保证**格式合理**。
 > 例：输入生日 `31/02/2000`——格式对（合法日期格式），但日期不存在。验证**查不出来**。
 
-## 七种验证检查（考纲限定）
+## 六种验证检查（考纲限定）
 
 | 类型 | English | 检查什么 | 例子 |
 |---|---|---|---|
@@ -600,9 +600,8 @@ OUTPUT "The average is ", Average
 | **Presence check** | 存在检查 | 必填字段**是否为空** | 姓名不能留空 |
 | **Format check** | 格式检查 | 是否符合规定的**格式/模式** | 日期必须是 `DD/MM/YYYY`；邮编 `CB1 2AB` |
 | **Check digit** | 校验位 | 用**算法计算出的额外数字**验证整串数字 | ISBN、条形码、身份证号 |
-| **Visual check** | 目视检查 | **人眼**看一遍有没有错 | 手动输入后核对一遍 |
 
-> ⚠️ **Check digit 是唯一"能查出错号"的检查** —— 因为它能检测**输入错误**（比如手抖打错一位）。
+> ⚠️ **Check digit 专门用于检测数字输入错误**（例如手抖打错一位），但不能保证查出所有错误；不要把它说成“唯一能查错的检查”。
 > ⚠️ **Range check vs Length check**：范围检查看**数值大小**，长度检查看**字符个数**。
 
 ## 🔧 答题模板
@@ -636,7 +635,7 @@ OUTPUT "The average is ", Average
 | **Visual check** | 目视核对 | **人眼**把输入的数据和原始文件对比一遍 |
 | **Double entry check** | 双重录入核对 | **输入两次**，计算机比较两次是否相同，不同就报错 |
 
-> ⚠️ **Visual check 同时出现在 validation 和 verification 里** —— 因为它是人工检查，既可以看"合不合理"，也可以看"对不对"。
+> ⚠️ **Visual check 属于 verification，不属于 validation**。2026–2028 考纲的 validation 六项是 range / length / type / presence / format / check digit；visual check 只列在 verification 下。
 > ⚠️ **双重录入（double entry）是最常考的一种**：比如设密码时输入两次、注册时输入两次邮箱。
 
 ## 🔧 答题模板
@@ -895,9 +894,8 @@ CALL DisplayResult(Average)
 
 # 📊 真题实证（考频与真实题型）
 
-> **数据来源**：June 2026 Paper 22（0478/22）真题原文 · 2015–2025 Paper 2 真题 **65 份 / 1079 题**
-> ⚠️ **诚实说明**：我们手上**没有 Paper 2 的官方 mark scheme**，只有题目。
-> → 下面标「官方」的是考纲规范明确规定的；标「推断」的是根据规范推出的答案，**不是官方判答案**。
+> **数据来源**：June 2026 Paper 22（0478/22）真题原文 + **官方 Mark Scheme 21/22/23** · 学校按单元整理的 Question Paper / Answer Key · 2015–2025 Paper 2 真题 **65 份 / 1079 题**
+> ✅ **已有 2026 年 6 月 Paper 2 官方 Mark Scheme**：下面 Q1/Q2/Q3/Q5/Q7 等已用 MS22 核对；仍标「推断」的是 2015–2025 旧题中没有官方 MS 对照的答案。
 
 ## June 2026 Paper 22 完整拆解（最新一份，共 75 分）
 
@@ -905,7 +903,7 @@ CALL DisplayResult(Average)
 |---|---|---|---|
 | Q1 | 1 | 三种循环的识别（选择）| **7 / 8** |
 | Q2 | 1 | 数据类型（CHAR）| **8** |
-| Q3 | 11 | validation（presence / checksum / format check）+ 写验证伪代码 | **7** |
+| Q3 | 11 | validation（presence / check digit / format check）+ 写验证伪代码 | **7** |
 | Q4 | 6 | PDLC 的 coding 与 testing 阶段 | **7** |
 | Q5 | 10 | 2D 数组 + 线性查找：**找 4 个错并改正** + 命名算法 + 补写"未找到" | **7 / 8** |
 | Q6 | 7 | **流程图 + trace table** | **7** |
@@ -922,7 +920,7 @@ CALL DisplayResult(Average)
 > *"Tick one box to complete the following sentence. Two types of pseudocode statements used for iteration are"*
 > A. CASE and IF　B. FOR...NEXT and IF　C. **FOR...NEXT and WHILE...DO...ENDWHILE**　D. REPEAT...UNTIL and CASE
 
-**答案：C**（推断）
+**答案：C**（官方 MS22）
 > ⚠️ **A 和 D 是干扰项** —— CASE 和 IF 是 **selection** 不是 iteration。**把 IF 和 CASE 当成循环是经典错误**。
 > 💡 **三种控制结构必须能一眼分清**：
 > - **Sequence** = 顺次执行
@@ -932,8 +930,8 @@ CALL DisplayResult(Average)
 ### Q3 [11 分] Validation 全考一遍
 | 小问 | 分值 | 题目原文 / 考法 |
 |---|---|---|
-| (a)(i) | 1 | *"A check to make sure that data has been input and not left blank."* → **presence check**（推断）|
-| (a)(ii) | 1 | *"A value placed at the end of a sequence of numbers in the code. The value is calculated from all the other values before it."* → **checksum**（推断）|
+| (a)(i) | 1 | *"A check to make sure that data has been input and not left blank."* → **presence check**（官方 MS22）|
+| (a)(ii) | 1 | *"A value placed at the end of a sequence of numbers in the code. The value is calculated from all the other values before it."* → **check digit**（官方 MS22）|
 | (b) | 3 | *"Explain the purpose of a format check and give an example of where it could be used."* |
 | (c) | **6** | **写伪代码**：逐个数输入，是整数就存进数组，不是就重新输入直到是整数；存满 15 个输出完成消息 |
 
@@ -978,7 +976,7 @@ CALL DisplayResult(Average)
 
 **(a) [4 分] "Identify the line numbers of four errors in the pseudocode and suggest corrections."**
 
-**四个错误（推断，非官方答案）**
+**四个错误（官方 MS22 一致）**
 | 行号 | 错误 | 改正 |
 |---|---|---|
 | **03** | `AccountID` 声明成 `INTEGER`，但题面说 account ID "contains letters and numbers" | `DECLARE AccountID : STRING` |
@@ -993,11 +991,11 @@ CALL DisplayResult(Average)
 > 3. **语句用错**（IF / CASE 混用，第 07 行）
 > 4. **数组下标写死或写错**（第 09 行）
 
-**(b) [1 分] "State the name given to this type of algorithm."** → **linear search**（推断）
+**(b) [1 分] "State the name given to this type of algorithm."** → **linear search**（官方 MS22）
 
 **(c) [5 分] "The algorithm stops if the account number is not found... Write the pseudocode statements to change the algorithm to inform the user that the account number has not been found. Clearly state where in the original algorithm your new statements would be placed. Do not rewrite the whole algorithm."**
 
-**推断答案（加分点）**
+**参考答案（官方 MS22 接受 flag 写法）**
 1. 在**第 02 行附近**加：`DECLARE Found : BOOLEAN`
 2. 在**循环之前**加：`Found ← FALSE`
 3. 在第 09 行附近找到时加：`Found ← TRUE`

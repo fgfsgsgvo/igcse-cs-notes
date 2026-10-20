@@ -188,7 +188,7 @@ CPU 把译码后的指令作为控制信号发给各部件 (execute)
 | 方法 | 必须跟上的理由 |
 |------|---------------|
 | **Increase RAM size** | Since data is constantly moved into and out of RAM, the larger the RAM, the fewer data movements are needed, which increases operational speed |
-| **Increase the width of the address bus and data bus** | This allows more memory locations to be addressed at the same time, thus increasing CPU performance |
+| **Increase the width of the address bus and data bus** | A wider **address bus** allows more memory locations to be addressed; a wider **data bus** allows more data to be transferred per cycle. Both can improve performance |
 | **Increase the clock speed** | It can carry out more processes per second; **however** this needs caution, since it can lead to overheating and potential computer crash as operations become out of synchronisation |
 | **Use more cores (e.g. quad core)** | Allows multiple functions to be carried out simultaneously, which greatly improves CPU performance |
 
@@ -214,7 +214,7 @@ CPU 把译码后的指令作为控制信号发给各部件 (execute)
 **English（背这句）**
 > Cache is **high-speed RAM that holds a copy of only the most frequently used data or instructions**. Cache is **first checked** when the CPU wants to access data/instructions from primary memory. The larger the cache memory size, the better the CPU performance.
 
-**中文理解**：Cache 是**一级缓存**（在 CPU 和 RAM 之间）。CPU 要数据时**先查 cache**，查到就直接用（快），查不到才去 RAM（慢）。Cache 越大，命中率越高，CPU 越快。
+**中文理解**：Cache 是 **CPU 与 RAM 之间的高速缓存**（现代 CPU 通常分为 L1/L2/L3 多级）。CPU 要数据时**先查 cache**，查到就直接用（快），查不到才去 RAM（慢）。Cache 越大，命中率越高，CPU 越快。
 
 **连线题常考配对**：
 - "Temporary storage space that stores frequently used data and instructions" → **Cache**
@@ -456,7 +456,7 @@ CPU 把译码后的指令作为控制信号发给各部件 (execute)
 |---|---|---|
 | **原理** | Uses many **micro mirrors** arranged on a **DMD chip**; mirrors move according to data from the computer; produces a greyscale image (**1024 shades of grey**); a bright light passes through an **RGB filter** converting it into a full-colour image | A powerful beam of light is sent to a **chromatic-coated mirror** which splits the image into **red, green and blue components**; three versions of the image are produced and **recombined using a prism** |
 | **优点** | Higher contrast ratios; higher reliability/longevity; **quieter running**; uses a single DMD chip (no issues lining up images); smaller and lighter; better suited to dusty or smoky atmospheres | **Gives a sharper image**; better colour saturation; **more efficient use of energy** — generates less heat |
-| **缺点** | Image tends to suffer from **"shadows"** when showing a moving image; does **not have grey components**; colour definition frequently not as good | Contrast ratios not as good; **has a limited life**; LCD panels are organic and **degrade with time** (screens turn yellow) |
+| **缺点** | Image tends to suffer from **"shadows"** when showing a moving image; **greyscale/black-level reproduction can be less accurate**; colour definition frequently not as good | Contrast ratios not as good; **has a limited life**; LCD panels are organic and **degrade with time** (screens turn yellow) |
 
 ---
 
@@ -672,7 +672,7 @@ CPU 把译码后的指令作为控制信号发给各部件 (execute)
 ### 磁存储 Magnetic Storage（HDD）
 
 **English（背这句）**
-> Data is stored on **platters** made from aluminium, glass or ceramic, and each surface is **coated in a magnetisable material**. The platters spin at about **7000 times per second** and **read/write (electromagnetic) heads** float a fraction of a millimetre above the surface. Disk drives can have several platters; **both sides of the platter are used** and **each surface has its own read/write head**.
+> Data is stored on **platters** made from aluminium, glass or ceramic, and each surface is **coated in a magnetisable material**. The platters spin at about **7000 revolutions per minute (RPM)** — roughly 117 revolutions per second — and **read/write (electromagnetic) heads** float a fraction of a millimetre above the surface. Disk drives can have several platters; **both sides of the platter are used** and **each surface has its own read/write head**.
 >
 > Blocks of data are stored in **sectors and tracks**. The time it takes to find and access the required data block is known as **latency**. Once the sector containing the required data block is found, the data in a sector is read **sequentially**; however, actual data access is **direct**.
 >
@@ -843,6 +843,8 @@ MAC 地址可以是：
 > A **MAC address identifies the physical address of a device** on the network, whereas the **IP address identifies the device's global address on the internet**.
 >
 > MAC addresses are **unique for each device**; however, IP addresses are **not necessarily unique**, since all devices on a network share the same part of an IP address.
+
+> ⚠️ **严谨理解**：完整 IP 地址在所属网络内是唯一的；设备共享的是 **network prefix**（网络前缀），host 部分不同。公网 IP 也可能通过 NAT 被多台设备共享。考试按上面的对比点作答即可。
 >
 > MAC addresses are **set by the manufacturer** but can also be **changed by the user (LAA)**; IP addresses can also be **dynamic or static** (an IP address is usually **assigned by the DHCP server**).
 >
@@ -945,7 +947,7 @@ MAC 地址可以是：
 | NIC / MAC 地址 | Sum | Mar, Sum, Win | — | 1–5 | 常考 |
 | IP 地址（v4/v6, static/dynamic） | Sum | Mar, Win | Mar | 1–3 | 常考 |
 | Router | Mar | Mar, Win | Jun | 1–3 | 常考 |
-| **触摸屏类型 / 打印机 / 投影仪 / 2D-3D 扫描仪 / QR / LED 屏** | 无 | 无 | 无 | — | ⚠️ **2022 年后就没考过，低产出** |
+| **触摸屏类型 / 打印机 / 投影仪 / 2D-3D 扫描仪 / QR / LED 屏** | 无 | 无 | 无 | — | ⚠️ **近年少考，但考纲仍列出；掌握用途/适用场景，细节不必全背** |
 
 ### 🔑 逐考点官方答案（背这些，不是背教材）
 
@@ -1060,7 +1062,7 @@ MAC 地址可以是：
 6. **embedded system "explain why"**（每套，2 分）—— 背两个不同特征
 7. **输入/输出设备识别**（必考，1–3 分）—— ⚠️ **必须符合题干场景**
 8. **MAC / IP 格式事实**（多数卷，1–3 分）
-9. ⚠️ **打印机 / 投影仪 / 触摸屏类型 / 扫描仪** —— **2022 年后从未考过**，只用读懂，不必背细节
+9. **打印机 / 投影仪 / 触摸屏类型 / 扫描仪** —— 近年少考，但 2026–2028 考纲仍列出；**至少掌握用途和适用场景**，内部原理不必逐条死背
 
 ---
 
@@ -1150,7 +1152,7 @@ RAM: volatile, 可读写, 存OS在用部分, 可扩容
 ROM: non-volatile, 不可改, 存BIOS/启动程序
 DRAM: 晶体管+电容, 需刷新, 便宜大容量 = 主存
 SRAM: flip flop, 不刷新, 快, 贵 = cache
-HDD: 盘片+磁头, 7000rps, 有latency, 会fragmentation
+HDD: 盘片+磁头, 约7000RPM（约117转/秒）, 有latency, 会fragmentation
 SSD: NAND matrix, floating gate + control gate, 限写入次数
 CD 780nm红 / DVD 650nm红双面 / Blu-ray 405nm蓝, 加密, 4K
 虚拟内存 = RAM + swap space, paging, disk thrashing
@@ -1167,7 +1169,7 @@ Router — 连接不同网络, 转换协议
 
 ## 🔗 延伸资源
 
-- 教材：[Hodder Study & Revision Guide — Chapter 3](csresource/2026_09_14_61.%20CAMBRIDGE%20IGCSE%20(0478-0984)%205.2%20Digital%20currencies/)
+- 课件：[Unit 3 Hardware 课件目录](../csresource/new/Slides/1%20Computer%20Systems/3%20Hardware/)
 - 课件：`csresource/.../Slides/` 中的 Unit 3 相关 PPT
 - 真题：`csresource/.../Past Exam Papers/Questions by Year/` 中各年份 Paper 1
 - 在线练习（按考纲章节分类，与本单元一一对应）：

@@ -34,12 +34,14 @@
 
 ```
 IF Score > 50
-   THEN                          ← 2 格
-       OUTPUT "Pass"             ← 语句本身再 4 格
-   ELSE                          ← 2 格
-       OUTPUT "Fail"
+  THEN                          ← 2 格
+      OUTPUT "Pass"             ← 语句本身再 4 格
+  ELSE                          ← 2 格
+      OUTPUT "Fail"
 ENDIF
 ```
+
+> ⚠️ 本文其他代码块为了紧凑显示，部分使用了 3 空格缩进；**考试作答请按考纲：普通语句 4 空格，THEN/ELSE/CASE 的 case 2 空格**。上面的示例已按规范排版。
 
 ### 大小写
 | 对象 | 规则 | 例子 |
@@ -89,7 +91,7 @@ PROCEDURE Swap(X : INTEGER, Y : INTEGER)
 1. 只能用**字母 + 数字**
 2. **必须以大写字母开头**，不能以数字开头
 3. **不能用下划线**、重音字母或其他符号
-4. **关键字不能当标识符**（`IF`、`Total` 这类不能用）
+4. **关键字不能当标识符**（`IF`、`THEN`、`OUTPUT`、`DECLARE` 这类不能用）
 
 > ⚠️ **大小写不敏感**：*"Countdown and CountDown should **not** be used as separate variables."*
 
@@ -227,7 +229,7 @@ UCASE("Happy")                    returns "HAPPY"
 SUBSTRING("Happy Days", 1, 5)     returns "Happy"
 ```
 
-> ⚠️ **SUBSTRING 的下标从 1 开始**：*"Generally, a start position of 1 is the first character in the string."*
+> ⚠️ **SUBSTRING 通常从 1 开始**：*"Generally, a start position of 1 is the first character in the string."* 如果题目明确给出 0 起始位置，就按题目要求写。
 > ⚠️ **参数顺序是 (字符串, 起点, 长度)** —— 不是 (起点, 终点)！取第 1 到第 5 个字符写 `SUBSTRING(s, 1, 5)`。
 
 ---
@@ -762,4 +764,4 @@ WRITEFILE "f.txt", Line
 CLOSEFILE "f.txt"
 ```
 
-**上一单元**：[Unit 6 - Automated and emerging technologies](Unit 6 - Automated and emerging technologies.md)
+**上一单元**：[Unit 8 - Programming](Unit%208%20-%20Programming.md)

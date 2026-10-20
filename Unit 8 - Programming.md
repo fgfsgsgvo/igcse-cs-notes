@@ -464,24 +464,15 @@ OUTPUT "There are ", Count, " vowels"
 
 > ⚠️ **`&` 和 `+` 都不是 0478 考纲里的语法**。你的作业本和网上教程大量用 `&` —— 那是 **A-Level (9618) 的习惯**。写成 `FullName ← FirstName & " " & LastName` 在 0478 里**没有依据**。
 
-**✅ 0478 的正确做法：用 `OUTPUT` 的逗号分隔**
+**✅ 0478 推荐做法：用 `OUTPUT` 的逗号分隔**
 ```
 OUTPUT "Hello ", FirstName, " ", LastName
 ```
 
-**✅ 或者分多次 OUTPUT**
-```
-OUTPUT "Hello ", FirstName, " ", LastName
-```
+> 逗号会把多个输出项依次显示，不需要先拼成一个字符串。
 
-**✅ 如果需要把拼接结果存进变量，先分步做**
-```
-// 例：把名字和姓氏连起来存进 FullName
-FullName ← LastName
-OUTPUT "Name stored"
-```
-
-> ⚠️ 严格来说 0478 没有"字符串拼接赋值"的官方语法。**如果题目真的要你拼接后存变量**（少见），按老师教的写；但**能用 OUTPUT 逗号分隔解决的，就用逗号** —— 那才是规范里的写法。
+**⚠️ 如果题目坚持要求把拼接结果存进变量**
+> 0478 伪代码**没有官方的字符串拼接运算符**。不要写 `FullName ← LastName`（这只是复制，不是拼接），也不要写 `FullName ← FirstName & LastName`。优先把答案改写成 `OUTPUT` 逗号分隔；若老师明确教过某种写法，按老师要求，但要知道它不属于 0478 规范。
 
 ---
 
@@ -1326,9 +1317,8 @@ CLOSEFILE "names.txt"
 
 # 📊 真题实证（考频与真实题型）
 
-> **数据来源**：June 2026 Paper 22（0478/22）真题原文 · 2015–2025 Paper 2 真题 **65 份 / 1079 题** · 学校作业本 *Paper 2 Homework Booklet (Pseudocode & Python)* 标准答案
-> ⚠️ **诚实说明**：我们手上**没有 Paper 2 的官方 mark scheme**。
-> → 标「官方」的是考纲规范明确规定的；标「推断」的是根据规范推出的答案，**不是官方判答案**。
+> **数据来源**：June 2026 Paper 22（0478/22）真题原文 + **官方 Mark Scheme 21/22/23** · 学校按单元整理的 Question Paper / Answer Key · 2015–2025 Paper 2 真题 **65 份 / 1079 题** · 学校作业本 *Paper 2 Homework Booklet (Pseudocode & Python)* 标准答案
+> ✅ **已有 2026 年 6 月 Paper 2 官方 Mark Scheme**：下面 Q1/Q2/Q3/Q7 等已用 MS22 核对；仍标「推断」的是 2015–2025 旧题中没有官方 MS 对照的答案。
 
 ## 🎯 Unit 8 在 June 2026 的具体考法
 
@@ -1336,14 +1326,14 @@ CLOSEFILE "names.txt"
 > *"Two types of pseudocode statements used for iteration are"*
 > A. CASE and IF　B. FOR...NEXT and IF　C. **FOR...NEXT and WHILE...DO...ENDWHILE**　D. REPEAT...UNTIL and CASE
 
-**答案：C**（推断）
+**答案：C**（官方 MS22）
 > ⚠️ **IF 和 CASE 是 selection，不是 iteration** —— 这是最容易错的选择题。
 
 ### Q2 [1 分] 数据类型
 > *"Tick one box to identify a programming data type used to store **a single letter, symbol or number** input from the keyboard."*
 > A. Boolean　B. **char**　C. integer　D. real
 
-**答案：B**（推断）
+**答案：B**（官方 MS22）
 > 💡 **题干里的关键词是 "a single"** —— 单字符 = CHAR。如果是 "a series of characters" 就是 STRING。
 
 ### Q3(c) [6 分] 写验证伪代码（**REPEAT/WHILE + 数组 + 计数器**）
@@ -1355,7 +1345,7 @@ CLOSEFILE "names.txt"
 > - When **15** whole numbers have been stored, output a message
 > - *You do not need to declare any arrays or variables*
 
-**推断答案（结构示范）**
+**参考答案（官方 MS22 接受 MOD/DIV/ROUND；FOR+REPEAT 或 REPEAT 计数均可）**
 ```
 Count ← 0
 REPEAT
@@ -1381,7 +1371,8 @@ OUTPUT "Validation check completed"
 > - 另一种：外层 `FOR Count ← 1 TO 15`，内层 `REPEAT ... UNTIL MOD(Number,1) = 0`
 > **两种都能拿分**（逻辑对就行）。关键点：**计数器只在成功存进数组时才 +1**。
 > ⚠️ **"whole number" 的判定**：`MOD(Number, 1) = 0` 是规范内的写法。
-> ⚠️ **不要写 `DIV`** 来做这个判断（`DIV(x,1)` 对任何数都返回整数部分，判断不了）。
+> ✅ **`MOD`、`DIV`、`ROUND` 三种判断都被官方 MS22 接受**：`MOD(Number,1) = 0`、`DIV(Number,1) = Number`、`ROUND(Number,0) = Number` 都能判断整数。
+> 💡 `DIV(x,1)` 返回整数部分，所以 `DIV(Value,1) <> Value` 正好能检测非整数——不是“判断不了”。
 
 ### Q5 [10 分] 找错改错 —— **四个错误全是 Unit 8 语法**
 （题目原文见 [Unit 7 的 Q5 分析](Unit%207%20-%20Algorithm%20design%20and%20problem%20solving.md)）
@@ -1409,11 +1400,15 @@ OUTPUT "Validation check completed"
 ### Q7 [5 分] 文件处理
 
 **(a) [1 分] "State one reason to store data in a file."**
-> ✅ 推断答案：*"So that the data is stored **permanently** and can be **used again** by the program later / is not lost when the program closes."*
+> ✅ 官方 MS22 接受（任写一条）：
+> - *"So the data is stored **permanently** / provides a **non-volatile copy**."*
+> - *"So the data is **not lost** if the machine/program is switched off or crashes."*
+> - *"So the data can be **used again later** / to provide a **backup**."*
+> - *"So the data can be **transported** to a different (offline) computer / **shared**."*
 
 **(b) [4 分] "A list of names of the members of a club are stored in a file called Names.txt. Write the pseudocode statements to load a line of text from Names.txt and assign the line of text to an appropriately named variable."**
 
-**推断答案**
+**参考答案（官方 MS22）**
 ```
 DECLARE LineOfText : STRING
 OPENFILE "Names.txt" FOR READ

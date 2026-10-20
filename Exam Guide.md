@@ -213,10 +213,10 @@
 
 | 内容 | 说明 |
 |---|---|
-| **RLE 单独出题** | **从未**独立出现。只是无损压缩的**举例**（判分写 "e.g. RLE"）。**不要练 RLE 编码/解码**，只要会写「无损压缩的一个例子是 RLE，它把重复数据**识别、分组并记录重复次数**」 |
-| **ISBN-10 / ISBN-13 算法** | **从未**出现。校验位题考的是「算出 → 附末尾 → 扫描重算 → 比对」**流程**，不是加权算法 |
-| **触摸屏类型 / 打印机 / 投影仪 / 2D–3D 扫描仪 / QR 码** | 2022 年后**从未考过**（Unit 3）|
-| **输入输出设备如何工作** | **已从考纲删除** —— 写了**直接 0 分** |
+| **RLE 单独出题** | 近年**没有单独大题**，但 2026–2028 考纲明确把 RLE 作为 lossless compression 的例子。**至少掌握 RLE 的编码/解码原理**，不要只背名字；考纲要求的是“理解如何压缩”，不是只认术语 |
+| **ISBN-10 / ISBN-13 算法** | 近年**没有单独考具体加权算法**。重点掌握 check digit 的「计算 → 附在末尾 → 重新计算 → 比对」流程；具体 ISBN 权重不必死记 |
+| **触摸屏类型 / 打印机 / 投影仪 / 2D–3D 扫描仪 / QR 码** | 近年**少考**，但 2026–2028 考纲**仍明确列出**（Unit 3）。至少掌握**用途和适用场景**，不要完全跳过 |
+| **输入输出设备如何工作** | 当前考纲的重点是“**是什么 / 为什么需要 / 在情境中选择**”，不要求逐设备背内部工作原理；但答到相关原理通常不扣分，不要被“写了 0 分”吓住 |
 
 ### ✅ 性价比最高的（几乎每场必考）
 
@@ -244,7 +244,7 @@
 
 **距考试 3–7 天** —— 只刷各单元 **🧠 一页纸速记** + **⚠️ 高频失分点汇总**
 - **Paper 1**：重点补 **Unit 3**（分值最高）和 **Unit 6**（模板最固定）
-- **Paper 2**：**默写** [Pseudocode Reference](Pseudocode%20Reference.md) 的「⚡ 十条最容易丢分的硬性规定」+ Unit 7 的「六大方法速查表」
+- **Paper 2**：**默写** [Pseudocode Reference](Pseudocode%20Reference.md) 的「⚡ 十条最容易丢分的硬性规定」+ Unit 7 的「六大方法速查表」+ Unit 9 的 SQL 模板 + Unit 10 的六个真值表
 
 **考前一晚 / 当天早上**
 - **两卷都看**：本页的**指令词表**、**Mark Scheme 黑话表**、**两张卷子结构**
@@ -281,6 +281,18 @@
 
 > 💡 **推荐组合**：本笔记每单元 → 配 **Save My Exams** 对应章节；需要更多同类题用 **PapersDaddy**（免费）或 **Educate A Change**。
 
-**资料来源**：学校课件（Unit 1–5，⚠️ Unit 6 无课件）· *Cambridge IGCSE Computer Science* 教材 · *Hodder Study & Revision Guide* · **2020–2026 真题 QP / MS / Examiner Report（138 份）**
+**本校最新资料（`../csresource/new/`）**
 
-> ⚠️ 本笔记所有"官方答案"和"失分点"均来自真题 Mark Scheme 和 Examiner Report **原文**，不是推测。考纲每三年更新，使用前确认你的考试年份对应 **2026–2028** 考纲。
+| 资料 | 用途 |
+|---|---|
+| [2026–2028 考纲](../csresource/new/2026_10_19_PPT/Syllabus/0478%20Computer%20Science%202026-2028%20Syllabus%20document%20.pdf) | 核对知识点范围和 pseudocode 规范 |
+| [按单元真题 + Answer Key](../csresource/new/Past%20Exam%20Papers/Questions%20by%20Unit/) | Unit 1–10 + Big Programming Question，适合学完一单元就刷 |
+| [June 2026 Paper 2 官方 Mark Scheme](../csresource/new/Past%20Exam%20Papers/Questions%20by%20Year/) | 核对 Paper 2 答案，替代旧笔记里的“推断” |
+| [Paper 2 Homework Booklet 答案](../csresource/new/2026_10_19_PPT/Homework%20Booklet/) | 学校作业本对照；注意个别答案本身有 bug（见 Unit 8） |
+| [Practice Paper 1 / 2 - CT1](../csresource/new/) | 考前套卷练习 |
+| [Unit 4 Common Test 反馈](../csresource/new/2026_10_19_Common%20Test%20U4%20-%20feedback%20v2/) | 看真实评分标准和示例答案 |
+| [Chapter 7 / 8 PPT](../csresource/new/2026_10_19_PPT/PPT/) | Paper 2 算法与编程课件 |
+
+**资料来源**：学校课件（Unit 1–5 slides；Unit 3/4/5 另有 PPT/Chapter 4）· 学校按单元整理的 QP / Answer Key · *Cambridge IGCSE Computer Science* 教材 · *Hodder Study & Revision Guide* · **2020–2026 真题 QP / MS / Examiner Report（138 份）**
+
+> ⚠️ 本笔记中标注「官方」的答案来自真题 **Mark Scheme / Examiner Report 原文**；标注「推断」的答案是按考纲和评分规范推得的，**不是官方原文**。考纲每三年更新，使用前确认你的考试年份对应 **2026–2028** 考纲。

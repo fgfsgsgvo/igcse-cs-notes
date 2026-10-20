@@ -307,7 +307,7 @@ E48D  →  1110 0100 1000 1101
 > ⚠️ **代价**：Unicode **requires more bits per character than ASCII**（考纲明确列出），因此同样内容用 Unicode 存储**文件更大**。
 > 例：一份文本用 ASCII 编码 32 KB，用 Unicode 编码 64 KB。
 
-> 💡 **易错点**：**Unicode 不是 ASCII 的子集**，两者是并列的不同字符集。ASCII 也不是 Unicode 的子集。
+> 💡 **易错点**：**Unicode 是 ASCII 的超集**——ASCII 是 Unicode 的子集，Unicode 的前 128 个码点与 ASCII 相同；Unicode 还能表示中文、emoji 等更多字符。不要说“两者完全并列、互不包含”。
 
 ---
 
@@ -537,7 +537,7 @@ byte → KiB → MiB → GiB …  ：每级 ÷ 1024
 **文字例子**
 ```
 aaaaaaa / bbbbbbbbbb / c / d / c / d / c / d / eeeeeeee
-→  255 08 97 // 255 10 98 // 99 / 100 / 99 / 100 / 99 / 100 // 255 08 101
+→  255 07 97 // 255 10 98 // 99 / 100 / 99 / 100 / 99 / 100 // 255 08 101
      ↑     ↑
      │     └── 重复字符的 ASCII 码
      └──────── 重复次数
@@ -594,7 +594,7 @@ aaaaaaa / bbbbbbbbbb / c / d / c / d / c / d / eeeeeeee
 | 1 MiB = 1,000,000 bytes | 1 MiB = **1,048,576** bytes（1024²）|
 | 有损压缩后文件可以随时还原 | 有损压缩**永久丢失数据，无法还原** |
 | RLE 对任何重复数据都有效 | RLE 只对**连续大量重复**有效，全彩照片无效 |
-| ASCII 是 Unicode 的子集 | 二者是**并列**的独立字符集，ASCII 不能表示中文等 |
+| Unicode 和 ASCII 是**完全无关/并列**的字符集 | **ASCII 是 Unicode 的子集**（前 128 个码点相同）；Unicode 还能表示中文、emoji 等 |
 | 播放声音要用 ADC | **播放**要用 **DAC**；**录制/采样**才用 ADC |
 
 ---
