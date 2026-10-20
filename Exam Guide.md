@@ -20,67 +20,33 @@
 ### ⚠️ Paper 2 的三条铁规
 
 **① 必须用伪代码作答**
-> 考纲原文：*"Where the solution to a problem involves coding, candidates are required to write solutions in **pseudocode**. Solutions written in **programming code will not be awarded marks**."*
-> → 用 Python / Java / VB 语法写答案 = **0 分**
+> → 用 Python / Java / VB 语法写答案 = **0 分**（唯一例外见 ②）
 
 **② 唯一例外：最后一道 15 分 scenario 题**
 > 可以用伪代码，**或** Python / Visual Basic / Java 之一（其他语言不给分）
 > 题目基于 Topic 7–10 的**未见过**情境；考纲建议在这道题上花 **30 分钟**
 
 **③ 评分看逻辑不看语法，但格式还是得守**
-> 考纲原文：*"Knowledge of programming language syntax is **not** examined; in all cases the **logic is more important than the syntax**."*
 > → 变量名可以不同、小语法错可能不扣分；但**官方伪代码的格式**（`←`、THEN 缩进 2 格、`MOD(a,b)`）是"逻辑的表达方式"，照自己习惯写会丢分。详见 [Pseudocode Reference](Pseudocode%20Reference.md)
 
 ---
 
 ## ⚠️ 只做 2023 年以后的 Paper 2 卷子
 
-**2023 年考纲改革把 Paper 2 整个换掉了**。用老卷练手会练错方向。
+**2023 年考纲改革把 Paper 2 整个换掉了**，用老卷练手会练错方向。
 
-| | **2015–2022**（老卷，44 份）| **2023–2025**（新卷，21 份）| **2026+（你考的）** |
-|---|---|---|---|
-| 卷名 | Problem-solving and Programming | Algorithms, Programming and Logic | 同左 |
-| 总分 | 50 | **75** | **75** |
-| 结构 | **Section A（Q1 = 20 分场景大题）+ Section B** | **没有 Section A/B**，Q1…Q11 平铺 | 同左 |
-| 最后一题 | Section B 数据库题 | **固定 15 分 scenario 题** | 同左 |
-| 数据库 | **query-by-example (QBE) 网格** | **SQL**（`SELECT/FROM/WHERE`）| 同左 |
-| 逻辑门 / 真值表 | **完全没有** | **每份卷子都有** | 同左 |
-
-### 🚫 老卷里已经作废、别练的
-
-| 内容 | 为什么 |
-|---|---|
-| **QBE 网格题**（画表格写条件）| 新卷 **21/21 全用 SQL**，QBE 完全消失 |
-| **Section A 的 pre-release 场景题** | 新卷没有这个结构了；15 分题是**当场给的未见过情境** |
-| **"Identify three loop structures" 这类列举题** | 新卷改成了 tick / 连线选择题 |
-
-### 🆕 老卷里**根本没有**、2023 才加的（只做老卷会完全没准备）
-
-| 新增内容 | 证据 |
-|---|---|
-| **程序开发生命周期 PDLC** | `life cycle` 出现 10 次，**全部在 2023+**；老卷 44 份一次没考 |
-| **decomposition / abstraction** | 出现 6 次，**全部在 2023+** |
-| **2D 数组** | `two-dimensional (2D)` 首次出现于 2023-21-O/N |
-| **`ROUND` / `RANDOM` / `SUBSTRING` / `LENGTH` / `UCASE` / `LCASE`** | 出现 12 次，**全部在 2023+**（老卷只有 `MOD` 和 `DIV`）|
-| **文件处理**（`OPENFILE`/`READFILE`/`WRITEFILE`/`CLOSEFILE`）| 出现 5 次，**全部在 2023+** |
-| **可维护性**作为独立小题 | 出现 6 次，**全部在 2023+** |
-| **arithmetic / Boolean / logical operators** 分类 | 仅 2024-22-M/J、2025-23-M/J |
-| **bubble sort / linear search** 明文点名 | 仅 2024-22-F/M、2024-22-O/N、2025-22-F/M、2025-23-M/J |
-| **逻辑门 + 真值表** | 新卷 **21/21 全有**，老卷**完全没有**（2023 才把 Logic 并入 Paper 2）|
-
-> 💡 **练手优先级**：2023–2025 的 21 份 → 2026 年的 → 老卷只挑 trace table / flowchart / 找错改错 / validation / test data 这几个**没变的题型**练。
-
-### 🔁 贯穿 12 年、唯一没变的题型
-
-| 题型 | 覆盖率 | 典型分值 |
+| | 老卷（2015–2022）| 新卷（2023+）|
 |---|---|---|
-| **trace table 填表** | **61 / 65 份** | 4–5 |
-| **flowchart 流程图题** | 43 / 65 份 | 4–6 |
-| **找错并改正** | 43 / 65 份 | 4 |
-| **写算法 / 写程序** | **65 / 65 份** | 老卷 5–6 / 新卷 15 |
-| **validation + test data** | 各 37 / 65 份 | 4 |
+| 总分 / 结构 | 50 分；**Section A（20 分场景大题）+ Section B** | **75 分；没有 Section A/B**，Q1…Q11 平铺，最后一题固定 15 分 scenario |
+| 数据库 | **query-by-example (QBE) 网格** | **SQL**（`SELECT / FROM / WHERE`） |
+| 逻辑门 / 真值表 | 完全没有 | **每份都有**（Logic 并入 Paper 2） |
 
-> ⚠️ **这五类怎么变都要考** —— 不管练新卷老卷，这几块都要练熟。
+**2023 新增、老卷练不到的**：PDLC、decomposition / abstraction、2D 数组、`ROUND / RANDOM / SUBSTRING / LENGTH / UCASE / LCASE`、文件处理（`OPENFILE / READFILE / WRITEFILE / CLOSEFILE`）、可维护性独立题、operators 分类、bubble sort / linear search 明文点名。
+
+**老卷已作废**：QBE 网格题、Section A pre-release 场景题、"identify three loop structures" 列举题（新卷改成 tick / 连线）。
+
+> 💡 **练手优先级**：2023 年及以后的卷子 → 老卷只挑 **trace table / flowchart / 找错改错 / validation / test data** 这几个没变的题型。
+> ⚠️ **这五类怎么变都要考**（trace table、flowchart、找错、写算法、validation + test data），不管新卷老卷都要练熟。
 
 ---
 
@@ -209,14 +175,11 @@
 
 ## 🎯 投入产出比
 
-### ⛔ 整份题库（2020–2026）**从未考过**的
+### ⛔ 低频但仍在考纲
 
-| 内容 | 说明 |
-|---|---|
-| **RLE 单独出题** | 近年**没有单独大题**，但 2026–2028 考纲明确把 RLE 作为 lossless compression 的例子。**至少掌握 RLE 的编码/解码原理**，不要只背名字；考纲要求的是“理解如何压缩”，不是只认术语 |
-| **ISBN-10 / ISBN-13 算法** | 近年**没有单独考具体加权算法**。重点掌握 check digit 的「计算 → 附在末尾 → 重新计算 → 比对」流程；具体 ISBN 权重不必死记 |
-| **触摸屏类型 / 打印机 / 投影仪 / 2D–3D 扫描仪 / QR 码** | 近年**少考**，但 2026–2028 考纲**仍明确列出**（Unit 3）。至少掌握**用途和适用场景**，不要完全跳过 |
-| **输入输出设备如何工作** | 当前考纲的重点是“**是什么 / 为什么需要 / 在情境中选择**”，不要求逐设备背内部工作原理；但答到相关原理通常不扣分，不要被“写了 0 分”吓住 |
+> - **RLE**：近年未单独出大题，但仍是 lossless compression 的考纲例子 —— 必须会编码/解码，不能只背名字。
+> - **ISBN**：重点掌握 check digit 的「计算 → 附在末尾 → 重新计算 → 比对」流程，具体权重不必死记。
+> - **触摸屏类型 / 打印机 / 投影仪 / 扫描仪 / QR 码**：低频但考纲仍列出，掌握用途和适用场景；输入输出设备重点答「是什么 / 为什么需要 / 情境选择」，不要求背内部原理。
 
 ### ✅ 性价比最高的（几乎每场必考）
 
@@ -228,13 +191,9 @@
 6. **Unit 3**：寄存器 · FDE 周期 · cores–cache–clock 性能对比
 7. **Unit 6**：sensor → microprocessor → actuator 五步链
 
-### 📈 2026 的新趋势：题目变碎了
+### 📈 新趋势：题目变碎
 
-> - June 2026 **P11 Q3** = **五个独立**的 1 分进制换算
-> - June 2026 **P12 Q1(c)** = **三个独立**的 1 分题（数制 + 两个二补码）
-> - June 2026 **P12 Q4(c)** = **三个独立**的 1 分加密题
->
-> → **定义和单步运算的性价比上升**。把每个核心术语当「**1 分题**」准备：一句话，措辞标准，不多写。
+> **2026 题目更碎，1 分小问增多** → 定义和单步运算的性价比上升。把每个核心术语当「**1 分题**」准备：一句话，措辞标准，不多写。
 
 ---
 
@@ -267,32 +226,23 @@
 
 ## 🔗 资源
 
-**题库**（按题目组织方式排序）
+**在线题库**
 
-| 网站 | 特点 | 费用 |
-|------|------|------|
-| [Save My Exams — CIE IGCSE CS](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/1-data-representation/number-systems/exam-questions/) | **按考纲章节组织**，和本笔记单元划分**一一对应** | 部分免费 |
-| [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1) | Paper 1 按考纲领域分类 | **免费下载** |
-| [PapersDaddy — 0478 Topical Paper 2](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-2) | Paper 2 按考纲领域分类 | **免费下载** |
-| [Exam Papers Practice — 0478](https://www.exampaperspractice.co.uk/igcse-cie-computer-science-topic-questions/) | 已更新到 2026 考纲，带 mark scheme | 有免费样章 |
-| [Educate A Change — 0478 Topical](https://educateachange.com/past-papers/topical/igcse/computer-science-0478/) | **1957 道**主题分类题（2015–2025） | 部分免费 |
-| [Smart Exam Resources — 0478/0984](https://www.smartexamresources.com/course/caie-igcse-computer-science-0478-0984-9-1) | 主题分卷 + 主题 mark scheme | 付费 |
-| [Physics and Maths Tutor](https://www.physicsandmathstutor.com/computer-science-revision/igcse-cie/) | 历年真题 + 分类题 | 免费 |
+| 网站 | 特点 |
+|------|------|
+| [Save My Exams — CIE IGCSE CS](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/1-data-representation/number-systems/exam-questions/) | 按考纲章节组织，与笔记单元一一对应 |
+| [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1) · [Paper 2](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-2) | 按考纲领域分类，免费下载 |
+| [Exam Papers Practice — 0478](https://www.exampaperspractice.co.uk/igcse-cie-computer-science-topic-questions/) | 已更新到 2026 考纲 |
+| [Physics and Maths Tutor](https://www.physicsandmathstutor.com/computer-science-revision/igcse-cie/) | 历年真题 + 分类题 |
 
-> 💡 **推荐组合**：本笔记每单元 → 配 **Save My Exams** 对应章节；需要更多同类题用 **PapersDaddy**（免费）或 **Educate A Change**。
+> 💡 **推荐组合**：每单元配 **Save My Exams** 对应章节；需要更多同类题用 **PapersDaddy**（免费）。
 
-**本校最新资料（`../csresource/new/`）**
+**本校资料（`../csresource/new/`）**
 
 | 资料 | 用途 |
 |---|---|
 | [2026–2028 考纲](../csresource/new/2026_10_19_PPT/Syllabus/0478%20Computer%20Science%202026-2028%20Syllabus%20document%20.pdf) | 核对知识点范围和 pseudocode 规范 |
-| [按单元真题 + Answer Key](../csresource/new/Past%20Exam%20Papers/Questions%20by%20Unit/) | Unit 1–10 + Big Programming Question，适合学完一单元就刷 |
-| [June 2026 Paper 2 官方 Mark Scheme](../csresource/new/Past%20Exam%20Papers/Questions%20by%20Year/) | 核对 Paper 2 答案，替代旧笔记里的“推断” |
-| [Paper 2 Homework Booklet 答案](../csresource/new/2026_10_19_PPT/Homework%20Booklet/) | 学校作业本对照；注意个别答案本身有 bug（见 Unit 8） |
+| [按单元真题 + Answer Key](../csresource/new/Past%20Exam%20Papers/Questions%20by%20Unit/) | 学完一单元就刷 |
 | [Practice Paper 1 / 2 - CT1](../csresource/new/) | 考前套卷练习 |
-| [Unit 4 Common Test 反馈](../csresource/new/2026_10_19_Common%20Test%20U4%20-%20feedback%20v2/) | 看真实评分标准和示例答案 |
+| [Unit 4 Common Test 反馈](../csresource/new/2026_10_19_Common%20Test%20U4%20-%20feedback%20v2/) | 看评分标准和示例答案 |
 | [Chapter 7 / 8 PPT](../csresource/new/2026_10_19_PPT/PPT/) | Paper 2 算法与编程课件 |
-
-**资料来源**：学校课件（Unit 1–5 slides；Unit 3/4/5 另有 PPT/Chapter 4）· 学校按单元整理的 QP / Answer Key · *Cambridge IGCSE Computer Science* 教材 · *Hodder Study & Revision Guide* · **2020–2026 真题 QP / MS / Examiner Report（138 份）**
-
-> ⚠️ 本笔记中标注「官方」的答案来自真题 **Mark Scheme / Examiner Report 原文**；标注「推断」的答案是按考纲和评分规范推得的，**不是官方原文**。考纲每三年更新，使用前确认你的考试年份对应 **2026–2028** 考纲。

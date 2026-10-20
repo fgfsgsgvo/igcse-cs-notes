@@ -1,10 +1,7 @@
 # Pseudocode Reference 伪代码规范速查
 
-> **来源**：0478 Syllabus 2026–2028 · Section 4 "Details of the assessment" → Pseudocode
-> **为什么这份文件最重要**：Paper 2 占**总成绩的 50%**，而且**必须用伪代码作答**。
-> 考纲原文：*"Where the solution to a problem involves coding, candidates are required to write solutions in **pseudocode**. Solutions written in **programming code will not be awarded marks**."*
-> 唯一例外：**最后那道 15 分 scenario 题**，可以用 pseudocode 或 **Python / Visual Basic / Java**。
-> 官方规定了精确格式——**照自己写 Python 的习惯写，会丢分。**
+> **来源**：0478 Syllabus 2026–2028 · Section 4
+> **Paper 2 占总成绩 50%，必须用伪代码作答**；唯一例外是最后 15 分 scenario 题（可用 Python / VB / Java）。官方规定了精确格式——**照 Python 习惯写会丢分**。
 
 ---
 
@@ -41,8 +38,6 @@ IF Score > 50
 ENDIF
 ```
 
-> ⚠️ 本文其他代码块为了紧凑显示，部分使用了 3 空格缩进；**考试作答请按考纲：普通语句 4 空格，THEN/ELSE/CASE 的 case 2 空格**。上面的示例已按规范排版。
-
 ### 大小写
 | 对象 | 规则 | 例子 |
 |---|---|---|
@@ -75,7 +70,7 @@ PROCEDURE Swap(X : INTEGER, Y : INTEGER)
 | **STRING** | 零个或多个字符 | `"This is a string"`、`""` ← **双引号** |
 | **BOOLEAN** | 逻辑值 | `TRUE`、`FALSE` |
 
-> ⚠️ **REAL 的陷阱**：*"always written with at least one digit on either side of the decimal point"*
+> ⚠️ **REAL 的陷阱**：小数点两边都必须至少有一位数字。
 > ✅ `0.3`　✅ `4.0`　✅ `0.0`　❌ `.3`　❌ `4.`
 
 > ⚠️ **空字符串 `""` 是合法的 STRING**，常在初始化数组时用到。
@@ -84,19 +79,14 @@ PROCEDURE Swap(X : INTEGER, Y : INTEGER)
 
 ## 3️⃣ 标识符命名规则
 
-**English（原文）**
-> Identifiers are in mixed case using **Pascal case**, e.g. `FirstName`. They can only contain **letters (A–Z, a–z) and digits (0–9)**. They must **start with a capital letter** and not a digit. **Accented letters and other characters, including the underscore, should not be used.**
-
 **四条硬规则**
 1. 只能用**字母 + 数字**
 2. **必须以大写字母开头**，不能以数字开头
 3. **不能用下划线**、重音字母或其他符号
 4. **关键字不能当标识符**（`IF`、`THEN`、`OUTPUT`、`DECLARE` 这类不能用）
 
-> ⚠️ **大小写不敏感**：*"Countdown and CountDown should **not** be used as separate variables."*
-
-> 💡 **单字母什么时候可以**：*"Single letters may be used where these are conventional (such as `i` and `j` when dealing with array indices, or `X` and `Y` when dealing with coordinates)."*
-> → 数组下标用 `i`/`j`、坐标用 `X`/`Y` 是**被认可的**。
+> ⚠️ **大小写不敏感**：`Countdown` 和 `CountDown` 是同一个变量，不能当两个用。
+> 💡 **单字母**在约定俗成时可以用：数组下标 `i`/`j`、坐标 `X`/`Y`。
 
 ---
 
@@ -121,8 +111,7 @@ CONSTANT HourlyRate ← 6.50
 CONSTANT DefaultText ← "N/A"
 ```
 
-> ⚠️ **常量的值只能是字面量（literal）**，考纲原文：
-> *"**Only literals** can be used as the value of a constant. A variable, another constant or an expression **must never** be used."*
+> ⚠️ **常量的值只能是字面量（literal）**：不能用变量、另一个常量或表达式。
 > ❌ `CONSTANT Tax ← BaseRate * 2`　❌ `CONSTANT Limit ← MaxValue`
 
 ### 赋值
@@ -135,7 +124,7 @@ Counter ← Counter + 1
 TotalToPay ← NumberOfHours * HourlyRate
 ```
 
-> 💡 **为什么用常量**：*"It is good practice to use constants if this makes the pseudocode more readable, and easier to update if the value of the constant changes."* —— 考纲 7 的"可维护性"考点就考这个。
+> 💡 **为什么用常量**：提高可读性；值变化时只改一处（对应可维护性考点）。
 
 ---
 
@@ -229,7 +218,7 @@ UCASE("Happy")                    returns "HAPPY"
 SUBSTRING("Happy Days", 1, 5)     returns "Happy"
 ```
 
-> ⚠️ **SUBSTRING 通常从 1 开始**：*"Generally, a start position of 1 is the first character in the string."* 如果题目明确给出 0 起始位置，就按题目要求写。
+> ⚠️ **SUBSTRING 默认从 1 开始**；如果题目明确给出 0 起始位置，就按题目要求写。
 > ⚠️ **参数顺序是 (字符串, 起点, 长度)** —— 不是 (起点, 终点)！取第 1 到第 5 个字符写 `SUBSTRING(s, 1, 5)`。
 
 ---
@@ -272,7 +261,7 @@ IF <condition>
 ENDIF
 ```
 
-> ⚠️ **THEN 和 ELSE 只缩进 2 格**。考纲原文：*"(They are, in a sense, a continuation of the IF statement rather than separate statements.)"*
+> ⚠️ **THEN 和 ELSE 只缩进 2 格**（它们是 IF 的延续，不是独立语句）。*
 
 ### 嵌套 IF
 
@@ -294,7 +283,7 @@ IF ChallengerScore > ChampionScore
 ENDIF
 ```
 
-> ⚠️ 考纲限制：**嵌套最多三层**（*"Candidates will not be required to write more than three levels of nested statements"*）
+> ⚠️ 考纲限制：**嵌套最多三层**。
 
 ### CASE 语句
 ```
@@ -441,7 +430,7 @@ CALL <identifier>(Value1, Value2...)
 ```
 
 > ⚠️ **`CALL` 是完整语句**，可以单独占一行。
-> ⚠️ **参数最多两个**（*"Procedures and functions may have up to **two parameters**"*）
+> ⚠️ **参数最多两个**。
 > ⚠️ 传入的值**数据类型必须匹配**定义。
 
 ```
@@ -497,8 +486,6 @@ OUTPUT "Sum of squares = ", SumSquare(10, 20)
 
 ### ⚠️⚠️ 过程 vs 函数的调用方式（高频失分点）
 
-> 考纲原文：*"Because a function returns a value that is used when the function is called, **function calls are not complete program statements**. The keyword **CALL should not be used when calling a function**. Functions should only be called as **part of an expression**."*
-
 | | PROCEDURE | FUNCTION |
 |---|---|---|
 | 返回值 | ❌ 无 | ✅ 返回一个值 |
@@ -536,8 +523,7 @@ DECLARE StudentNames : ARRAY[1:30] OF STRING
 DECLARE NoughtsAndCrosses : ARRAY[1:3, 1:3] OF CHAR
 ```
 
-> ⚠️ **一定要显式写上下界**（`[1:30]` 而不是 `[30]`）。考纲原文：
-> *"It is good practice to explicitly state what the lower bound of the array (i.e. the index of the first element) is because this **defaults to either 0 or 1 in different systems**. Generally, a lower bound of **1** will be used."*
+> ⚠️ **一定要显式写上下界**（`[1:30]` 而不是 `[30]`）—— 不同系统默认下界是 0 或 1，考纲一般用 1。
 
 ### 使用
 ```
@@ -547,7 +533,7 @@ StudentNames[n + 1] ← StudentNames[n]
 ```
 
 > ⚠️ **每个维度只用一个下标值**，用**逗号**分隔：`Grid[2, 3]`，**不是** `Grid[2][3]`。
-> ✅ 下标**可以用变量**（*"Including the use of variables as indexes in arrays"*）
+> ✅ 下标**可以用变量**。
 
 ### 用循环操作数组
 ```
@@ -586,9 +572,9 @@ CLOSEFILE <File identifier>
 | **WRITE** | 往文件写数据 —— **会创建新文件，原文件里的数据全部丢失** |
 
 > ⚠️ **三条铁规**
-> 1. **WRITE 模式会毁掉原文件内容**（*"A new file will be created and any existing data in the file will be lost."*）
+> 1. **WRITE 模式会毁掉原文件内容**（创建新文件，原数据全部丢失）
 > 2. **同一个文件同一时间只能以一种模式打开**
-> 3. **用完必须 CLOSEFILE**（*"Files should be closed when they are no longer needed"*）
+> 3. **用完必须 CLOSEFILE**
 
 ### 标准范例：逐行读一个文件并写进另一个文件
 
@@ -613,7 +599,7 @@ CLOSEFILE "FileB.txt"
 
 ## 🚫 官方规范里**没有**的东西（别用！）
 
-> ⚠️⚠️ **这一节救分**。你的课本、作业本、网上教程大量混入 **A-Level (9618)** 的内容 —— **0478 根本没有这些**。写了不加分，还可能被判为"没按伪代码作答"。
+> ⚠️⚠️ **这一节救分**。课本和网上教程大量混入 **A-Level (9618)** 的内容 —— **0478 根本没有这些**。写了不加分，还可能被判为"没按伪代码作答"。
 
 | ❌ 不在 0478 规范里 | 怎么来的 | 0478 该怎么写 |
 |---|---|---|
@@ -634,28 +620,18 @@ CLOSEFILE "FileB.txt"
 | **`STR_TO_NUM()` / `NUM_TO_STR()` / `IS_NUM()`** | A-Level | 0478 不涉及（题目会给做法）|
 | **`INT()`**（取整） | 很多语言 | **`DIV(a, b)`** 或 **`ROUND(x, 0)`** |
 | **`OUTPUT MyArray`**（整个数组）| Python | **非法！** 必须用循环**逐元素**输出 |
-| **`DECLARE a, b : INTEGER`** | 作业本 / A-Level | 规范是**一行一个标识符**：`DECLARE a : INTEGER` |
-| **`STEP 0.01`**（非整数步长）| 作业本示例 | **STEP 必须求值为整数** |
-| **`ROUND(x)`** 单参数 | 作业本示例 | **`ROUND(x, places)`** 两参数 |
-| **`CONSTANT X = 5`**（用等号）| 作业本 | **`CONSTANT X ← 5`** |
-| **`CONSTANT X ← Y * 2`**（表达式）| 作业本 | **只能是字面量** |
+| **`DECLARE a, b : INTEGER`** | 常见错误 / A-Level | 规范是**一行一个标识符**：`DECLARE a : INTEGER` |
+| **`STEP 0.01`**（非整数步长）| 常见错误 | **STEP 必须求值为整数** |
+| **`ROUND(x)`** 单参数 | 常见错误 | **`ROUND(x, places)`** 两参数 |
+| **`CONSTANT X = 5`**（用等号）| 常见错误 | **`CONSTANT X ← 5`** |
+| **`CONSTANT X ← Y * 2`**（表达式）| 常见错误 | **只能是字面量** |
 
 > 💡 **一句话**：**能加分的只有考纲 Section 4 里列出的那些语法**。看到陌生的"高级"写法，先问自己"考纲里有吗"。
 
-### ⚠️ 关于 `EOF()` 的诚实说明
+### ⚠️ 关于 `EOF()`
 
-> **`EOF()` 不在考纲规范的语法清单里**，但它是**历年教材和答案普遍使用的读文件写法**（你的作业本答案、学校练习都在用）。
-> **两条路**：
-> 1. 用 `WHILE NOT EOF("file.txt") DO` —— 通用做法，风险很低
-> 2. 用**结束标记（sentinel）** —— 更保险，完全用规范内的语法：
-> ```
-> READFILE "data.txt", Line
-> WHILE Line <> "END" DO
->     OUTPUT Line
->     READFILE "data.txt", Line
-> ENDWHILE
-> ```
-> ⚠️ 注意哨兵写法的顺序：**先在循环外读一次**，循环体内**最后再读一次**。
+> `EOF()` 不在考纲语法清单里，但教材和历年答案普遍使用，风险很低。
+> 更保险：用 **sentinel（结束标记）** —— 循环外先 `READFILE` 一次，循环体内最后再读一次，条件写 `WHILE Line <> "END" DO`。
 
 ---
 
@@ -690,40 +666,6 @@ OUTPUT "The average mark is ", Average
 ```
 
 > ⚠️ **顺序很重要**：考纲明确说 *"Procedures and functions are **defined at the start of the code**."*
-
----
-
-## ⚠️ 高频失分点汇总
-
-| # | 陷阱 | 正确做法 |
-|---|---|---|
-| 1 | 用 `=` 赋值 | 用 **`←`** |
-| 2 | THEN / ELSE / CASE 的 case 缩进 4 格 | **只缩进 2 格** |
-| 3 | `10 MOD 3` | **`MOD(10, 3)`** —— 函数形式 |
-| 4 | `10 DIV 3` | **`DIV(10, 3)`** —— 函数形式 |
-| 5 | `SUBSTRING(s, 0, 5)` | 下标**从 1** 开始 |
-| 6 | `SUBSTRING(s, 1, 5)` 以为是"第 1 到第 5 位" | 第三个参数是**长度**不是终点，恰巧结果一样但概念要清楚 |
-| 7 | 以为 `REPEAT...UNTIL` 条件为 FALSE 时结束 | **条件为 TRUE 时结束** |
-| 8 | `CALL MyFunction(x)` | 函数**不能**用 CALL，只能用在表达式里 |
-| 9 | 函数定义时忘写 `RETURNS <type>` | 必须有返回类型 |
-| 10 | 标识符用下划线 | 用 Pascal case |
-| 11 | 标识符以数字开头 | 以**大写字母**开头 |
-| 12 | 关键字当变量名 | 换一个名字 |
-| 13 | `Countdown` 和 `CountDown` 当两个变量 | **大小写不敏感**，是同一个 |
-| 14 | `CONSTANT X ← Y * 2` | 常量的值**只能是字面量** |
-| 15 | REAL 写 `.5` / `5.` | 小数点两边都要有数字 |
-| 16 | CHAR 用双引号 | CHAR 用**单引号** |
-| 17 | `Grid[2][3]` | `Grid[2, 3]` |
-| 18 | 数组只写 `ARRAY[30]` | 写全上下界 `ARRAY[1:30]` |
-| 19 | 以为 FOR 循环不含末端 | **两端都包含** |
-| 20 | `OPENFILE` 用 WRITE 模式却不想要文件被清空 | **WRITE 会创建新文件，原数据全丢** |
-| 21 | 打开文件后忘记 `CLOSEFILE` | 必须关闭 |
-| 22 | 过程和函数写在主程序**后面** | 定义在**代码开头** |
-| 23 | 用 `!=` | 用 **`<>`** |
-| 24 | 用 `&&` / `||` | 用 **`AND`** / **`OR`** |
-| 25 | 过程/函数参数超过 2 个 | 考纲限制**最多 2 个参数** |
-| 26 | 嵌套语句超过 3 层 | 考纲限制**最多 3 层** |
-| 27 | 用 Python / Java 语法作答 | **除最后 15 分大题外，写编程语言代码不得分** |
 
 ---
 

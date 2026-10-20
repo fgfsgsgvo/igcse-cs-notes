@@ -165,8 +165,7 @@
 > - **File management**
 > - *(也可写：user account management / hardware management / interrupt handling / security / platform for running applications)*
 
-⚠️ **拼写警告（Teacher's comments 原文）**：
-> "be careful about your spelling of the terms since this could be crucial (for example, **user account manager is different from user account management**)."
+⚠️ **拼写警告**：`user account manager` 与 `user account management` 是两个不同的词，写错会丢分。
 
 **必须拼写正确的术语**：`multitasking` / `memory management` / `file management` / `user account management` / `interrupt handling` / `security` / `hardware management`
 
@@ -195,7 +194,7 @@
 > A **WIMP** environment involves the use of a **pointing device, such as a mouse, to navigate a screen and select options from a menu or "click on" an icon**. With **post-WIMP**, the user **doesn't need a pointing device** since this only works with a **touchscreen** — the user simply uses their **finger or stylus** to carry out movement such as **pinch and rotate**, as well as selections.
 
 🔧 **答题模板：Describe the relative advantages and disadvantages of the two types** [4]
-⚠️ **关键**：题目要求"**relative**"，即**两者互相比**。**不要把 GUI 和 CLI 比，也不要和别的界面比——只比 WIMP 和 post-WIMP**（Teacher's comments 明确警告过）。
+⚠️ **关键**：题目要求"**relative**"，即**两者互相比**。**不要把 GUI 和 CLI 比，也不要和别的界面比——只比 WIMP 和 post-WIMP**。
 
 > **Post-WIMP 优点/缺点**：
 > - Advantage: **No input devices are needed**, such as a mouse
@@ -216,10 +215,7 @@
 ⚠️⚠️ **不要写的过时答案（会被判 0 分）**：
 > ❌ "Screensavers protect screens from **burning** where a logo is permanently burnt into the screen."
 
-Teacher's comments 原话：
-> "their use of a screensaver is **no longer true**; they were originally developed to protect old **cathode-ray tube (CRT) monitors from "phosphor burn"** but this is **no longer an issue**, so it would be **impossible to award any marks**."
-
-✅ **现代主要用途：安全（自动锁屏/自动登出）**。省电是老式 CRT 时代的说法，部分教材仍会接受，但答题时**不要只写省电**。
+✅ **现代主要用途：安全（自动锁屏/自动登出）**。防烧屏是 CRT 时代的过时答案，写了不给分；省电也不要单独写。
 
 ---
 
@@ -245,7 +241,7 @@ Teacher's comments 原话：
 | **EEPROM** | Electrically erasable programmable ROM — 存 BIOS |
 | **CMOS** | 存 **BIOS settings**（如时钟频率）；**靠电池供电** |
 
-**Firmware 的常考作用（Mark Scheme 接受点）**：
+**Firmware 的常考作用（按得分点整理）**：
 > - **Stored permanently / non-volatile** in ROM or on a chip — not lost when power is switched off
 > - Contains the **boot / start-up instructions** (bootstrap / bootloader)
 > - Provides a **platform for the operating system** to run
@@ -266,7 +262,7 @@ Teacher's comments 原话：
 
 ## 4.1.4 中断 Interrupts（最高频，必背）
 
-**English（背这句）** —— 这段填空考试出现过，**必须逐字背**：
+**English（背这句）** —— 填空高频，**必须背熟**：
 
 > An **interrupt** is a **signal** sent from a hardware device or **software** to the **microprocessor** requesting **attention**. This causes the **microprocessor** to **temporarily** halt what it is doing and to **service** the interrupt.
 >
@@ -321,7 +317,7 @@ Teacher's comments 原话：
 
 ⚠️ **注意 "restore the original task once the interrupt is cleared"** —— 恢复原任务这一步经常被漏写。
 ⚠️ **注意 lower-priority 分支**：不是所有中断都会立刻打断当前任务；优先级较低时要写 **continue the current task / the interrupt waits**。
-⚠️ **Mark Scheme 常写 "finish the current FE cycle"**（不是 FDE cycle），引用原文时按这个写。
+⚠️ 答题写 **`finish the current FE cycle`**（不是 FDE cycle）。
 
 ---
 
@@ -354,8 +350,7 @@ Teacher's comments 原话：
 🔧 **答题模板：Explain why you would choose to write a program in a LLL** [2-3]
 > A program is written in a low-level language when it **needs to perform a task very quickly**, or **includes special machine dependent instructions to operate hardware**. LLL code also **doesn't take up much space in primary memory**.
 
-⚠️ **答题陷阱（Teacher's comments）**：
-> "Part b) requires an **explanation of why** a program would be written in a LLL; **be careful to not explain how** a LLL program would be written."
+⚠️ **答题陷阱**：题目问 **why** 就解释理由，不要写 **how** to write a LLL program。
 
 ❌ **错误示范**："Nobody writes programs in a low-level language anymore as it is too hard as you have to learn special commands for each computer." —— 这在解释**为什么不用**，虽然碰巧含一个有效理由，但只得 1 分。
 
@@ -398,7 +393,7 @@ Teacher's comments 原话：
 🔧 **答题模板：Describe the difference between a compiler and an interpreter** [2]
 > A **compiler translates the whole program at once** and produces a **file to be executed later**, whereas an **interpreter translates each statement then executes it before moving on to the next statement**.
 
-⚠️ **注意题目要求**：如果题目说 "**HLL translation programs**"，就**只能**写 compiler 和 interpreter，**写 assembler 不给分**（Teacher's comments 点名）。
+⚠️ **注意题目要求**：如果题目说 "**HLL translation programs**"，就**只能**写 compiler 和 interpreter，**写 assembler 不给分**。
 
 ### 编译器 vs 解释器 优缺点
 
@@ -407,7 +402,7 @@ Teacher's comments 原话：
 | **Interpreter** | **Easier and quicker to debug, test and edit** programs during development; changes can be tested **immediately without recompiling**; useful for beginners/learning | **Slower to execute** because each statement is translated **every time** it is run; the **interpreter must be present** to run the program; **stops at the first error** (only one error reported at a time); source code must be available |
 | **Compiler** | Produces an **executable file** that can be **stored and run without the compiler**; **executes faster**; can **optimise** the code; reports **all errors together** after compilation; the executable can be **tested repeatedly without recompiling**; can be **distributed** for general use | The **whole program must be compiled before it can be run**; **slower to debug/test during development** (edit → recompile → run); any change to the source code requires **recompilation**; errors are only reported **after compilation** |
 
-### 编译器的错误报告与开发优势（Mark Scheme 常考）
+### 编译器的错误报告与开发优势（常考）
 
 **错误报告**
 > - The compiler attempts to translate the **whole program**.
@@ -513,71 +508,13 @@ Teacher's comments 原话：
 
 ---
 
-## 📊 真题实证（官方判分规则）
+## 📌 判分规则（精简）
 
-> ⭐ **最重要的结论**：**Unit 4 + Unit 5 合起来每套卷必考，占 Paper 1 的 12–30 分（约 16–29%）。**
-> Unit 4 本身的分值虽不是最高，但**题型固定、答案标准**，是"投入 1 小时稳拿 15 分"的单元。
-
-### 🔑 五条官方判分规则（MS 原文，决定你能拿几分）
-
-**① OS 功能题 —— 名称或角色，二者写一即可**
-> MS 原话：**"1 mark for each correct function name **or** role"**
-> 意思：题目给你一张表，左边是功能名、右边是描述，**填对任意一边就得 1 分**。
-> 💡 **策略**：不确定功能名拼写时，**只写描述**也能得分（但反过来，只写功能名不写描述也有分）。
-> ⚠️ 但**描述必须是该功能特有的** —— 不能所有行都写 "controls the computer"。
-
-**② 中断处理流程 —— 官方标准七步（背死）**
-
-```
-① 收到中断信号 → 检查优先级
-   (the interrupt is given a priority)
-        ↓
-② 把它放进队列 / 按优先级排队
-   (it is placed in a queue / prioritised against other interrupts)
-        ↓
-③ 完成当前正在执行的 FDE 周期 / 当前指令
-   (finish the current fetch-decode-execute cycle / current instruction)
-        ↓
-④ 把当前寄存器的内容存到栈上
-   (store the contents of the registers on a stack /
-    save the current state of the process)
-        ↓
-⑤ 检查中断来源，找到对应的 ISR
-   (check the source of the interrupt / identify the ISR)
-        ↓
-⑥ 调用并执行中断服务程序 (ISR)
-   (call and run the interrupt service routine)
-        ↓
-⑦ 从栈上恢复寄存器的内容，返回原任务
-   (restore the register contents from the stack /
-    return to the original task)
-```
-
-> ⚠️ **最常漏的两步**：**④ 存栈** 和 **⑦ 恢复**。只写"暂停 → 执行 ISR → 继续"最多 2 分。
-
-**③ IDE 题 —— 只列功能最多 4 分**
-> MS 规则：**列 feature 名单封顶 4 分；剩下的分必须靠解释拿。**
-> ✅ **正确结构**：`功能名` + `这样程序员就能…`
-> - **Editor** — so the programmer can **write and edit the source code**
-> - **Error diagnostics / debugging tools** — so the programmer can **find and fix errors**（可以设 breakpoints、单步执行）
-> - **Run-time / trace tools** — so the programmer can **see what happens line by line as the program runs**
-> - **Translator (compiler/interpreter/assembler)** — so the source code can be **converted into machine code** without leaving the IDE
-> - **Auto-completion / auto-correct** — so the programmer **types less and makes fewer syntax errors**
-> - **Pretty-printing / auto-indentation** — so the code is **easier to read**
-> - **Auto-documentation** — so the programmer **doesn't have to write comments manually**
-> - **Version control** — so **changes can be tracked and reverted**
-> ❌ 只写 8 个功能名 = **4 分封顶**
-
-**④ HLL vs LLL 题 —— 必须"配对"写**
-> MS 规则：**"Mark whole answer"** —— 意思是每 1 分 = **一句 HLL 的特征 + 一句 LLL 的对应特征**组成**一对**。
-> ✅ `High level language is easier to read and write … whereas low level language is difficult to understand and debug`
-> ❌ 只写 "High level language is easier to read and write" —— **只算半对，配对不上不给分**
-> ⚠️ 6 分题 = **3 个完整配对**；只写一方的特征，最多拿一半。
-
-**⑤ 翻译程序辨析 —— interpreter 的唯一性特征**
-> 只要看到 **"translates one statement at a time"** 或 **"does not produce an executable file"** → **interpreter**
-> 只要看到 **"translates the whole program at once"** 或 **"produces an executable file"** → **compiler**
-> 只要看到 **"converts assembly language / mnemonics"** → **assembler**
+- **OS 功能题**：功能名 **或** role，写对任意一边就得 1 分；描述必须是该功能特有的。
+- **中断流程七步**：收到信号 → 检查/设置优先级 → 排队 → **完成当前 FDE 周期** → **寄存器存栈** → 查来源并执行 ISR → **从栈恢复并返回**。只写「暂停 → ISR → 继续」最多 2 分。
+- **IDE 题**：只列 feature 封顶 4 分；每条都要写 `feature + so the programmer can…`。
+- **HLL vs LLL**：必须成对写（HLL 一句 + whereas + LLL 一句）；只写一边最多一半。
+- **Translator 辨析**：one statement at a time / no executable → **interpreter**；whole program / executable → **compiler**；mnemonics → **assembler**。
 
 ### 📌 Unit 4 高分优先级
 
@@ -606,13 +543,8 @@ Teacher's comments 原话：
 | HLL 翻译器题写成 assembler | ✅ HLL 翻译器只有 **compiler** 和 **interpreter** |
 | 只写 IDE 功能不写"为什么有用" | ✅ **每个功能必须跟一句"这样程序员就能…"** |
 | BIOS 和 BIOS 设置混为一谈 | ✅ BIOS 存 **EEPROM**；BIOS 设置存 **CMOS**（靠电池） |
-| 中断答题漏掉"恢复原任务" | ✅ 完整流程：暂停 → 优先级 → ISR → **清除中断 → 恢复原任务** |
 | OS 功能写成 "controls the computer" | ✅ 必须具体：memory management / multitasking / file management / user account management / security / interrupt handling / hardware management / HCI / error handling |
 | Buffer 和 Interrupt 混为一谈 | ✅ Buffer = **内存区域临时存数据**；Interrupt = **送给 CPU 的信号** |
-| **中断流程漏掉"存栈"和"恢复"** | ✅ 七步：优先级 → 排队 → **完成当前 FDE 周期** → **寄存器存栈** → 查来源调 ISR → 执行 → **从栈恢复并返回**。只写"暂停→ISR→继续"≤2 分 |
-| **IDE 题只列 8 个功能名** | ✅ MS 规则：**功能名封顶 4 分**，其余必须靠"so the programmer can…"的解释 |
-| **HLL vs LLL 只写一边** | ✅ MS 规则：**"Mark whole answer"** —— 必须写成**配对**（HLL 一句 + whereas + LLL 一句），单独一句不给分 |
-| OS 功能表只写功能名 | ✅ MS 允许 **功能名 OR 角色** 二者写一即得分，但**描述必须是该功能特有的** |
 
 ---
 
@@ -676,11 +608,7 @@ Assembler   — LLL(汇编)→机器码, 产生可执行文件
 ## 🔗 延伸资源
 
 - 课件：[Chapter 4 课件与反馈材料](../csresource/new/2026_10_19_Common%20Test%20U4%20-%20feedback%20v2/Chapter%204.pdf)
-- 真题：`csresource/.../Past Exam Papers/Questions by Year/` 中各年份 Paper 1
-- 在线练习（按考纲章节分类，与本单元一一对应）：
-  - [Save My Exams — 4. Software](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/)
-  - [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)（免费下载）
-  - [Physics and Maths Tutor — IGCSE Computer Science](https://www.physicsandmathstutor.com/computer-science-revision/igcse-cie/)
+- 练习：[Save My Exams — 4. Software](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/) · [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)
 
 ---
 

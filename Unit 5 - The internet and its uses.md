@@ -40,8 +40,8 @@
 | Makes use of **transmission protocols (TCP)** and **internet protocols (IPs)** | **Uniform resource locators (URLs)** are used to specify the location of web pages |
 | A worldwide collection of **interconnected networks and devices**（物理基础设施） | Web resources are **accessed by web browsers**; WWW uses the internet to access information from web servers |
 
-⚠️⚠️ **最重要的失分点**（Examiner Report 反复点名）：
-> ❌ "The world wide web is **the infrastructure** that provides access to websites."
+⚠️⚠️ **最重要的失分点**：
+> ❌ 把 WWW 说成 **the infrastructure**——这是 Internet。
 > ❌ 同时说"它既是基础设施又是网页"——**自相矛盾，不得分**。
 > ✅ **Internet = 基础设施 (infrastructure)；WWW = 网页的集合 (collection of web pages)**
 
@@ -71,8 +71,7 @@ protocol  |      domain name      |          web page/file name
 | **Domain name** 域名 | `www.frage-eins-beispiel.org.de` | 含 domain host (www)、domain name、domain type (.org)、country code (.de) |
 | **File name** 文件名 | `example-page` | 也叫 **web page name** 或 **path** |
 
-⚠️ **致命失分点**：**file name、web page name、path 是同一个部分**——不能当成两个不同的部分来凑分！Examiner Report 原话：
-> "Some candidates gave **multiple names for the same part, for example the file name and the path as two separate parts**."
+⚠️ **致命失分点**：**file name、web page name、path 是同一个部分**——不能当成两个不同的部分来凑分！
 
 🔧 **精确定位模板**（题目给一个 URL，问各个部分）：
 > 例：`https://www.frage-eins-beispiel.org.de/example-page`
@@ -196,7 +195,7 @@ protocol  |      domain name      |          web page/file name
 > - **Sending the URL to another DNS if the URL cannot be found**
 > - **Returning the IP address to the web browser**
 
-⚠️⚠️ **方向性铁律（Examiner Report 两次点名）**：
+⚠️⚠️ **方向性铁律**：
 > ❌ **"The request for the web page is sent from the DNS to the web server."** —— **错！**
 > ✅ **请求是由 web browser 发给 web server 的**。DNS 只负责"域名 → IP 地址"的翻译，它不参与请求网页。
 
@@ -249,7 +248,7 @@ protocol  |      domain name      |          web page/file name
 > - Contents of a shopping cart
 > - Targeted advertising
 
-⚠️⚠️ **失分点（教材原文警告）**：
+⚠️⚠️ **失分点**：
 > ❌ "Session cookies are **temporary** whereas persistent cookies are **permanent**" —— **不算描述差异！**
 > ✅ 必须**解释** temporary 和 permanent 是什么意思（deleted at the end of a website session / stored until deleted or expiry date reached）。
 
@@ -306,7 +305,7 @@ protocol  |      domain name      |          web page/file name
 
 🔧 **答题模板：Draw and annotate a diagram to show how a payment is made using digital currency and blockchain** [4]
 
-⚠️⚠️ **这是 2024 Nov 最惨的一道题**（Examiner Report: "Very few candidates were able to draw a representation"）。**得分点（任选 4 个）**：
+⚠️⚠️ **画图题得分点（任选 4 个）**：
 > - **Digital ledger is used**
 > - **Device encrypting data**
 > - **Device sending data to digital ledger**
@@ -366,7 +365,7 @@ protocol  |      domain name      |          web page/file name
 > **Hacking is gaining illegal access to a computer system without the user's permission.** It can lead to **identity theft**, gaining personal information, or the **loss/corruption of key data**.
 > ⚠️ **Hacking is NOT prevented by using measures such as encryption**, but can be mitigated by using a **firewall, usernames and frequency-changed strong passwords**; anti-hacking software also exists. Some hacking is referred to as **ethical hacking**, where companies employ staff to try to hack into their own systems to check how strong their security measures are.
 
-⚠️ **MS 判分警告**：`stealing/changing data without permission` **不给分**，必须提到 **gaining access to the device/account**。
+⚠️ **判分警告**：`stealing/changing data without permission` **不给分**，必须提到 **gaining access to the device/account**。
 
 ### 5. Malware 恶意软件（六个类型必背）
 
@@ -381,7 +380,7 @@ protocol  |      domain name      |          web page/file name
 | **Adware** | Software that **floods a user's computer with unwanted advertising**, usually in the form of **pop-ups**. Can **redirect the browser to a fake website**. Not necessarily harmful, but can highlight weaknesses in network security and be **difficult to remove since anti-malware doesn't see them as harmful** |
 | **Ransomware** | Programs that **encrypt the data on a user's computer**, so a **decryption key** is needed. The key is sent to the user **once they pay a sum of money (a ransom)**. Often sent via a **Trojan horse** or by **social engineering** |
 
-⚠️ **判分警告**：**hacking 不是 malware**！Examiner Report: "Some candidates gave inaccurate examples that **may involve the use of malware, but were not examples of malware, for example hacking**."
+⚠️ **判分警告**：**hacking 不是 malware**！hacking 是非法访问系统，malware 是恶意软件。
 
 ### 6. Phishing 网络钓鱼
 
@@ -416,7 +415,7 @@ protocol  |      domain name      |          web page/file name
 | **手段** | 假冒邮件 | 用户电脑/服务器上的恶意代码 |
 | **机制** | 骗用户自己点 | **DNS cache poisoning** |
 
-❌ **Examiner Report 点名**："Some candidates gave a **confused description that referred to aspects from both phishing and pharming**. For example, they referred to **malware being downloaded on the user's computer**." —— 描述 phishing 时**不要**扯 malware 下载。
+❌ 描述 phishing 时**不要**扯 malware 下载——这是把 phishing 和 pharming 的特征混在一起。
 
 ### 8. Social engineering 社会工程（5 种类型 + 3 种情绪）
 
@@ -453,7 +452,7 @@ protocol  |      domain name      |          web page/file name
 > - **Prevents a user/attacker from installing malware** (as they don't have administrator permissions)
 > - **Prevents user/attacker from viewing more confidential/important data**
 
-⚠️⚠️ **判分警告（MS 明确列出）**：
+⚠️⚠️ **判分警告**：
 > ❌ "different access levels" → **太笼统 (TV)**
 > ❌ "low-level or high-level access" → **太笼统 (TV)**
 > ✅ **必须说出具体的权限名**：read-only / read-write / no access / execute / administrator
@@ -480,7 +479,7 @@ protocol  |      domain name      |          web page/file name
 > - … and will **reject it if it does not meet criteria**
 > - **Certain ports used by hackers can be blocked/closed**
 
-⚠️⚠️ **Examiner Report 原文**："Many candidates **repeated and expanded on parts of the question**, simply stating that the firewall blocked hackers and various examples of malware. Candidates need to have a greater understanding of the **operation** of a firewall."
+⚠️⚠️ **判分警告**：
 > ✅ 必须写**机制**（审查流量、应用规则、接受/拒绝、封锁端口），不能写"它挡住黑客"。
 
 ### 4. 代理服务器 Proxy Server（考过 3 分 DDoS 防护）
@@ -495,7 +494,7 @@ protocol  |      domain name      |          web page/file name
 
 **代理服务器的其他功能**：Can act as a firewall；examine incoming data；have set rules/criteria；have a blacklist/whitelist；block traffic that doesn't meet criteria；close certain ports。可以防：**DDoS/DoS、hacking、malware、brute-force attack**。
 
-⚠️ **判分警告**：❌ **phishing 是代理服务器防不住的**（它是针对用户的社会工程攻击）——Examiner Report: "The most common incorrect response given was phishing."
+⚠️ **判分警告**：❌ **phishing 是代理服务器防不住的**（它是针对用户的社会工程攻击）。
 
 ### 5. 加密 Encryption
 
@@ -543,62 +542,30 @@ protocol  |      domain name      |          web page/file name
 
 # 📝 考试怎么考（Exam Focus）
 
-## 📊 真题实证（考频与分数权重）
+## 📌 考试重点（精简）
 
-> ⭐ **最重要的结论**：**Unit 4 + Unit 5 合起来每套卷必考，占 Paper 1 的 12–30 分（约 16–29%）。**
-> Unit 5 单独看分值中等，但**题型是全卷最固定的**（填词 + 配对 + 带标注的图），
-> 是**"背标准答案就能拿满分"**的单元 —— 前提是**方向不能搞反**。
+- **必考**：Internet vs WWW、DNS 检索流程、SSL/HTTPS、Cookie、网络威胁与防护。
+- **方向性**：证书 **server → browser**；网页请求 **browser → web server**。反了 0 分。
+- **填词题**：按空给分，背下面三段关键词链。
+- **配对 / Compare**：两边都写（A + whereas + B），单写一边最多一半。
+- **Identify**：只要术语名，不要描述。
+- **Explain how X prevents...**：写机制（它做什么 → 所以攻击者无法做什么），不能写 "it blocks hackers"。
 
-### 考频总表
+**三段关键词链**
 
-| 考点 | 考频 | 典型分值 | 形式 |
-|------|------|---------|------|
-| **Internet vs WWW** | **每套必考** | 2–8 | 配对表 / 连线题 |
-| **网页检索流程（DNS → IP）** | **每套必考** | 5–6 | **填词**（必背文本） |
-| **SSL / HTTPS 安全连接** | 高频 | 4–6 | **填词 + 带标注的图** |
-| **Cookie（session vs persistent）** | 高频 | 4–7 | **填词 + 差异说明** |
-| **URL 组成部分** | 常考 | 2–3 | Identify / 定位 |
-| **Web browser 功能** | 常考 | 2–3 | "Give three **other** functions" |
-| **数字货币 vs 加密货币** | 常考 | 2–3 | Describe the difference |
-| **区块链 blockchaining** | 常考 | 4 | **Draw and annotate a diagram** |
-| **网络威胁（八大）** | **每套必考** | 2–6 | 定义 / 识别 / 配对 |
-| **防护措施** | **每套必考** | 3–6 | "Explain how X prevents…" |
-| **Phishing vs Pharming 区别** | 常考 | 2–3 | Describe / Compare |
-| **Social engineering** | 常考 | 2–3 | Describe + example |
-| **Biometrics 优缺点** | 常考 | 3–4 | Benefits / drawbacks |
-
-### 🔑 关键判分规则（MS 原文）
-
-| 规则 | 说明 |
-|------|------|
-| **Internet vs WWW 配对题** | 每条描述要么属于 Internet 要么属于 WWW。⚠️ **自相矛盾（既说是基础设施又说是网页）→ 不得分** |
-| **填词题（gap-fill）** | **按空给分**，拼写必须能辨认。背熟三段标准文本即可拿满 |
-| **方向性答案** | 证书：**server → browser**；网页请求：**browser → web server**。**反了就 0 分** |
-| **"Explain how X prevents..." 题** | **必须写机制**，不能写"它阻止了黑客"。写法：`它做什么` → `所以攻击者无法做什么` |
-| **配对/Compare 题** | 必须**两边都写**（A 怎样 + whereas + B 怎样），单写一边最多一半分 |
-| **"Give three OTHER functions"** | 题目已经给你的**不能再写**，写了不算 |
-| **Identify 题** | 只要**术语名**，不要描述。要求 identify sensor 时写 "it measures light" = **0 分** |
-
-### 三类必背的"标准填词文本"
-
-> **① 网页检索流程**
-> "The user types the URL into the address bar. The web browser sends the **domain name** from the URL to the **domain name server (DNS)**. This searches for the matching **IP address** and sends this back to the **web browser**. The web browser sends a **request** to the web server for the web page. The web server then sends the data for the web page back to the web browser. The web browser **renders** the **hypertext markup language (HTML)** to display the web page."
-
-> **② SSL / HTTPS**
-> "The **web browser** asks the **web server** to identify itself. The **web server** sends back its **digital certificate**. The **web browser** authenticates the digital certificate. If it is authentic, **encrypted** data transmission begins."
-
-> **③ Cookie**
-> "Cookies are **small text files** that are stored by a **web browser**. **Session** cookies are **temporary** text files that are deleted when the **web browser** is closed. **Persistent** cookies are **permanent** text files that are stored on a user's **secondary storage device** until they are manually deleted or they **expire**."
+- **网页检索**：`URL → domain name → DNS → IP address → browser request → web server → HTML → render`
+- **SSL**：`browser asks server → server sends digital certificate → browser authenticates → encrypted transmission`
+- **Cookie**：`small text file → stored by browser → session = temporary → persistent = until expiry/manual delete`
 
 ---
 
 ## 各题型答题模板
 
 ### 模板 1：填词题（gap-fill）—— 每套卷 2-3 道
-> 背熟三段标准文本：
-> - **网页检索流程**（DNS → IP → browser → request → HTML）
-> - **SSL 流程**（browser 请求 → server 发证书 → browser 验证 → 加密）
-> - **Cookie 段落**（web browser → session → temporary → persistent → permanent → expire）
+> 背熟上面三段关键词链：
+> - **网页检索流程**（URL → domain name → DNS → IP address → browser request → web server → HTML → render）
+> - **SSL 流程**（browser 请求 → server 发证书 → browser 验证 → 加密传输）
+> - **Cookie**（small text file → browser → session = temporary → persistent = until expiry/manual delete）
 
 ### 模板 2：带标注的图（draw and annotate）—— 每套卷 1-2 道
 > 四种图必须会画：**网页检索图**、**SSL 握手图**、**DDoS 攻击图**、**区块链支付图**。
@@ -716,11 +683,7 @@ Biometrics — fingerprint / retina / face / voice
 ## 🔗 延伸资源
 
 - 课件：[Unit 5 The internet and its uses 课件目录](../csresource/new/Slides/1%20Computer%20Systems/5%20The%20internet%20and%20its%20uses/)
-- 真题：`csresource/.../Past Exam Papers/Questions by Year/` 中各年份 Paper 1
-- 在线练习（按考纲章节分类，与本单元一一对应）：
-  - [Save My Exams — 5. The internet and its uses](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/)
-  - [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)（免费下载）
-  - [Physics and Maths Tutor — IGCSE Computer Science](https://www.physicsandmathstutor.com/computer-science-revision/igcse-cie/)
+- 练习：[Save My Exams — 5. The internet and its uses](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/) · [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)
 
 ---
 

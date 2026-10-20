@@ -296,7 +296,7 @@ byte
 ## 2.3.1 为什么需要加密
 
 **English（背）**
-> When data is transmitted over **public networks**, there is always the risk of it being **intercepted**. Encryption turns the data into a form that is **unreadable** to anybody for whom the data is not intended.
+> When data is transmitted over **public networks**, there is always the risk of it being **intercepted**. Encryption turns the data into a form that is **meaningless** to anybody for whom the data is not intended.
 >
 > **Encryption cannot stop data being intercepted**, but it **prevents it from making any sense** if it is intercepted.
 
@@ -423,157 +423,15 @@ byte
 
 ---
 
-## 📊 真题实证（2020–2026 考频与官方答案）
+## 📌 考试重点（精简）
 
-### 考频表
-
-| 考纲点 | 出现频率 | 典型分值 | 优先级 |
-|---|---|---|---|
-| **2.1.2 serial/parallel + simplex/half/full** | **每场必考**（2025/2026 每套卷） | 2–6 | ★★★ |
-| **2.2.2 查错方法（parity/checksum/echo）** | **每场必考**（2020–2026 无例外） | 1–6 | ★★★ |
-| **2.3.2 对称 vs 非对称加密** | 多数场次；**2025 起重心转向非对称 + "密钥/密文"定义** | 1–8 | ★★★ |
-| **2.1.1 数据包与包交换** | 2023 起多数场次（2020–2022 完全没有） | 1–6 | ★★★ |
-| 2.2.4 ARQ | 多数场次 | 3–6 | ★★☆ |
-| 2.2.3 校验位 | 多数场次 | 3–4 | ★★☆ |
-| 2.1.3 USB | **2022/2023 完全没考**，2024 只作干扰项，2026 回归 | 1–3 | ★★☆ |
-| **ISBN 算法** | **整份题库 0 次** | — | ☆☆☆ |
-
-> ⚠️ **USB 的 IP 定位**：它是 Unit 2 里唯一「时有时无」的考点。**别把时间花在 USB-C 的 100W/10Gbps 这些数字上**，考的是 **serial + 不能长距离 + 自动检测/防插反** 这几条。
-
----
-
-### 官方判分答案（背英文原文）
-
-**① 传输方式的得分分解 —— 这是本单元最关键的结构认识 ⭐⭐**
-
-| 写法 | 得分点（**一个点一分**） |
-|---|---|
-| **Serial** | "Data is sent **one bit at a time**" + "down a **single wire**" |
-| **Parallel** | "uses **multiple wires**" + "sends **multiple bits** of data at a time" |
-| **Simplex** | "Data is sent in **one direction only**" |
-| **Half-duplex** | "in **both directions**" + "**not at the same time**" |
-| **Full-duplex** | "in **both directions**" + "**at the same time**" |
-
-**2026 June Q2(c) 的 6 分答案原文**：
-> Any six from (**one mark for benefit (MAX 3), one mark for expansion (MAX 3)**):
-> - Data is sent **one bit at a time** … so bits are **less likely to be skewed** … so it can be safely sent across a **longer distance**
-> - Data is sent along a **single wire** … so **less chance of interference/crosstalk** … so bits are less likely to be lost
-> - Data is sent in **both directions at the same time** … so there is **no delay** between computers sending and receiving data
-
-→ **得分结构 = 说特征（1 分）+ 展开后果（1 分）**。只写特征最多拿一半。
-
-判分：*"**MP2 – cable/path is TV**"* → 写 **cable** 或 **path** **不给分**，必须是 **wire**。*"MP1 – **BOD** bit by bit"*。
-
-**② 数据包三部分**（2025 Nov P13 的 6 分题官方答案）
-> - **Header** — originator's/sender's (IP) address, destination/receiver's (IP) address, **packet number**
-> - **Payload** — the data itself
-> - **Trailer** — **end of packet notification**, error checking data
-
-判分宽容：*"**BOD** head for header and trail for trailer."*
-
-**③ 路由器的角色**（3 分，0478/12 June 2026 官方答案）
-> - **examines/searches the packet** to find the destination IP address
-> - **sends/forwards** the packet towards its destination
-> - **determines/assigns the route**
-> - fastest/shortest/**least-traffic** route
-> - uses/updates a **routing table**
-> - checks/updates **hop count / TTL**
-
-⚠️ 判分：*"Do not accept generic statement like 'each packet takes a different path' **if there is no reference to the router determining/assigning the path**."*
-⚠️ *"**best path is TV**"* —— "best path" 单独写不给分。
-
-**④ 为什么需要重排**（2025 Summer P11 官方答案）
-> - The packets **arrive in the wrong order** // Each packet could take a different route
-> - Some packets may **take longer than others** to be transmitted
-> - Some packets may **not arrive / be corrupted** and need to be requested again
-
-**⑤ 偶校验如何检测错误**（4 分，2025 Summer P12 官方答案）
-> - A parity bit is added to each byte … **to make the number of 1s/0s even**
-> - that will be **1 if the number of 1s/0s is odd**
-> - The number of 1s/0s in each byte is **counted after transmission**
-> - If any bytes have an **odd** number of 1s/0s **an error is detected**
-
-**⑥ 为什么奇偶校验查不出错**（2 分，0478/12 June 2026 官方答案）
-> - A **transposition error** has occurred // Bits have been **interchanged/changed places**
-> - **Even number of bits** has flipped/changed
-> - … doesn't record the location of bits … so the **count/total of the 1s/0s is still the same** … so it will still meet the parity set
-
-⚠️ 两条判分：*"MP1 – **Even number of errors is TV**"*（必须写 even number of **bits**）；*"MP2 – **number of 1s is correct is NE**"*。
-
-**⑦ checksum 的 3 分答案**（0478/13 June 2026 官方答案）
-> - The checksum value is **sent with the data**
-> - The receiving device uses the **same algorithm** to calculate the checksum value // **recalculated by the receiver**
-> - The checksum values are **compared**
-> - If the same **no error** has occurred // If different **an error** has occurred
-
-**⑧ echo check 的 3 分答案**（2025 Nov P11 官方答案）
-> - (Data being sent to the receiver) and a **copy sent back** from the receiver to the sender
-> - Sending device **comparing** the original data and the copy
-> - If original data and copy **don't match** an error is detected
-
-**⑨ ARQ + 肯定应答（positive acknowledgement）**（2023 Winter P13 官方答案）
-> - **Timer is started** when the sending device transmits a data packet to receiver
-> - Receiving device **checks the data packet for errors**
-> - Once the receiving device knows the packet is **error free** it sends an **acknowledgement** back to the sending device … and the **next packet is sent**
-> - If the sending device **does not receive an acknowledgement before the timer ends** … a **timeout** occurs
-> - … the data packet is **resent** … **until acknowledgement received** // until max number of attempts reached
-
-**⑩ 密钥（encryption key）的定义**（2 分，0478/13 June 2026 官方答案）
-> - A **string of characters/numbers** used to encrypt data
-> - Used by an **algorithm/cipher** (to encrypt/decrypt the data)
-
-判分：*"MP2 – **Accept 'It is an algorithm/cipher'**"*
-
-**⑪ 加密的两种类型**（1 分题，2026 官方答案）
-> **Symmetric // synchronous** 或 **Asymmetric // asynchronous**
-> **BOD**：Single key encryption / public key and private key encryption
-> ❌ **"Do not allow protocols that use encryption e.g. SSL"**
-
-**⑫ 密文的名字**：`Cipher / cypher text`（**BOD** "cipher" 或 "cipher data" 单独写也认）
-
-**⑬ 非对称加密的 8 分填空**（2025 Summer P11 Q6(a) 官方答案顺序）
-> `algorithm → plain text → cipher text → meaningless → public/private → private/public → public → private`
-
-⚠️ 判分：**第 6 空必须是第 5 空的相反顺序** —— 公钥/私钥的配对必须**内部自洽**，不能两空写同一个。
-
-**⑭ 为什么用非对称而不是对称**（1 分）
-> - The process is **more secure**
-> - Do not need to worry about **key exchange**
-
-**⑮ 对称加密 4 分答案**（2022 Winter P11 官方答案）
-> - 先拿 1 分：Data is encrypted and decrypted using the **same key/algorithm**
-> - 再拿 3 分：Data before encryption is known as **plain text**；Data after encryption is known as **cypher text**；Key is sent to receiver (to allow data to be decrypted)
-
----
-
-### 官方判分规则（这几条决定你拿不拿到分）
-
-| 规则 | 官方原文 |
-|---|---|
-| **cable / path 不给分** | **"MP2 – cable/path is TV"** —— 必须写 **wire**（或 channel / line）|
-| **"best path" 太笼统** | "Do not accept generic statement like 'each packet takes a different path' if there is no reference to the router determining/assigning the path"；**"MP4 – best path is TV"** |
-| **"fast" 单独写不给分** | **"Fast/faster alone is NE"** —— 必须写出**跟什么比**或**用来做什么** |
-| **USB 不能写"可以长距离"** | 2026 June 判分明确 **"Do not accept 'can be used over long distance'"** |
-| **check digit 不用于传输** | **"Do not accept check digit. This is for data entry and not for transmission."** |
-| **偶数是修饰 bit 的** | **"Even number of errors is TV"** —— 必须写 even number of **bits** |
-| **加密题不能答协议** | **"Do not allow protocols that use encryption e.g. SSL"** |
-| **选方法的题，选择本身不给分** | **"No mark for choice."** —— 分数只给**与所选方法匹配的理由** |
-
----
-
-### 三条 Unit 2 独有的死穴
-
-**① 加密不是"防止数据被偷"，而是"被偷了也看不懂"。**
-这条错误在 **2020 March → 2025 Nov 连续 8 份考官报告**里出现。官方用词是 **meaningless**，**不是 "unreadable"**（2025 Summer 明确指出 unreadable 不给分）。
-正确框架：**数据仍然可能被截获 / 被偷，但它已经变得毫无意义。**
-
-**② check digit 属于数据输入（data entry），不属于数据传输（transmission）。**
-2026 June 判分直接写进 Guidelines。凡是问"传输过程中如何查错"，答案只能从 **parity / checksum / echo check / ARQ** 里选，**写 check digit 直接 0 分**。
-
-**③ USB 连接 ≠ USB 设备。**
-考官报告从 2020 Nov 到 2022 Nov 点了 **5 次**：问 USB **传输**，考生答 U 盘**存储**。另外 **"USB" 单独出现太笼统，不给分**。
-
----
+- **传输方式题的得分结构**：特征（1 分）+ 后果/展开（1 分）。只写特征最多一半。
+- **串行 vs 并行**：serial = one bit at a time down a **single wire**，适合长距离；parallel = **multiple wires**，短距离、易 skew。
+- **单工 / 半双工 / 全双工**：one direction only / both directions **not** at the same time / both directions at the same time。
+- **数据包**：header（sender & destination IP、packet number）+ payload（data）+ trailer（end-of-packet、error-check data）。
+- **查错方法**：parity / checksum / echo check / ARQ 用于**传输**；**check digit 用于数据输入，不用于传输**。
+- **介质用词**：写 **wire**，不写 cable / path；`best path` 太笼统，必须写 **router determines/assigns the route**。
+- **加密**：encryption key = a string of characters/numbers used with an algorithm/cipher；加密不能阻止截获，只是让数据变得 meaningless。
 
 ## 🧠 一页纸速记
 
@@ -601,11 +459,9 @@ byte
 
 ## 🔗 延伸资源
 
-- 学校课件：`csresource/…/Slides/1 Computer Systems/2 Data transmission/`
-- 真题练习：`csresource/…/Past Exam Papers/Questions by Unit/Unit 2 - Data transmission (188 pts)/`
-- Revision Guide 第 2 章（含大量 sample Q&A 与评分老师点评）
-- 在线练习（按考纲章节分类）：[Save My Exams — 2. Data Transmission](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/) ｜ [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)（免费）
+- 教材：Revision Guide 第 2 章
+- 练习：[Save My Exams — 2. Data Transmission](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/) · [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)
 
 ---
 
-**上一单元**：[Unit 1 - Data representation](Unit 1 - Data representation.md) | **下一单元**：[Unit 3 - Hardware](Unit 3 - Hardware.md)
+**上一单元**：[Unit 1 - Data representation](Unit%201%20-%20Data%20representation.md) | **下一单元**：[Unit 3 - Hardware](Unit%203%20-%20Hardware.md)

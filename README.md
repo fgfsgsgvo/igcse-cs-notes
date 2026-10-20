@@ -26,14 +26,9 @@ Cambridge IGCSE **Computer Science 0478 / 0984** · 适用 **2026–2028** 考�
 ## 备考与资源
 
 - [Exam Guide](Exam%20Guide.md) — 考试结构、时间分配、答题模板、高频失分点
-- 学校最新资料：`../csresource/new/`
-  - `Past Exam Papers/Questions by Unit/` — Unit 1–10 + Big Programming Question 的题目与答案
-  - `Past Exam Papers/Questions by Year/` — 2020–2026 QP / MS / Examiner Report
-  - `2026_10_19_PPT/` — Chapter 7/8 课件、Paper 2 Homework Booklet 答案
-  - `2026_10_19_Common Test U4 - feedback v2/` — Unit 4 测试反馈与评分示例
+- 学校资料与在线题库见 [Exam Guide 的资源区](Exam%20Guide.md)。
 
 ## 使用说明
 
-- 标「官方」的答案来自真题 **Mark Scheme / Examiner Report 原文**；标「推断」的答案是按考纲和评分规范推得的，不是官方原文。
-- 2026 年 6 月 Paper 2 的官方 Mark Scheme（21/22/23）已用于核对 Unit 7 / Unit 8 中的相关题目。
-- 考纲每三年更新，使用前确认你的考试年份对应 **2026–2028** 考纲。
+- 标「官方」的答案来自官方评分材料；标「推断」的答案按考纲和评分规范推得，并非官方答案。
+- 考纲每三年更新，使用前确认考试年份对应 **2026–2028** 考纲。

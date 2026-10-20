@@ -8,9 +8,7 @@
 > ③ **配对/填词题**（robot characteristics、AI 术语、expert system 组件）
 > ④ **优缺点讨论题**（Discuss advantages and disadvantages）
 >
-> ⚠️ **本单元的分数极度依赖"结合题目情境"**。Examiner Report 对 Unit 6 的头号抱怨永远是同一句：
-> **"Candidates gave generic answers that were not applied to the context given in the question."**
-> 背模板 + **把题目里的数字、传感器名、设备名抄进去** = 满分。
+> ⚠️ **本单元的分数极度依赖"结合题目情境"**：背模板 + **把题目里的数字、传感器名、设备名抄进去** = 满分。泛泛而谈的答案不给分。
 
 ---
 
@@ -74,30 +72,15 @@ Actuators  —  输出，控制 motors / wheels / solenoids / valves / pumps
 > **⑤** **If the value is within the range, no action is taken.**
 > **⑥** The **whole process repeats until it is turned off**.
 
-**这就是官方 Mark Scheme 的得分点清单（2024 June P11 Q8(c) 六分题逐字）**：
-> "A proximity sensor is used" / "The sensor continuously sends digitised data to the microprocessor" / "The microprocessor compares the data to a stored value/range of values" / "If the value is within the range/matches the robot continues planting" / "If the value is above/below/outside the range a signal is sent by the microprocessor to turn/stop the robot" / "…using an actuator to turn/stop the robot" / "This process repeats until the robot is turned off"
-
-**另一份官方答案（2024 March P12 Q6(b)(i) 五分题"拖拉机检测到 3 米内有人就停下"）**：
-> - "Sensor **continuously** sends the **digitised value / reading / distance** to the microprocessor"
-> - "Microprocessor **compares** the data/signal **to the stored data of a person and distance of 3m**"
-> - "**If the data/signal is less than (or equal to) a person and within 3m** …"
-> - "…**a signal is sent to actuator to make the tractor stop / apply the brakes**"
-> - "If the data/signal is greater than 3m **no action is taken**"
-> - "**The whole process repeats until turned off**"
-
-### ⚠️⚠️ 三个致命失分点（Examiner Report 逐条点名）
+### ⚠️⚠️ 三个致命失分点
 
 | 失分点 | 正确写法 |
 |--------|---------|
-| **不写 "compares to a stored value"** | ✅ 必须写 **the microprocessor compares the data to a stored value / preset value / range** —— 这是**最常丢的那 1 分**。ER: "Some of the weaker responses **repeated the question**, for example stating if the data showed that a person was within 1 metre instead of **how** the microprocessor would identify that a person was within 1 metre — through the comparison of the data against a stored value." |
-| **只说 "a signal is sent to an actuator"，不说 actuator 干什么** | ✅ 必须说 **the actuator is what is used to trigger the action**（stop the robot / open the valve）。ER: "just reference to an actuator is **NE** here." |
-| **说 actuator 用来在屏幕上显示信息** ❌❌ | ✅ **Actuator 引起物理运动（physical movement）—— 电机、阀门、活塞、刹车。它绝不用来显示文字或改变屏幕内容。** ER 2025 March 原文："A common misconception was that an **actuator would be used to change the display on the screen**. An actuator converts a digital signal into **physical movement**, for example to move a motor to open a door; **it does not display a message on a digital screen**." |
+| 不写 "compares to a stored value" | 必须写 **the microprocessor compares the data to a stored value / preset value / range** —— 最常丢的 1 分。 |
+| 只说 "a signal is sent to an actuator"，不说 actuator 干什么 | 必须写 **the actuator performs the physical action**（stop the robot / open the valve / apply the brakes）。 |
+| 说 actuator 用来在屏幕上显示信息 | ❌ Actuator 只引起 **physical movement**（电机、阀门、活塞、刹车），不显示文字/改变屏幕。 |
 
-⚠️ **还有一个方向性警告**：题目只问 **role of the microprocessor** 时，**不要**把整个系统都描述一遍。
-> ER 2024 Nov: "Some candidates **described the operation of the whole system, which was not necessary**. The question only required the role of the microprocessor."
-> ER 2025 Nov: "Some candidates tried to give a lot more information about how the whole system would operate. **This was not necessary** and candidates are reminded to **focus on the information requested in the question**."
-
----
+⚠️ 题目只问 **role of the microprocessor** 时，只写 microprocessor 的动作，不要把整个系统描述一遍。
 
 ## 6.1.3 自动化系统的应用领域（八大场景）
 
@@ -202,10 +185,9 @@ Actuators  —  输出，控制 motors / wheels / solenoids / valves / pumps
 | **4** | **能移动** | Has the **ability to move** — can use wheels, cogs, pistons, gears to carry out functions such as **turning, twisting, moving backwards/forwards, gripping or lifting** |
 | **5** | **能感知环境** | Has the **ability to sense its surroundings** — via **sensors**（light, pressure, temperature, acoustic, etc.）; **sensor data is sent to a microprocessor or computer** |
 
-⚠️⚠️⚠️ **2025 March Examiner Report 标记的年度最高频错误**：
-> ❌❌ **"Artificial intelligence (AI) is NOT a characteristic of a robot."** ❌❌
-> 很多学生写 "it can think"、"it has AI"、"it is intelligent" —— **不得分**。
-> 教材原文也强调："**Many robots don't possess artificial intelligence (AI)** since they tend to do **repetitive tasks** rather than requiring **adaptive human characteristics**."
+⚠️⚠️⚠️ **最高频错误：AI 不是机器人的特征**
+> ❌ 写 "it can think" / "it has AI" / "it is intelligent" —— **不得分**。
+> 很多机器人只做 **repetitive tasks**，并不具备 AI 或 adaptive human characteristics。
 
 🔧 **答题模板：Give three characteristics needed to define a machine as a robot** [3]
 > 从上面 5 条里任选 3 条，**每条必须至少带一个具体名词**（wheels/gears 或 sensors 或 controller/programmable 或 electrical components/mechanical structure）。
@@ -414,7 +396,7 @@ user │  │    USER      │      │   EXPLANATION    │  │ Advice
 | **Knowledge base** 知识库 | A **repository of facts**；存储从多个专家资源获得的**某领域的全部知识**；本质上是**一堆 objects 及其 attributes** 的集合 |
 | **Rules base** 规则库 | A **set of inference rules**；**inference rules 被 inference engine 用来得出结论**（方法**紧密跟随人类推理**）；通常涉及一系列 **'IF' 语句**，例如：`IF continent = "South America" AND language = "Portuguese" THEN country = "Brazil"` |
 
-⚠️⚠️ **判分警告（Examiner Report 点名）**：
+⚠️⚠️ **判分警告**：
 > ❌ **"rule data"** —— 错，必须写 **rules base**（或 **knowledge base**，但不能混）
 > ❌ **"interface engine"** —— 错，必须是 **inference engine**（把 interface 和 inference 搞混了）
 > ✅ 接受的写法：**knowledge base / rule base / rules base / inference engine / interface / user interface**
@@ -466,7 +448,7 @@ user │  │    USER      │      │   EXPLANATION    │  │ Advice
 **English（背这句，定义题必考）**
 > **Machine learning** is a **sub-set of artificial intelligence (AI)** in which **algorithms are 'trained' and learn from their past experiences and examples**. It is possible for the system to **make predictions or even take decisions based on previous scenarios**.
 
-⚠️ **另一种官方 Mark Scheme 措辞**（学生答案里出现过，也是给分的）：
+⚠️ **另一种可接受的措辞**（给分）：
 > A **program that has the ability to automatically adapt its own data and processes**.
 
 **核心特点**：
@@ -572,7 +554,7 @@ user │  │    USER      │      │   EXPLANATION    │  │ Advice
 > 用上面的场景专用优缺点表，**不要用通用空话**。
 
 ### 模板 6：Describe how a microprocessor would ensure ... [3-4]
-> 只写 microprocessor 的动作，**不要描述整个系统**（Examiner Report 反复警告）。
+> 只写 microprocessor 的动作，**不要描述整个系统**（高频失分点）。
 > 标准骨架：**receive data → compare with stored value → send signal → (to actuator) → repeat**
 
 ---
@@ -685,14 +667,7 @@ phenotyping = observing plant physical characteristics to assess health and grow
 ## 🔗 延伸资源
 
 - 教材：[Cambridge IGCSE Computer Science Textbook — Chapter 6](../csresource/)
-- 真题：[Unit 6 按子主题真题 + Answer Key](../csresource/new/Past%20Exam%20Papers/Questions%20by%20Unit/Unit%206%20-%20Automated%20and%20emerging%20technologies%20%28159%20pts%29/)
-- 真题：`csresource/.../Past Exam Papers/Questions by Year/` 中各年份 Paper 1
-- 在线练习（按考纲章节分类，与本单元一一对应）：
-  - [Save My Exams — 6. Automated and emerging technologies](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/)
-  - [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)（免费下载）
-  - [Physics and Maths Tutor — IGCSE Computer Science](https://www.physicsandmathstutor.com/computer-science-revision/igcse-cie/)
-
-> ⚠️ **注意**：本校 slide 只覆盖 Unit 1–5，**Unit 6 没有 slide 材料**；但新资料里有 **Unit 6 按子主题整理的真题 + Answer Key**（6.1 Automation / 6.2 Robotics / 6.3 AI / 6.3 Expert systems）。本单元内容来自教材 Chapter 6 + 这些真题/答案。
+- 练习：[Save My Exams — Unit 6](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/) · [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)
 
 ---
 

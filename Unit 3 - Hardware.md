@@ -2,7 +2,7 @@
 
 > **考纲**：Cambridge IGCSE Computer Science 0478 / 0984 (2026–2028) — Unit 3 Hardware
 > **试卷**：Paper 1 Computer Systems — **75 分 / 1 小时 45 分钟 / 不允许使用计算器**
-> **本单元特点**：**Paper 1 分值最高的单元**（历年真题累计约 505 分）。知识点最多最杂，但**套路最固定**——输入/输出设备、传感器、存储器几乎每年必考，且答案高度模板化。这是**最容易靠背诵拿满分的单元**。
+> **本单元特点**：**Paper 1 分值最高的单元**。知识点最多最杂，但**套路最固定**——输入/输出设备、传感器、存储器几乎每年必考，且答案高度模板化。这是**最容易靠背诵拿满分的单元**。
 
 ---
 
@@ -165,7 +165,7 @@ CIR 中的指令被译码 (decode)
 CPU 把译码后的指令作为控制信号发给各部件 (execute)
 ```
 
-⚠️ **反复出现的失分点**（Examiner Report 多次点名）：
+⚠️ **反复出现的失分点**：
 - **必须写 "PC incremented by one"**——这是 Fetch 阶段独立的得分点，漏掉就丢分。
 - 地址总线**只在 PC→MAR 这一步**用到；从内存取出内容到 MDR 用的是**数据总线**。写混不给分。
 - 有考生写 "the instruction is fetched from the hard drive"——**错**，指令从**内存 (RAM)** 取，不是硬盘。
@@ -192,8 +192,7 @@ CPU 把译码后的指令作为控制信号发给各部件 (execute)
 | **Increase the clock speed** | It can carry out more processes per second; **however** this needs caution, since it can lead to overheating and potential computer crash as operations become out of synchronisation |
 | **Use more cores (e.g. quad core)** | Allows multiple functions to be carried out simultaneously, which greatly improves CPU performance |
 
-⚠️ **"Discuss" 类题目的铁律**：给方法**不加理由 = 0 分**。Examiner's comment 原话：
-> "there is no mention of how the methods given would improve performance... The question asked for a **discussion**... this means it is necessary to explain why the methods mentioned would work."
+⚠️ **"Discuss" 类题目的铁律**：给方法**不加理由 = 0 分**；每个方法都要写 **why it improves performance**，以及可能的副作用。
 
 ❌ **反面教材**（0 分）："The performance of a computer can be improved by using more RAM, changing the clock speed and using bigger buses."
 ✅ **正确**："Increasing the clock speed means more FDE cycles can be carried out per second, **but** it risks overheating and out-of-synchronisation operations."
@@ -525,8 +524,9 @@ CPU 把译码后的指令作为控制信号发给各部件 (execute)
 **English（背这句）**
 > Sensors are **input devices that read physical properties from their surroundings** (for example, temperature or light). Sensors **constantly send signals to a microprocessor**; they usually pass through an **analogue to digital converter (ADC)** first, since computers can only understand binary (digital) data.
 
-⚠️⚠️ **最重要的失分点**（Examiner's comment 原文点名）：
-> "there is the very common error of stating sensors only send data **when they detect a change in conditions** — **this is incorrect, since sensors constantly send data to the microprocessor**. They also incorrectly claim that **the sensors control the process**. Only one mark would be awarded for the whole part."
+⚠️⚠️ **最重要的失分点**：
+- 传感器是 **constantly sending data**，不是只在“检测到变化”时才发。
+- **传感器不控制流程**；控制/判断的是 microprocessor。
 
 **记住两句话**：
 1. Sensors **constantly** send data — **不是**"变化时才发"
@@ -923,148 +923,14 @@ MAC 地址可以是：
 
 ---
 
-## 📊 真题实证（2024–2026 考频与官方答案）
+## 📌 考试重点（精简）
 
-> 下表基于 **138 份 2024–2026 真题 QP / MS / Examiner Report** 逐题统计。
-
-### 考频总表
-
-| 考点 | 2024 | 2025 | 2026 | 分值 | 结论 |
-|------|------|------|------|------|------|
-| CPU role / FDE cycle | Mar, Sum, Win | Mar, Sum, Win | Jun ×3 | 1–6 | **每套必考** |
-| Registers（PC/MAR/MDR/CIR/ACC） | Mar, Sum, Win | Mar, Sum, Win | Jun ×3 | 1–6 | **每套必考** |
-| Buses | Sum, Win | Sum | — | 2 | 常考 |
-| Cores / cache / clock speed | Mar, Sum | Mar, Sum, Win | Jun ×3 | 2–5 | **每套必考** |
-| Instruction set | Sum | Mar, Sum | Jun | 1 | 常考 |
-| Embedded systems | Win | Mar, Sum, Win ×3 | Mar | 2 | **极高频** |
-| 输入/输出设备识别 | Sum, Win | Mar | Jun ×3 | 1–3 | **每套必考** |
-| Sensors（+microprocessor/actuator） | Mar, Sum, Win | Mar, Sum, Win | Mar, Jun ×3 | 1–6 | **每套必考** |
-| 主存 vs 副存 | Mar, Sum | Sum, Win | Jun ×3, Mar | 1–6 | **每套必考** |
-| RAM / ROM | Mar, Sum, Win | Sum, Win | Jun | 1–3 | **极高频** |
-| Virtual memory | Mar | Sum | Mar | 1–3 | 常考 |
-| 磁/光/固存细节 | Sum, Win | Sum, Win | Jun ×2, Mar | 2–6 | **每套必考** |
-| Cloud storage | Win | Win | Jun ×2, Mar | 1–4 | 常考 |
-| NIC / MAC 地址 | Sum | Mar, Sum, Win | — | 1–5 | 常考 |
-| IP 地址（v4/v6, static/dynamic） | Sum | Mar, Win | Mar | 1–3 | 常考 |
-| Router | Mar | Mar, Win | Jun | 1–3 | 常考 |
-| **触摸屏类型 / 打印机 / 投影仪 / 2D-3D 扫描仪 / QR / LED 屏** | 无 | 无 | 无 | — | ⚠️ **近年少考，但考纲仍列出；掌握用途/适用场景，细节不必全背** |
-
-### 🔑 逐考点官方答案（背这些，不是背教材）
-
-**① CPU role [1]** —— `0478/12 June 2026 Q2(a)`
-> ✅ "To process/execute data/instructions" / "To perform/carry out/run/process the **fetch–decode–execute/FDE/FE cycle**"
-> ⚠️ MS 判分：**"Tasks/programs/code/information in place of instructions is TV"**
-> ❌ ER 2025 Mar: "explaining that it **does the processing**, or that it is **the brain of the computer**" —— 不给分
-
-**② Registers [1-3]** —— 多卷
-> ✅ 五个合法答案：**PC / MAR / MDR / CIR / ACC**
-> ⚠️ MS: "**Do not accept MAR or MDR as they are given in the question.**"
-> ❌ ER 2025 Mar: 编造名字 —— "**a logical register and an arithmetic register**" 是最常见错误答案
-> ❌ ER 2025 Jun: "The most common incorrect answer given was the **arithmetic logic unit**"（ALU 是组件，**不是 register**）
-
-**③ Registers 表格题官方描述** —— `0478/12 June 2025 Q4(a)` 6 分
-> | 组件 | 官方给分描述（逐字） |
-> |------|-------------------|
-> | **Control unit (CU)** | "It **sends signals to all the components in the CPU to manage the flow of data** through the CPU." |
-> | **ALU** | "It **carries out all the arithmetic and logic operations** in the CPU." |
-> | **Cache** | "It **stores frequently used data/instructions**" |
-> | **Program counter (PC)** | "It **stores the address of the next instruction to be fetched**" |
-> | **Clock** | "It **controls the number of fetch-decode-execute (FDE) cycles that are performed per second**." |
-> | **MDR** | "It stores data **immediately before it is transmitted to RAM and immediately after it is received from RAM**." |
-
-> ⚠️ ER 2025 Jun 原话：**"Clock speed is not a component and it is a measure of how many clock cycles are completed and does not control how many clock cycles are completed."**
-> ⚠️ ER 2025 Jun: **Cache** 要说"stores **frequently used** data/instructions"，不是"stores the data that has just been used"。
-> ⚠️ ER 2025 Jun: **Accumulator** "stores the **result** of a calculation and not the actual calculation itself."
-
-**④ Decode 阶段 [3]** —— `0478/11 June 2026 Q2(a)(ii)` ⭐ 最高价值小分题
-> ✅ "The instruction is **sent/copied to the current instruction register/CIR/control unit/CU**"
-> ✅ "… **from the memory data register/MDR**"
-> ✅ "The **control unit/CU decodes** the instruction"
-> ✅ "An **instruction set** is used (to decode the instruction)"
-> ✅ "The instruction is **decoded/converted into the Opcode and Operand**"
-> ⚠️ MS 原话：**"MP3 – It must clearly state the CU is decoding the instruction"**
-> ❌ ER Winter 2024（**同一句话重复警告了两次**）："**Many candidates instead described the execute stage of the cycle.**"
-
-**⑤ Fetch 阶段完整填空（6 分，逐字背）** —— `0478/11 Nov 2025 Q6(a)`
-> "The **program counter** stores the address of the next instruction to be processed. This address is then sent to the **memory address register**. This address is the location in RAM where the instruction can be found. The instruction is retrieved from RAM and immediately stored in the **memory data register**. The instruction is then sent to the **current instruction register** where it is decoded by the **control unit**. The instruction is decoded using an **instruction set**."
-
-> ⚠️ ER Summer 2024: **地址走的是 PC → MAR，不是 PC → MDR**。"The address is then sent to the **memory data register**" 是最常错的一空。
-
-**⑥ Clock speed [2]** —— `0478/12 June 2026 Q2(d)` "3 GHz"
-> ✅ "**3 billion**" + "… is the **maximum number of instructions / FDE cycles / clock cycles processed per second**"
-> ⚠️ MS: "accept **3 × 10⁹ or 3000000000**"
-> ❌ ER 2024 Mar: "**A common misconception was that 3.5 GHz is 3.5 million.**"
-
-**⑦ 提升 CPU 性能 [4]** —— `0478/12 Nov 2025 Q4(c)`
-> ✅ **MS 原文："MAX 2 if no expansion given"** —— **每一条必须带 expansion！**
-> - "The **number of cores** could be increased … **this means that more instructions can be processed simultaneously**"
-> - "The **clock speed** could be increased … **this means that more instructions can be processed (by a core) per second**"
-> - "The **cache** could be increased … **this means that more frequently used data/instructions can be stored (to be accessed faster than RAM)**"
-
-> ⭐ **铁律（三条不可混用）**：
-> - **More cores → more instructions SIMULTANEOUSLY（同时）**
-> - **Faster clock → more instructions PER SECOND（每秒）**
-> - **More cache → frequently used data accessed FASTER THAN FROM RAM**
-> ❌ ER 2025 Jun: "Some candidates incorrectly stated that it would mean that **more FDE cycles could be carried out simultaneously**."
-> ❌ ER 2024 Mar: **"did not identify whether this was with more cores or fewer cores"** —— 必须说**增加还是减少**！
-> ❌ ER 2024 Mar: 只说 "**because it is faster**" 而不说**比什么快** → 不给分
-
-**⑧ 嵌入式系统 [2]** —— 几乎每套都有，`0478/11 Nov 2025 Q1(g)` 等
-> ✅ 任选**两个不同**特征：**single/limited function** / **dedicated hardware** / **has a microprocessor** / **its function is not easily changed (cannot be reprogrammed)** / **uses firmware**
-> ❌ ER 2025 Nov: "**Many gave generic statements such as 'it is a combination of hardware and software'. A vague statement like this does not differentiate it from a general-purpose computer.**"
-> ⚠️ 一道题 2 分 = **两个不同特征**，同一个特征换个说法只给 1 分。
-
-**⑨ Sensors [1] + 用途 [2]**
-> ✅ 必须写**传感器的类型名**：acoustic / accelerometer / light / temperature / proximity / infra-red / magnetic field / moisture / humidity / pressure
-> ❌ MS: "**Sound/noise sensor is TV. Microphone is NE.**"（acoustic 才对）
-> ❌ MS: "**Motion, sound, touch and heart rate are TV.**"
-> ❌ MS: "**Do not accept by description**, for example it measures light."
-> ❌ ER 2024: 说用途必须**结合题干场景** —— "**it measures the temperature**" 这种空话不给分。
-
-**⑩ 传感器链条** —— 见模板 4 与新加的 Unit 6 笔记。
-> ⚠️ ER 2025 Mar（**跨单元通用铁律**）：**"An actuator converts a digital signal into physical movement … it does NOT display a message on a digital screen."**
-
-**⑪ 主存 vs 副存 [3]** —— `0478/11 June 2025 Q7(b)` "Why is RAM primary and not secondary?"
-> ✅ "**RAM is directly accessed by the CPU**" / "**All secondary storage is non-volatile … whereas RAM is volatile**"
-> ⚠️ ER 2025 Jun: **"primary storage can also be volatile"** —— 不要说"所有主存都是易失的"
-> ⚠️ ER 2024 Jun: ROM 的"非易失"是 ROM 的特征，**不是让它成为主存的特征**
-
-**⑫ Virtual memory [3]** —— `0478/11 June 2025 Q7(c)`
-> ✅ 三个**分别给分**的点：① **secondary storage is partitioned** to create the virtual memory ② **pages are transferred from the RAM** ③ it **acts as an extension to the RAM**
-> ⚠️ ER 2025 Jun: "**The most common mark awarded was for stating that secondary storage is partitioned**"（另外两点常丢）
-
-**⑬ 存储类型配对 [6]** —— `0478/13 Nov 2025 Q2(d)`
-> 看到**关键词**就选：
-> - **pits and lands** / **laser** / "read/write arm that moves a **laser** across a disc" → **Optical**
-> - **electromagnets** / **platters** / **tracks and sectors** / **read/write head** / "moving parts" → **Magnetic**
-> - **NAND or NOR** / **control gates and floating gates** / **transistors** / "**flow of electrons**" → **Solid-state**
-> ⚠️ ER 2024: "**Many candidates appeared to have a misconception that an HDD is an example of optical storage** … because it has spinning platters."
-> ⚠️ **"floating gates"，绝不是 "flow gates"**（2026 March 干扰项）
-
-**⑭ MAC vs IP [3]**
-> ✅ MAC 特征（格式事实，**不是用途**）："**represented in hexadecimal**" / "**numbers separated by colons/hyphens**" / "**six groups of digits**" / "**48 bits / sets of 2-digit hex numbers**" / "**contains manufacturer ID and unique device number**" / "**static address // cannot be changed**"
-> ❌ ER 2025 Mar: "Some candidates **described the purpose** of a MAC address … **which are not characteristics**."
-> ✅ MAC = **assigned by the manufacturer**；IP 由 **router** 自动分配
-> ✅ IPv6 特征：**128-bit** / **hexadecimal** / **separated by colons** / **8 groups of 4 digits** / "consecutive groups of 0s can be represented by **::** once"
-
-**⑮ Router [3]** —— `0478/12 June 2026 Q3(e)(ii)`
-> ✅ "It **examines/analyses/searches the packet to find the destination IP address**" / "It **forwards the packet towards its destination**" / "It **determines/assigns/selects the route/path** each packet takes … **which is the fastest/most efficient/shortest route**" / "**Uses/updates a routing table**" / "Checks/updates the packet's **hop count / time to live (TTL)**"
-> ⚠️ MS 原话：**"Do not accept generic statement like 'each packet takes a different path' if there is no reference to the router determining/assigning the path."**
-> ⚠️ MS 原话：**"best path is TV"** —— 必须说 **fastest / most efficient / least traffic**
-
-### 🎯 Unit 3 高分优先级（按投入产出排序）
-
-1. **Registers + FDE 阶段描述**（必考，1–6 分）—— 把上面第 ④⑤ 两段**默写**
-2. **sensor → microprocessor → actuator 链条**（必考，3–6 分）—— 见 Unit 6 模板
-3. **cores / clock speed / cache 性能对比**（必考，2–4 分）—— 记住三条**不可混用**的铁律
-4. **存储类型配对表**（必考，2–6 分）—— 背关键词
-5. **主存 vs 副存 + RAM/ROM + virtual memory**（必考，1–6 分）
-6. **embedded system "explain why"**（每套，2 分）—— 背两个不同特征
-7. **输入/输出设备识别**（必考，1–3 分）—— ⚠️ **必须符合题干场景**
-8. **MAC / IP 格式事实**（多数卷，1–3 分）
-9. **打印机 / 投影仪 / 触摸屏类型 / 扫描仪** —— 近年少考，但 2026–2028 考纲仍列出；**至少掌握用途和适用场景**，内部原理不必逐条死背
-
----
+- **FDE 周期**：PC → MAR → address bus → memory → MDR → CIR → CU decodes → execute；是 **PC → MAR**，不是 PC → MDR。
+- **性能题三句**：more cores → more instructions processed simultaneously；faster clock → more instructions per second；larger cache → frequently used data accessed faster than RAM。
+- **传感器**：必须写具体名称（acoustic / accelerometer / temperature / pressure…）；只写 "it detects..." 通常不给分。
+- **虚拟内存**：RAM 满时把最近最少使用的页面移到 secondary storage；需要时再换回 RAM；让程序能运行大于物理 RAM 的数据。
+- **路由器**：检查 packet 的 destination IP，查 routing table，确定/分配 route，转发到下一跳。
+- **易错**：HDD 是 magnetic，不是 optical；cache 分 L1/L2/L3；MAC 是硬件地址，IP 是逻辑地址。
 
 ## ⚠️ 高频失分点汇总
 
@@ -1096,15 +962,15 @@ MAC 地址可以是：
 | **Actuator 用来显示屏幕信息** ❌ | ✅ Actuator 只引起**物理运动**（motor/valve/brake）。**2025 Mar ER 跨单元点名** |
 | Sensor 写 "sound sensor" / "motion sensor" / "touch sensor" | ✅ 必须写类型名：**acoustic** / **accelerometer** / **light** / **proximity** |
 | Sensor 用途只写 "it measures the temperature" | ✅ 必须**结合题干场景**说测什么、为了什么 |
-| Sensor 答案写成描述（"it measures light"） | ✅ MS: **"Do not accept by description"** —— 必须给**类型名** |
+| Sensor 答案写成描述（"it measures light"） | ✅ 必须给**类型名**（light sensor），不能只写描述 |
 | 输入/输出设备不符合题干设备 | ✅ ⚠️ **手机/手表/平板** 不能答 mouse / keyboard / printer / HDD |
 | HDD 说成 optical storage | ✅ **HDD = magnetic**（虽然也有旋转盘片） |
-| 说 "floating gates" 写成 "flow gates" | ✅ **floating gates**（2026 March 干扰项设的坑） |
+| 说 "floating gates" 写成 "flow gates" | ✅ **floating gates**（常见干扰项） |
 | Cloud storage 优点只写 "accessed anywhere" | ✅ 必须**对比本地存储**：可从**其他设备**访问 / 无需购买维护硬件 / 容量近乎无限 / 设备丢失数据仍在 |
 | Virtual memory 只说 "partitioned" | ✅ 三点分别给分：**partitioned** + **pages transferred from RAM** + **extends the RAM** |
 | MAC 题问 characteristics 却答 purpose | ✅ 答**格式事实**：hex / colons / 6 groups / 48-bit / manufacturer ID / static |
-| Router 说 "each packet takes a different path" | ✅ MS 明确拒绝：必须说 **router determines/assigns the path**。"best path" 也是 **TV**，要说 **fastest / most efficient / least traffic** |
-| Secondary storage 说成"为了做备份" | ✅ **Secondary storage 就在计算机内部**，不是外置备份。ER 2024 重复两次 |
+| Router 说 "each packet takes a different path" | ✅ 不接受：必须说 **router determines/assigns the path**。"best path" 也太空泛，要说 **fastest / most efficient / least traffic** |
+| Secondary storage 说成"为了做备份" | ✅ **Secondary storage 就在计算机内部**，不是外置备份 |
 
 ---
 
@@ -1170,12 +1036,7 @@ Router — 连接不同网络, 转换协议
 ## 🔗 延伸资源
 
 - 课件：[Unit 3 Hardware 课件目录](../csresource/new/Slides/1%20Computer%20Systems/3%20Hardware/)
-- 课件：`csresource/.../Slides/` 中的 Unit 3 相关 PPT
-- 真题：`csresource/.../Past Exam Papers/Questions by Year/` 中各年份 Paper 1
-- 在线练习（按考纲章节分类，与本单元一一对应）：
-  - [Save My Exams — 3. Hardware](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/)
-  - [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)（免费下载）
-  - [Physics and Maths Tutor — IGCSE Computer Science](https://www.physicsandmathstutor.com/computer-science-revision/igcse-cie/)
+- 练习：[Save My Exams — 3. Hardware](https://www.savemyexams.com/igcse/computer-science/cie/23/topic-questions/) · [PapersDaddy — 0478 Topical Paper 1](https://www.papersdaddy.com/cambridge/igcse/computer-science-0478/resources/topical-past-papers/paper-1)
 
 ---
 

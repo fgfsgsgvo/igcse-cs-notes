@@ -176,6 +176,8 @@ OUTPUT "Your score is ", Score, " out of ", MaxScore
 | **IF** | 条件是**范围/比较**的时候；分支多的时候也可以嵌套 |
 | **CASE** | 条件是**一组具体的值**的时候（尤其是单字符菜单）|
 
+> ⚠️ **IF 和 CASE 是 selection，不是 iteration** —— iteration 只有 `FOR` / `WHILE` / `REPEAT` 三种。
+
 ## IF 语句
 
 ```
@@ -315,6 +317,33 @@ UNTIL Mark >= 0 AND Mark <= 100
 ```
 
 > 💡 **为什么必须用 REPEAT 而不是 WHILE**：因为**至少要问一次**，WHILE 有可能一次都不问。
+
+## 🔧 经典用途：重复输入直到有效 + 存入数组
+
+**场景**：只要有效值，无效就重问；收满 N 个有效值后停止。
+
+```
+Count ← 0
+REPEAT
+   OUTPUT "Enter a value"
+   INPUT Value
+
+   IF <validation passes>
+      THEN
+          Count ← Count + 1
+          Accepted[Count] ← Value
+      ELSE
+          OUTPUT "Invalid - please try again"
+   ENDIF
+
+UNTIL Count = 15
+
+OUTPUT "Done"
+```
+
+> ⚠️ **计数器只在值通过验证、真正存进数组时才 +1** —— 放进 ELSE 分支就永远存不满。
+> 💡 判定整数：`MOD(Value, 1) = 0`；`DIV(Value, 1) = Value`、`ROUND(Value, 0) = Value` 等价。
+> 💡 题目说 "do not declare variables" 就**不要写 `DECLARE`**。
 
 ## 🔧 经典用途：读文件（WHILE 的标准场景）
 
@@ -462,7 +491,7 @@ OUTPUT "There are ", Count, " vowels"
 
 ## ⚠️ 字符串连接（concatenation）—— 0478 里**没有**专门的运算符
 
-> ⚠️ **`&` 和 `+` 都不是 0478 考纲里的语法**。你的作业本和网上教程大量用 `&` —— 那是 **A-Level (9618) 的习惯**。写成 `FullName ← FirstName & " " & LastName` 在 0478 里**没有依据**。
+> ⚠️ **`&` 和 `+` 都不是 0478 考纲里的语法** —— 网上教程常用 `&`，那是 **A-Level (9618) 的习惯**。写成 `FullName ← FirstName & " " & LastName` 在 0478 里**没有依据**。
 
 **✅ 0478 推荐做法：用 `OUTPUT` 的逗号分隔**
 ```
@@ -735,6 +764,26 @@ CALL DisplayLine(30)                       ← 过程用 CALL
 ```
 
 > ⚠️ **注意 `MaxValue` 函数里两个分支都有 `RETURN`** —— 必须保证**所有路径都返回值**，否则是逻辑错误。
+
+**布尔函数（BOOLEAN return）**
+
+```
+FUNCTION IsLuckyNumber(Num : INTEGER) RETURNS BOOLEAN
+   IF Num = 7 OR Num = 4
+      THEN
+          RETURN TRUE
+   ENDIF
+   RETURN FALSE
+ENDFUNCTION
+
+FUNCTION IsEven(Num : INTEGER) RETURNS BOOLEAN
+   RETURN MOD(Num, 2) = 0
+ENDFUNCTION
+```
+
+> ⚠️ 函数头是 `RETURNS`（复数），函数体是 `RETURN`（单数）。
+> ⚠️ **所有路径都要有返回值**：`RETURN FALSE` 必须放在 IF 外面，否则 `Num = 5` 时没有返回值。
+> ✅ 函数用在表达式里：`OUTPUT IsLuckyNumber(7)`；❌ 不能写 `CALL IsLuckyNumber(7)`。
 
 ## ⚠️ 过程/函数为什么好（高频 Explain 题）
 
@@ -1128,6 +1177,25 @@ NEXT Index
 
 > ⚠️ **如果题目要"最高分的学生名字"**，你必须**同时**更新分数和名字 —— 只更新分数是常见失分。
 
+## ⑦ 一趟遍历同时求 min / max / sum / mean
+
+```
+Min ← Nums[1]
+Max ← Nums[1]
+Sum ← 0
+
+FOR Index ← 1 TO N
+   Sum ← Sum + Nums[Index]
+   IF Nums[Index] < Min THEN Min ← Nums[Index] ENDIF
+   IF Nums[Index] > Max THEN Max ← Nums[Index] ENDIF
+NEXT Index
+
+Mean ← Sum / N
+```
+
+> ⚠️ **`Sum ← 0` 不能漏**；Min/Max 用**第一个元素**初始化，不要用 0。
+> 💡 循环从 1 开始时，`Nums[1]` 会和自己比较一次，结果不受影响。
+
 ## ⑥ 数组的查找
 
 ```
@@ -1256,6 +1324,7 @@ CLOSEFILE "FileB.txt"
 ```
 
 > ⚠️ **两个文件要分别 OPENFILE、分别 CLOSEFILE** —— 只关一个是最常见的失分。
+> 💡 **跳过空行**：在 `READFILE` 后加 `IF LineOfText <> "" THEN WRITEFILE "FileB.txt", LineOfText ENDIF`；需要统计空行就再加一个 `EmptyLineCount ← EmptyLineCount + 1`。
 
 ## 🔧 标准范例 ③：把数组内容写进文件
 
@@ -1315,466 +1384,35 @@ CLOSEFILE "names.txt"
 
 ---
 
-# 📊 真题实证（考频与真实题型）
-
-> **数据来源**：June 2026 Paper 22（0478/22）真题原文 + **官方 Mark Scheme 21/22/23** · 学校按单元整理的 Question Paper / Answer Key · 2015–2025 Paper 2 真题 **65 份 / 1079 题** · 学校作业本 *Paper 2 Homework Booklet (Pseudocode & Python)* 标准答案
-> ✅ **已有 2026 年 6 月 Paper 2 官方 Mark Scheme**：下面 Q1/Q2/Q3/Q7 等已用 MS22 核对；仍标「推断」的是 2015–2025 旧题中没有官方 MS 对照的答案。
-
-## 🎯 Unit 8 在 June 2026 的具体考法
-
-### Q1 [1 分] 三种循环的识别（**必拿分**）
-> *"Two types of pseudocode statements used for iteration are"*
-> A. CASE and IF　B. FOR...NEXT and IF　C. **FOR...NEXT and WHILE...DO...ENDWHILE**　D. REPEAT...UNTIL and CASE
-
-**答案：C**（官方 MS22）
-> ⚠️ **IF 和 CASE 是 selection，不是 iteration** —— 这是最容易错的选择题。
-
-### Q2 [1 分] 数据类型
-> *"Tick one box to identify a programming data type used to store **a single letter, symbol or number** input from the keyboard."*
-> A. Boolean　B. **char**　C. integer　D. real
-
-**答案：B**（官方 MS22）
-> 💡 **题干里的关键词是 "a single"** —— 单字符 = CHAR。如果是 "a series of characters" 就是 STRING。
-
-### Q3(c) [6 分] 写验证伪代码（**REPEAT/WHILE + 数组 + 计数器**）
-
-**题目要求**
-> - Input one number at a time.
-> - If the number is a **whole number**, store it in the **current element** of array `Accepted[]`
-> - If the number is **not** a whole number, **ask for it to be input again until it is**
-> - When **15** whole numbers have been stored, output a message
-> - *You do not need to declare any arrays or variables*
-
-**参考答案（官方 MS22 接受 MOD/DIV/ROUND；FOR+REPEAT 或 REPEAT 计数均可）**
-```
-Count ← 0
-REPEAT
-   OUTPUT "Enter a whole number"
-   INPUT Number
-
-   IF MOD(Number, 1) = 0
-      THEN
-          Count ← Count + 1
-          Accepted[Count] ← Number
-
-      ELSE
-          OUTPUT "Not a whole number - please try again"
-   ENDIF
-
-UNTIL Count = 15
-
-OUTPUT "Validation check completed"
-```
-
-> ⚠️ **这道题的核心是"内层重问" vs "外层计数"的区分** —— 有几种合理写法：
-> - 上面这种：外层数到 15，内层用 IF 判断
-> - 另一种：外层 `FOR Count ← 1 TO 15`，内层 `REPEAT ... UNTIL MOD(Number,1) = 0`
-> **两种都能拿分**（逻辑对就行）。关键点：**计数器只在成功存进数组时才 +1**。
-> ⚠️ **"whole number" 的判定**：`MOD(Number, 1) = 0` 是规范内的写法。
-> ✅ **`MOD`、`DIV`、`ROUND` 三种判断都被官方 MS22 接受**：`MOD(Number,1) = 0`、`DIV(Number,1) = Number`、`ROUND(Number,0) = Number` 都能判断整数。
-> 💡 `DIV(x,1)` 返回整数部分，所以 `DIV(Value,1) <> Value` 正好能检测非整数——不是“判断不了”。
-
-### Q5 [10 分] 找错改错 —— **四个错误全是 Unit 8 语法**
-（题目原文见 [Unit 7 的 Q5 分析](Unit%207%20-%20Algorithm%20design%20and%20problem%20solving.md)）
-
-| 行号 | 错误类型 | 涉及考点 |
-|---|---|---|
-| 03 | **数据类型选错** | `INTEGER` 应为 `STRING`（含字母）|
-| 05 | **INPUT / OUTPUT 搞反** | `OUTPUT AccountID` → `INPUT AccountID` |
-| 07 | **IF / CASE 用错** | `CASE OF x = y` 非法 → 用 `IF` |
-| 09 | **数组下标写死** | `Accounts[1, 2]` → `Accounts[Row, 2]` |
-
-> ⚠️ **第 07 行是最难发现的** —— `CASE OF` 后面**只能跟一个变量**，不能跟条件表达式。
-> 💡 **还有两个隐性考点**：
-> - 第 01 行 `ARRAY[1:1000, 1:2]` —— **二维数组的正确声明**（有上下界、有 `OF STRING`）
-> - `Accounts[Row, 1]` —— **每维一个下标、用逗号分隔**（不是 `[Row][1]`）
-
-### Q6 [7 分] Trace Table —— 用到 `LENGTH` 和 `SUBSTRING`
-> 流程图里：`WordLength ← LENGTH(Word)`、`SUBSTRING(Word, NumLetter, 1) = SUBSTRING(Word, NumLetter + 1, 1)`
-> 表头：`Word | WordLength | Count | NumLetter | Choice | OUTPUT`
-
-> ⚠️ **`SUBSTRING(Word, NumLetter, 1)` = 取第 NumLetter 个字符** —— 第三参数是**长度 1**。
-> ⚠️ `SUBSTRING(Word, NumLetter + 1, 1)` = 取**下一个**字符。两者相等 → `Count + 1`。
-> 💡 **这道题同时考了**：LENGTH、SUBSTRING、字符串比较、WHILE 循环、trace table —— **一道题打五个点**。
-
-### Q7 [5 分] 文件处理
-
-**(a) [1 分] "State one reason to store data in a file."**
-> ✅ 官方 MS22 接受（任写一条）：
-> - *"So the data is stored **permanently** / provides a **non-volatile copy**."*
-> - *"So the data is **not lost** if the machine/program is switched off or crashes."*
-> - *"So the data can be **used again later** / to provide a **backup**."*
-> - *"So the data can be **transported** to a different (offline) computer / **shared**."*
-
-**(b) [4 分] "A list of names of the members of a club are stored in a file called Names.txt. Write the pseudocode statements to load a line of text from Names.txt and assign the line of text to an appropriately named variable."**
-
-**参考答案（官方 MS22）**
-```
-DECLARE LineOfText : STRING
-OPENFILE "Names.txt" FOR READ
-READFILE "Names.txt", LineOfText
-CLOSEFILE "Names.txt"
-```
-
-> 💡 **4 分的可能分配**：声明变量（1）+ OPENFILE 带 `FOR READ`（1）+ READFILE 参数顺序正确（1）+ CLOSEFILE（1）
-> ⚠️ **`READFILE` 的参数顺序是 `(文件, 变量)`** —— 写反了不给分。
-> ⚠️ **必须 `CLOSEFILE`** —— 这是最简单的 1 分，也是最容易忘的 1 分。
-> ⚠️ 题目说 "a line of text" 和 "appropriately named variable" —— **变量名要有意义**（`LineOfText` 而不是 `x`）。
-
-### Q10 [15 分] Scenario 题 —— 降雨统计
-（完整拆解见 [Unit 7 的 Q10 分析](Unit%207%20-%20Algorithm%20design%20and%20problem%20solving.md)）
-
-**Unit 8 相关的给分点**
-| 给分点 | 规范要求 |
-|---|---|
-| `DECLARE Rainfall : ARRAY[1:365] OF REAL` | 数组声明**写上下界** |
-| `ROUND(TotalCm, 2)` / `ROUND(Mean, 4)` | **两参数形式** ★ |
-| `Rainfall[Day] ← 0` 初始化循环 | 数组必须初始化 |
-| 每个 `INPUT` 前有 `OUTPUT "Enter..."` | **user prompts 是明确要求** |
-| `//` 注释 | 题目明确要求 "add comments" |
-| 输出有清晰说明文字 | 题目明确要求 "clear and appropriate messaging" |
-
-> ⚠️⚠️ **这道题题干把三个"格式要求"写明了**：*"must be declared"*、*"add comments"*、*"suitable messages"* ——
-> **这三个都是独立的给分点**，很多人只顾算逻辑，白丢分。
-
----
-
-## 📚 作业本标准答案精选（学校教材原题）
-
-> 以下伪代码来自学校 *Paper 2 Homework Booklet* 的官方答案页。
-> ⚠️ **注意**：作业本混入了 A-Level 内容（`&` 拼接、`APPEND` 模式、`IS_NUM` 等），**那些不在 0478 考纲内**。下面只挑 0478 范围内的。
-
-### ① 常量的经典用法（8.1.1）
-> 题目：*"Use Einstein's famous e = mc^2 to work out the amount of energy contained within your body — c = 300,000,000. Hint: think about what should be a constant and what should be a variable"*
+## 📝 15 分大题的固定模板
 
 ```
-CONSTANT C ← 300000000
-DECLARE Mass, Energy : REAL
-
-OUTPUT "Enter your mass in kg:"
-INPUT Mass
-
-Energy ← Mass * (C ^ 2)
-OUTPUT "You contain ", Energy, " Joules of energy!"
-```
-> 💡 **考点的本质**：**会变的是变量、不会变的是常量**。光速是常量，质量是变量。
-> ⚠️ 作业本原文用 `=` 给常量赋值（`CONSTANT C = 300000000`），**规范是 `←`**。
-> ⚠️ 作业本用小写命名（`mass`、`energy`），**规范要求 Pascal case**（`Mass`、`Energy`）。
-
-### ② 三层嵌套 IF 的边界（8.1.4）
-> 题目：*"Create a program that stores the real username and password in two variables, then asks the user to enter their username/password — if correct, a "Login" message should be displayed, else, appropriate "Username incorrect" or "Password incorrect" message"*
-
-```
-IF EnteredUsername = RealUsername
-   THEN
-       IF EnteredPassword = RealPassword
-          THEN
-              OUTPUT "Logged in!"
-          ELSE
-              OUTPUT "Password incorrect"
-       ENDIF
-   ELSE
-       OUTPUT "Username incorrect"
-ENDIF
-```
-> ⚠️ **嵌套位置决定逻辑** —— 密码检查必须放在**用户名正确的分支里面**。放外面就变成"用户名错也检查密码"了。
-> ⚠️ **字符串比较用 `=`**（不是 `==`）。
-> ⚠️ **每个 IF 配一个 ENDIF** —— 两层 IF 就要**两个** ENDIF。
-> ⚠️ **规范不支持 `ELSE IF`** —— 必须像上面这样嵌套。作业本原文：*"the syllabus doesn't support ELSE IF, hence you have to nest IF statements inside the ELSE blocks"*。
-
-### ③ WHILE 的密码验证（8.1.4）
-```
-DECLARE CorrectPassword, EnteredPassword : STRING
-
-CorrectPassword ← "supersecret"
-
-OUTPUT "Enter your password:"
-INPUT EnteredPassword
-
-WHILE EnteredPassword <> CorrectPassword DO
-   OUTPUT "Password incorrect - try again"
-   INPUT EnteredPassword
-
-ENDWHILE
-
-OUTPUT "Login success!"
-```
-> ⚠️ **关键在"循环外先输入一次"** —— 否则 WHILE 第一次判断时变量还没值。
-> ⚠️ **循环体内必须有能改变条件的语句**（这里的第二次 `INPUT`）—— 否则死循环。
-> 💡 **WHILE vs REPEAT**：这个例子**可以**用 WHILE，因为已经在循环前输入过一次了。
-
-### ④ REPEAT + 布尔标志（8.1.4）
-> 题目：*"Use a post-conditional loop to ask 'What is the Ultimate Answer to Life, The Universe and Everything', telling them they're wrong, until they enter 42"*
-
-```
-DECLARE UserAnswer : STRING
-DECLARE Correct : BOOLEAN
-
-Correct ← FALSE
-
-REPEAT
-   OUTPUT "What is the Ultimate Answer to Life, The Universe and Everything?"
-   INPUT UserAnswer
-
-   IF UserAnswer = "42" OR UserAnswer = "forty two" THEN
-          Correct ← TRUE
-          OUTPUT "That's correct!"
-   ELSE
-          OUTPUT "Unlucky..."
-   ENDIF
-
-UNTIL Correct = TRUE
-```
-> ⚠️ **标志变量必须在 REPEAT 之前初始化**（`Correct ← FALSE`）。
-> ⚠️ **`UNTIL Correct = TRUE` = 条件为 TRUE 时结束** —— 这是 REPEAT 的定义。
-
-### ⑤ 函数的三条返回路径（8.1.6）
-```
-FUNCTION IsLuckyNumber(Num : INTEGER) RETURNS BOOLEAN
-   IF Num = 7 OR Num = 4
-      THEN
-          RETURN TRUE
-   ENDIF
-   RETURN FALSE
-ENDFUNCTION
-
-OUTPUT IsLuckyNumber(7)
-OUTPUT IsLuckyNumber(8)
-```
-> ⚠️ **函数头是 `RETURNS`（复数），函数体里是 `RETURN`（单数）** —— 一个字母的差别，很容易写错。
-> ⚠️ **所有路径都要有返回值** —— 上面的 `RETURN FALSE` 必须在 IF 外面，否则 `Num = 5` 时会"没返回就结束"。
-> ⚠️ **函数调用 `OUTPUT IsLuckyNumber(7)` 是合法的** —— 因为函数用在**表达式**里。
-> ❌ **`CALL IsLuckyNumber(7)` 是错的**。
-
-### ⑥ 一行函数：MOD 返回布尔（8.1.6）
-```
-FUNCTION IsEven(Num : INTEGER) RETURNS BOOLEAN
-   RETURN MOD(Num, 2) = 0
-ENDFUNCTION
-```
-> 💡 **这是最漂亮的一行答案** —— 记住 **`MOD(n, 2) = 0` 判断偶数**。
-
-### ⑦ 1D 数组的 min / max / sum / mean 一趟遍历
-```
-DECLARE Nums : ARRAY[1:5] OF INTEGER
-DECLARE Min, Max, Sum, Index : INTEGER
-DECLARE Mean : REAL
-
-Min ← Nums[1]
-Max ← Nums[1]
-Sum ← 0                             ← ★ 作业本答案里漏了这行，是 bug
-
-FOR Index ← 1 TO 5
-   IF Nums[Index] < Min
-      THEN
-          Min ← Nums[Index]
-   ENDIF
-
-   IF Nums[Index] > Max
-      THEN
-          Max ← Nums[Index]
-   ENDIF
-
-   Sum ← Sum + Nums[Index]
-NEXT Index
-
-Mean ← Sum / 5
-```
-> ⚠️⚠️ **作业本的标准答案里 `Sum` 从来没有初始化** —— 这是一个**真实的 bug**。
-> 照规范必须写 `Sum ← 0`。**不要因为是"标准答案"就不加思考地抄。**
-> ✅ **Min/Max 用 `Nums[1]` 初始化**（不是 0）—— 作业本的注释解释了原因：如果用一个大默认值，遇到所有值都更大时会输出错误结果。
-
-### ⑧ 冒泡排序（作业本版，用 WHILE + isSorted + endIndex 递减）
-```
-DECLARE TempScore : INTEGER
-DECLARE TempName : STRING
-DECLARE IsSorted : BOOLEAN
-DECLARE EndIndex : INTEGER
-
-EndIndex ← 4
-IsSorted ← FALSE
-
-WHILE IsSorted = FALSE DO
-   IsSorted ← TRUE
-
-   FOR Index ← 1 TO EndIndex
-       IF Scores[Index] < Scores[Index + 1]
-          THEN
-              TempScore ← Scores[Index]
-              Scores[Index] ← Scores[Index + 1]
-              Scores[Index + 1] ← TempScore
-
-              TempName ← Names[Index]
-              Names[Index] ← Names[Index + 1]
-              Names[Index + 1] ← TempName
-
-              IsSorted ← FALSE
-       ENDIF
-   NEXT Index
-
-   EndIndex ← EndIndex - 1
-ENDWHILE
-```
-> 💡 **这是"降序"排序**（`<` 就交换）—— 升序要改成 `>`。
-> 💡 **两个优化**：① `IsSorted` 提前退出；② `EndIndex` 逐轮递减（因为末尾已经排好了）。
-> 💡 **并行数组**（Names 和 Scores）交换时**两边都要换** —— 只换一个，名字和分数就错位了。
-> ⚠️ **`EndIndex ← 4`** 因为 5 个元素只比 4 次（防止 `[Index+1]` 越界）。
-
-### ⑨ 文件：读一个、写一个、跳过空行
-```
-CONSTANT OLD_FILE ← "facts.txt"
-CONSTANT NEW_FILE ← "facts-new.txt"
-
-DECLARE Line : STRING
-DECLARE FactCount, EmptyLineCount : INTEGER
-
-FactCount ← 0
-EmptyLineCount ← 0
-
-OPENFILE OLD_FILE FOR READ
-OPENFILE NEW_FILE FOR WRITE
-
-WHILE NOT EOF(OLD_FILE) DO
-   READFILE OLD_FILE, Line
-   IF Line <> ""
-      THEN
-          WRITEFILE NEW_FILE, Line
-          FactCount ← FactCount + 1
-      ELSE
-          EmptyLineCount ← EmptyLineCount + 1
-   ENDIF
-ENDWHILE
-
-CLOSEFILE OLD_FILE
-CLOSEFILE NEW_FILE
-```
-> 💡 **两个文件同时打开、分别关闭** —— 这是最规范的写法。
-> ⚠️ **`EOF()` 不在 0478 规范里**，但这是通行写法（见 [Pseudocode Reference 的说明](Pseudocode%20Reference.md)）。
-> 💡 **用 `CONSTANT` 存文件名** 是个好习惯（文件名不该在程序里写死多次）。
-
----
-
-# 📈 历年考频（2015–2025，共 65 份卷子）
-
-> **数据来源**：`ig1525.txt` —— 2015–2025 全部 Paper 2 题目原文，1079 题。
-> 统计口径 = **含有该考点的卷子份数 / 65**。NEW = 2023–2025（21 份）· OLD = 2015–2022（44 份）。
-
-## Unit 8 考点频次
-
-| 考点 | ALL / NEW / OLD | 典型分值 | 题干原文 |
-|---|---|---|---|
-| **数据类型** | **59 / 17 / 42** | 2–6 | *"Name and describe the most appropriate programming data type for each of the examples of data given. Each data type must be different."* |
-| **一维 / 二维数组** | **53 / 21 / 32**（"1D/2D"字样 24 / 21 / 3）| 2–6 + 15 分题主数据结构 | *"The two-dimensional (2D) array ScreenTime[] is used to input the number of minutes on each day"* |
-| **变量与常量** | 独立小题约 20 份（词频 55–65 份）| 2–4 | *"Explain the difference between a variable and a constant in a program."* |
-| **过程与函数 / 参数** | 34 / 16 / 18 | 1–4 | *"Explain why a programmer would use procedures and parameters when writing a program."* |
-| **DIV** | 19 / 10 / 9 | 2–4 | *"The predefined function DIV gives the value of the result of integer division"* |
-| **MOD** | 15 / 7 / 8 | 2–4 | *"Explain the purpose of the library routines MOD and RANDOM"* |
-| **ROUND / RANDOM / SUBSTRING / LENGTH / UCASE / LCASE** | **12 / 12 / 0** | 2–5 | *"The string operation SUBSTRING(Quote, Start, Number) returns a string from Quote"* |
-| **迭代 FOR / WHILE / REPEAT** | 12 份直接问 | 3–4 | *"Name the three types of loop structure used in pseudocode."* / *"Rewrite the algorithm in pseudocode, using a condition-controlled loop instead of a count-controlled loop."* |
-| **CASE** | 9 份 | 2–4 | *"Re-write the pseudocode algorithm using a CASE statement."* |
-| **文件处理** | **5 / 5 / 0** | 1–5 | *"…store the content of the variable Saying in a text file named "Quotations.txt" … make sure the text file is closed at the end of the algorithm."* |
-| **可维护性 maintainable / meaningful identifiers** | **6 / 6 / 0**（另：老卷 "must have meaningful names" **44/44**）| 2–6 | *"State two features that should be included to create a maintainable program."* |
-| **局部 / 全局变量** | **4 份**（local）| 1 | 选择题选项 *"a value that is declared and used within a specific procedure → local variable"* |
-| **运算符（算术 / 逻辑 / 布尔）** | **2 / 2 / 0** | 2–4 | *"A high-level programming language makes use of arithmetic, Boolean and logical operators."* |
-| **嵌套语句 nested** | **1 份** | — | 全文件仅 2019-23-O/N 提过一次 |
-
-## ⚠️ 这三条改变你的复习优先级
-
-### ① 2023 年新增了一整批库例程 —— 老卷一次都没考过
-
-`ROUND` / `RANDOM` / `SUBSTRING` / `LENGTH` / `UCASE` / `LCASE` 这 6 个函数名，**12 次出现全部在 2023 年及以后**。
-老卷只有 `MOD` 和 `DIV`（以及 2016 年提过一次 `INT`）。
-
-→ **如果你手上只有 2022 年以前的卷子，这 6 个函数你一个都练不到**。而它们是明确的考纲内容（8.1.7）。
-
-### ② 文件处理是 2023 年新增考点
-
-`READFILE` / `WRITEFILE` / text file 出现 **5 次，全部在 2023+**（2023-23-M/J 首次）。
-
-→ 新卷**每份都有**一道文件题（1–5 分）。老卷完全没有。**这是纯新增的送分点**。
-
-### ③ 可维护性从"一句话"变成了"一道题"
-
-| | 老卷（2015–2022）| 新卷（2023–2025）|
-|---|---|---|
-| 载体 | Section A 固定句 *"All variables, constants and other identifiers must have meaningful names."*（**44/44 份**）| 15 分题的 *"add comments to explain how your code works."*（**21/21 份**）|
-| 考法 | 隐含在声明题里，不单独问 | **独立小题**：*"State two features … Give a reason why each feature should be used."*（4 分）|
-
-→ 现在**"说明可维护性"是独立的 2–6 分题**，要背得出来（见 8.1.8 答题模板）。
-
-### ⚠️ 关于"嵌套语句"的诚实说明
-
-考纲学习目标 **8.1.5 明确要求 nested statements**，但 **65 份卷子里只有 1 份直接提到**（2019-23-O/N 的 *"The following pseudocode algorithm uses nested IF statements."*）。
-
-→ 不是不考，而是**不作为独立知识点考** —— 它出现在 15 分题的逻辑里（嵌套循环遍历 2D 数组、IF 里套 IF）。
-→ **别花大把时间背"嵌套"的定义，把嵌套写对更重要**（尤其是**最多 3 层**这条硬规则）。
-
-## 📝 15 分大题的固定模板（新卷 21/21 份都有）
-
-```
-N   <场景描述>（题面已给出存在的 1D/2D 数组名和变量名）
+N   <场景描述>（题面已给数组名 / 变量名）
     Write a program that meets the following requirements:
-    ● ...（6–9 条 requirement 要点）
+    ● ...（6–9 条 requirement）
     You must use pseudocode or program code and add comments to explain how your code works.
-    You do not need to declare any arrays or variables; you may assume that this has already been done.
+    You do not need to declare any arrays or variables; you may assume this has already been done.
     You do not need to initialise the data in the array Xxx[]
     All inputs and outputs must contain suitable messages.
                                                                     [15]
 ```
 
-> ⚠️ **最后那四句话每份卷子都一样** —— 背熟它们，考场上就不用花时间读。
+> ⚠️ **最后四句每份卷子都一样** —— 背熟，考场上不用花时间读。
 > 💡 **"You do not need to declare …" 意味着那部分分值不在声明上**，全在逻辑和注释上。
+> 💡 requirement 高频动词：**total**（求和）> **highest / maximum** > **average** > **lowest / minimum** > **count** > **sort**。求和 + 最值 + 平均必须能默写。
 
-**21 份 15 分题里 requirement 的高频动词**（决定你要准备哪个算法）：
+## 🧠 Unit 8 命题规律（精简）
 
-| 动词 | 出现次数 |
-|---|---|
-| **total**（求和）| 18 |
-| **highest / maximum / largest**（求最大）| 17 |
-| **average**（平均）| 13 |
-| **lowest / minimum / smallest**（求最小）| 10 |
-| **count**（计数）| 6 |
-| **sort**（排序）| 5 |
-
-> 💡 **结论**：求和 + 求最值 + 求平均 = 15 分题的**绝对主力**。这三个模板必须能默写（见 7.5 和 8.1.4(d)）。
-
-## 🔄 老卷 → 新卷，Unit 8 内容的变化
-
-| 变化 | 证据 |
-|---|---|
-| **2D 数组 2023 才成为主流** | `two-dimensional (2D)` 在 2023-21-O/N 才首次出现；带 1D/2D 字样的 24 份卷子里 **21 份是 2023+** |
-| **新库例程加入** | `ROUND/RANDOM/SUBSTRING/LENGTH/UCASE/LCASE` 12 次**全在 2023+** |
-| **文件处理加入** | 5 次**全在 2023+** |
-| **运算符分类成为考点** | `arithmetic / Boolean / logical operators` 仅出现在 2024-22-M/J、2025-23-M/J |
-| **老卷的 3 个固定小题消失** | 老卷几乎每份都有 QBE 数据库题、"variable vs constant" 解释题、"loop structures" 列举题；新卷改成了 tick / 连线题 |
-| **题量增加** | 老卷 ~10 题 50 分 → 新卷 10–12 题 75 分，多出来的分在 15 分题和概念小题上 |
-
-## 🔁 反复出现的 15 分题数据骨架（跨年份复用）
-
-| 骨架 | 出现卷子 |
-|---|---|
-| **1D 数组 + 并行 2D 数组** | 2023-21-M/J `Word[]`、2023-22-F/M `TeamPoints[]`、2024-22-F/M `StudentName[]+ScreenTime[]`、2025-21-M/J `CompetitorName[]+CompetitorScore[]+Points[]` |
-| **体育联赛积分表**（三年几乎同一道题换名字）| 2023-22-F/M、2024-21-M/J（cricket clubs）、2024-23-M/J |
-| **去掉最高最低分再统计** | 2025-21-O/N |
-| **菜单驱动 + 增删查** | 2023-22-M/J（银行账户）、2023-23-M/J（联系人）、2025-22-F/M（会员）、2025-23-M/J（视频库）|
-
-> 💡 **看到"积分表"就要想到**：2D 数组按行求和 → 求最大 → 输出对应的 1D 数组里的名字。这是同一套代码。
-
----
-
-## 🧠 Unit 8 的命题规律（65 份卷子 + June 2026 汇总）
-
-| 规律 | 说明 |
-|---|---|
-| **语法细节题占了大头** | 1 分选择（循环类型 / 数据类型）+ 找错题的 4 个点全是语法 |
-| **数据类型 59/65 份都考** | 是 Unit 8 出现频率最高的考点，几乎每份卷子都有 |
-| **文件处理一定有 1 道 4–5 分题** | 固定考 `OPENFILE → READFILE → CLOSEFILE` 三步；**2023 新增，老卷练不到** |
-| **`ROUND` 两参数形式必考** | 2026 Q10 明确要求 "rounded to two/four decimal places" |
-| **数组声明 + 初始化一定考** | 15 分题的第一、二步就是这个 |
-| **函数/过程的 `RETURNS` vs `RETURN`** | 经典易错点 |
-| **2023 新增的 6 个库例程必须单独背** | `ROUND/RANDOM/SUBSTRING/LENGTH/UCASE/LCASE` —— 老卷里一个都没有 |
-| **"嵌套语句"不作为独立考点** | 65 份里只提过 1 次，但嵌套逻辑在 15 分题里到处是 |
-| **作业本答案有 bug，不能盲抄** | `Sum` 未初始化、单参数 `ROUND`、`&` 拼接 —— 都是坑 |
+> - **语法细节题占大头**：1 分选择（循环类型 / 数据类型）+ 找错题的四个点。
+> - **数据类型几乎每份必考**。
+> - **文件题固定** `OPENFILE → READFILE → CLOSEFILE` 三步；2023 新增，老卷练不到。
+> - **2023 新增的库例程**：`ROUND / RANDOM / SUBSTRING / LENGTH / UCASE / LCASE` —— 必须单独背。
+> - **`ROUND` 两参数形式必考**（rounded to 2/4 decimal places）。
+> - **数组声明 + 初始化**是 15 分题的前两步。
+> - **函数**：`RETURNS` vs `RETURN`；所有路径都要有返回值。
+> - **嵌套语句**不作独立考点，但嵌套逻辑（2D 数组、IF 套 IF）到处是；最多 3 层。
+> - **15 分题常见骨架**：1D 数组 + 并行 2D 数组；体育积分榜（按行求和 → 求最大 → 输出对应名字）；菜单驱动增删查。
+> - 老卷 QBE / Section A 题型已作废；**Paper 2 只练 2023 年以后的卷子**。
 
 ---
 

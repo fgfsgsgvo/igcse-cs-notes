@@ -403,14 +403,15 @@ UNTIL Swap = FALSE
 2. **交换三个步骤（swap）**：临时变量存第一个 → 第一个改成第二个 → 第二个改成临时变量
 3. **`Swap` 标志**：一整轮没发生交换说明已排好，可以提前结束
 4. 外层用 **REPEAT...UNTIL**（因为**至少要进行一轮**才能知道是否需要再排）
+5. **并行数组**（如 `Names` 和 `Scores`）必须**同步交换**——两个数组都要用临时变量三步交换，只换一个会导致数据错位
 
 **升序 vs 降序**
 - 升序（从小到大）：`IF Numbers[Index] > Numbers[Index + 1]` ← **大于就交换**
 - 降序（从大到小）：`IF Numbers[Index] < Numbers[Index + 1]` ← **小于就交换**
 
-### 另一种等价写法（作业本教的版本）
+### 另一种等价写法（WHILE 版本）
 
-学校作业本用的是 **`WHILE IsSorted = FALSE` + `EndIndex` 逐轮递减** 的写法 —— **逻辑完全一样**，只是把"外层 REPEAT"换成"WHILE + 布尔标志"，并多加了一个"每轮少比一次"的优化：
+**`WHILE IsSorted = FALSE` + `EndIndex` 逐轮递减** 的写法 —— **逻辑完全一样**，只是把"外层 REPEAT"换成"WHILE + 布尔标志"，并多加了一个"每轮少比一次"的优化：
 
 ```
 EndIndex ← N - 1
@@ -431,7 +432,6 @@ ENDWHILE
 
 > ⚠️ **两种写法阅卷都接受**（看逻辑不看形式）。挑一种练熟就行。
 > 💡 **`EndIndex` 递减的意义**：每跑完一轮，最后一个元素一定是最大的，下一轮就不用再比它了 —— 减少比较次数。
-> ⚠️ 完整可运行版本（含并行数组同步交换）见 [Unit 8 的真题实证 ⑧](Unit%208%20-%20Programming.md)。
 
 > ⚠️ **最常见错误**：`FOR Index ← 1 TO 8` → 当 Index = 8 时访问 `Numbers[9]` → **数组越界**
 > ⚠️ **忘记用 Temp 变量**：直接 `A ← B` 然后 `B ← A` 会把两个值都变成 B
@@ -564,7 +564,33 @@ OUTPUT "The average is ", Average
 
 ---
 
-## 🔑 六大方法速查表
+## ⑦ Counting a Consecutive Run 最长连续段
+
+> **English**：To find the **longest run** of consecutive values that meet a condition, keep **two variables** — the current run and the longest run — and **reset the current run to 0** whenever the run breaks.
+
+```pseudocode
+CurrentRun ← 0
+LongestRun ← 0
+FOR Day ← 1 TO 365
+   IF Rainfall[Day] = 0
+      THEN
+          CurrentRun ← CurrentRun + 1
+          IF CurrentRun > LongestRun
+             THEN
+                 LongestRun ← CurrentRun
+          ENDIF
+      ELSE
+          CurrentRun ← 0          // 一旦中断就归零
+   ENDIF
+NEXT Day
+```
+
+> ⚠️ 两个变量缺一不可；**忘了 `CurrentRun ← 0` 是最大陷阱**。
+> 💡 同类题：最长连续及格天数、最长连胜、最长连续相同字符、最长连续无降雨天数。
+
+---
+
+## 🔑 标准方法速查表
 
 | 方法 | 初始化 | 循环范围 | 核心语句 |
 |---|---|---|---|
@@ -574,6 +600,7 @@ OUTPUT "The average is ", Average
 | **计数** | `Count ← 0` | `FOR Index ← 1 TO N` | `Count ← Count + 1` |
 | **最大值** | `Max ← A[1]` | `FOR Index ← 2 TO N` | `IF A[Index] > Max THEN Max ← A[Index]` |
 | **最小值** | `Min ← A[1]` | `FOR Index ← 2 TO N` | `IF A[Index] < Min THEN Min ← A[Index]` |
+| **连续计数** | `CurrentRun ← 0`、`LongestRun ← 0` | `FOR Index ← 1 TO N` | 满足条件则 `CurrentRun + 1` 并更新 `LongestRun`，否则 `CurrentRun ← 0` |
 
 > 🧠 **一句话记忆**：**求和计数初始化 0，查最值初始化第一项，冒泡循环到 N−1，查找要两个终止条件。**
 
@@ -761,6 +788,10 @@ OUTPUT Total
 
 > 💡 **数组在 trace table 里怎么处理**：给数组的**每个被用到的元素**单独开一列，例如 `A[1] | A[2] | A[3]`。
 
+> 📌 **题目注明 "the first character is in position 1"** → 下标从 **1** 开始，索引列按题目给的 position 填，不要自行改成 0。
+> 📌 **影响流程走向的变量也要单独开列**（如 `Choice = 'Y'/'N'`），不能只记数值变量。
+> 📌 **OUTPUT 列只在真正执行输出时填**，中间步骤留空。
+
 ## ⚠️ 循环次数最容易数错（FOR 循环的边界规则）
 
 > - **两端都包含** —— `FOR i ← 1 TO 3` 执行 **3 次**
@@ -801,6 +832,8 @@ OUTPUT Total
 
 > ⚠️ **必须引用具体代码**："the loop is wrong" 得 0 分；"the loop should go to 7 not 8" 得满分。
 > ⚠️ **Correction 要写成可以直接替换的代码**，不要写"change it to something correct"。
+> ⚠️ **题目要求 "line numbers" 时必须写行号**，且**行号 + 改正代码**两栏都要有；只写改正不给分。
+> 💡 **找错题四个高频方向**：① 数据类型错 ② INPUT / OUTPUT 搞反 ③ 语句用错（IF / CASE 混用）④ 数组下标写死或写错。
 
 ## 常见错误清单（考前扫一眼）
 
@@ -890,266 +923,15 @@ CALL DisplayResult(Average)
 
 > 💡 **考纲原文**：*"It is expected that candidates should spend **30 minutes** answering this question."*
 
----
+## 📌 Unit 7 命题规律（精简）
 
-# 📊 真题实证（考频与真实题型）
-
-> **数据来源**：June 2026 Paper 22（0478/22）真题原文 + **官方 Mark Scheme 21/22/23** · 学校按单元整理的 Question Paper / Answer Key · 2015–2025 Paper 2 真题 **65 份 / 1079 题**
-> ✅ **已有 2026 年 6 月 Paper 2 官方 Mark Scheme**：下面 Q1/Q2/Q3/Q5/Q7 等已用 MS22 核对；仍标「推断」的是 2015–2025 旧题中没有官方 MS 对照的答案。
-
-## June 2026 Paper 22 完整拆解（最新一份，共 75 分）
-
-| 题号 | 分值 | 考点 | Unit |
-|---|---|---|---|
-| Q1 | 1 | 三种循环的识别（选择）| **7 / 8** |
-| Q2 | 1 | 数据类型（CHAR）| **8** |
-| Q3 | 11 | validation（presence / check digit / format check）+ 写验证伪代码 | **7** |
-| Q4 | 6 | PDLC 的 coding 与 testing 阶段 | **7** |
-| Q5 | 10 | 2D 数组 + 线性查找：**找 4 个错并改正** + 命名算法 + 补写"未找到" | **7 / 8** |
-| Q6 | 7 | **流程图 + trace table** | **7** |
-| Q7 | 5 | 文件处理：为什么要用文件 + 写读文件伪代码 | **8** |
-| Q8 | 9 | 逻辑门 / 真值表 | Unit 10 |
-| Q9 | 10 | 数据库 + SQL | Unit 9 |
-| Q10 | **15** | **scenario 题**：全年降雨统计 | **7 / 8** |
-
----
-
-## 🎯 Unit 7 在 June 2026 的具体考法
-
-### Q1 [1 分] 三种循环的识别
-> *"Tick one box to complete the following sentence. Two types of pseudocode statements used for iteration are"*
-> A. CASE and IF　B. FOR...NEXT and IF　C. **FOR...NEXT and WHILE...DO...ENDWHILE**　D. REPEAT...UNTIL and CASE
-
-**答案：C**（官方 MS22）
-> ⚠️ **A 和 D 是干扰项** —— CASE 和 IF 是 **selection** 不是 iteration。**把 IF 和 CASE 当成循环是经典错误**。
-> 💡 **三种控制结构必须能一眼分清**：
-> - **Sequence** = 顺次执行
-> - **Selection** = **IF** / **CASE**
-> - **Iteration** = **FOR...NEXT** / **WHILE...DO...ENDWHILE** / **REPEAT...UNTIL**
-
-### Q3 [11 分] Validation 全考一遍
-| 小问 | 分值 | 题目原文 / 考法 |
-|---|---|---|
-| (a)(i) | 1 | *"A check to make sure that data has been input and not left blank."* → **presence check**（官方 MS22）|
-| (a)(ii) | 1 | *"A value placed at the end of a sequence of numbers in the code. The value is calculated from all the other values before it."* → **check digit**（官方 MS22）|
-| (b) | 3 | *"Explain the purpose of a format check and give an example of where it could be used."* |
-| (c) | **6** | **写伪代码**：逐个数输入，是整数就存进数组，不是就重新输入直到是整数；存满 15 个输出完成消息 |
-
-**Q3(c) 题干原文**
-> *Write the pseudocode for an algorithm to perform a validation check on each number as it is input, using the following criteria:*
-> - Input one number at a time.
-> - If the number is a whole number, store it in the current element of array Accepted[]
-> - If the number is not a whole number, ask for it to be input again until it is a whole number.
-> - When 15 whole numbers have been stored, output a message that states the check has been completed.
-> *Use appropriate input prompts and output messages... **You do not need to declare any arrays or variables for this algorithm.***
-
-> 💡 **命题趋势**：题目**明确说不用声明变量** —— 因为变量声明的分已经给过了，这 6 分全在**逻辑**上。
-> ⚠️ 看到这种题，**别浪费时间写 DECLARE**，直接把循环和判断写对。
-
-### Q4 [6 分] PDLC —— 背了就有分
-> *"The program development life cycle is split into several stages. **Outline what happens during the coding and testing stages** of the program development life cycle."*
-
-**答题要点（coding 3 分 + testing 3 分）**
-| Coding | Testing |
-|---|---|
-| **writing program code** | **testing the code with test data** |
-| **iterative testing** （边写边测）| using **normal / abnormal / extreme / boundary** data |
-| following the design | comparing actual output with expected output |
-| | finding and correcting errors |
-
-### Q5 [10 分] 找错改错 —— **Paper 2 最典型的送分题**
-
-题干给出的伪代码（原文照录，缩进和错误都是原文的）：
-```
-01  DECLARE Accounts : ARRAY[1:1000, 1:2] OF STRING
-02  DECLARE Row : INTEGER
-03  DECLARE AccountID : INTEGER
-04  OUTPUT "Please enter an account ID "
-05  OUTPUT AccountID
-06  FOR Row ← 1 TO 1000
-07      CASE OF AccountID = Accounts[Row, 1]
-08          THEN
-09              OUTPUT "The customer's name is ", Accounts[1, 2]
-10          ENDIF
-11  NEXT Row
-```
-
-**(a) [4 分] "Identify the line numbers of four errors in the pseudocode and suggest corrections."**
-
-**四个错误（官方 MS22 一致）**
-| 行号 | 错误 | 改正 |
-|---|---|---|
-| **03** | `AccountID` 声明成 `INTEGER`，但题面说 account ID "contains letters and numbers" | `DECLARE AccountID : STRING` |
-| **05** | `OUTPUT AccountID` 应该是输入 | 改成 `INPUT AccountID` |
-| **07** | `CASE OF` 用法错误（CASE 不能带 `=` 条件）| 改成 `IF AccountID = Accounts[Row, 1]` |
-| **09** | `Accounts[1, 2]` 写死了行号 | 改成 `Accounts[Row, 2]` |
-
-> 💡 **答题格式**：题目问 "line numbers + corrections" → **必须写行号 + 改正代码**，只写一个不给分。
-> 💡 **找错的四个方向**（考试就考这几类）：
-> 1. **数据类型错**（第 03 行）
-> 2. **INPUT / OUTPUT 搞反**（第 05 行）
-> 3. **语句用错**（IF / CASE 混用，第 07 行）
-> 4. **数组下标写死或写错**（第 09 行）
-
-**(b) [1 分] "State the name given to this type of algorithm."** → **linear search**（官方 MS22）
-
-**(c) [5 分] "The algorithm stops if the account number is not found... Write the pseudocode statements to change the algorithm to inform the user that the account number has not been found. Clearly state where in the original algorithm your new statements would be placed. Do not rewrite the whole algorithm."**
-
-**参考答案（官方 MS22 接受 flag 写法）**
-1. 在**第 02 行附近**加：`DECLARE Found : BOOLEAN`
-2. 在**循环之前**加：`Found ← FALSE`
-3. 在第 09 行附近找到时加：`Found ← TRUE`
-4. 在 **`NEXT Row` 之后**加：
-```
-IF Found = FALSE
-   THEN
-       OUTPUT "Account number not found"
-ENDIF
-```
-
-> ⚠️ **题目明确说 "Do not rewrite the whole algorithm" + "state where your new statements would be placed"** ——
-> **只写新语句 + 写清插入位置**，重抄整段反而浪费时间且可能扣分。
-
-### Q6 [7 分] 流程图 + Trace Table
-
-> 流程图统计一个单词里"**相邻两个字符相同**"的次数，然后问用户是否继续（`Choice = 'Y'`）
-> (a) [6] 用输入 `post, Y, committee, N, bookkeeper` 补全 trace table
-> (b) [1] State the purpose of the algorithm
-
-**表头**：`Word | WordLength | Count | NumLetter | Choice | OUTPUT`
-> ⚠️ 题目给的 **Note: the first character of each word is in position 1** —— 这是**明示下标从 1 开始**。
-> ⚠️ **`Choice` 也要记在 trace table 里**（因为 `Y` 和 `N` 会影响流程走向）。
-> ⚠️ **OUTPUT 列只在真正输出时才填** —— 中间步骤留空。
-
-### Q10 [15 分] Scenario 题 —— 全年降雨统计
-
-**题干要求（原文摘要）**
-> - Initialise the array `Rainfall[]` to zero.
-> - Input the rainfall in mm for **each day** (365 days) and store it in the array.
-> - Calculate:
->   - the **total** rainfall for the year in **centimetres** (1 cm = 10 mm), **rounded to two decimal places**
->   - the **mean average** daily rainfall in mm, **rounded to four decimal places**
->   - the **total number of days with no rainfall**
->   - the **longest number of consecutive days** with no rainfall
-> - **Output all statistics with clear messaging.**
-> - If the longest run of dry days is **15 or more**, output a drought message.
-> - *"You must use pseudocode or program code and **add comments** to explain how your code works."*
-> - *"All arrays, variables or constants used must be **declared**."*
-> - *"All inputs and outputs must contain **suitable messages**."*
-
-**这道题的六个给分点（对照检查）**
-| # | 给分点 | 怎么写 |
-|---|---|---|
-| 1 | **数组声明** | `DECLARE Rainfall : ARRAY[1:365] OF REAL` |
-| 2 | **数组初始化** | `FOR Day ← 1 TO 365 ... Rainfall[Day] ← 0 ... NEXT Day` |
-| 3 | **两次循环**（输入 365 次 + 统计）| 或一次循环里全做 |
-| 4 | **单位换算** | `TotalCm ← TotalMm / 10` |
-| 5 | **ROUND 两参数** | `ROUND(TotalCm, 2)` 和 `ROUND(Mean, 4)` |
-| 6 | **最长连续段** —— 这是**唯一的难点** | 见下方模板 |
-
-**"最长连续无雨天数"的写法（核心难点）**
-```
-CurrentRun ← 0
-LongestRun ← 0
-FOR Day ← 1 TO 365
-   IF Rainfall[Day] = 0
-      THEN
-          CurrentRun ← CurrentRun + 1
-          IF CurrentRun > LongestRun
-             THEN
-                 LongestRun ← CurrentRun
-          ENDIF
-      ELSE
-          CurrentRun ← 0                 ← ★ 一旦有雨就归零
-   ENDIF
-NEXT Day
-```
-
-> 💡 **模式**：**连续计数**题永远是"当前计数 + 最长记录"两个变量，遇到"断了"就把当前计数归零。
-> ⚠️ 忘了 `CurrentRun ← 0` 是这道题最大的坑。
-
----
-
-# 📈 历年考频（2015–2025，共 65 份卷子）
-
-> **数据来源**：`ig1525.txt` —— 2015–2025 全部 Paper 2 题目原文，1079 题。
-> 统计口径 = **含有该考点的卷子份数 / 65**。NEW = 2023–2025（21 份）· OLD = 2015–2022（44 份）。
-
-## ⚠️ 先看懂这个：2023 年考纲改革把卷子改了
-
-| 时期 | 卷名 | 份数 | 总分 | 结构 |
-|---|---|---|---|---|
-| 2015–2022 | Problem-solving and Programming | 44 | **50** | **Section A（Q1，20 分）+ Section B（30 分）** |
-| 2023–2025 | Algorithms, Programming and Logic | 21 | **75** | **没有 Section A/B**，Q1…Q11 平铺，最后一题固定 15 分 |
-
-> 💡 **这条决定了你该练什么**：
-> - 老卷的 **Q1 = 20 分 pre-release scenario 大题**（44/44 份全部成立），是"声明变量 + 写算法 + 验证 + 解释"四段式
-> - 新卷把它拆成了 **一道 15 分题 + 一堆 1–4 分的概念小题**（tick / 连线）
-> - **你考的是新卷 —— 只做 2023 年及以后的卷子**。老卷的 Section A 题型已作废
-
-## Unit 7 考点频次
-
-| 考点 | ALL / NEW / OLD | 典型分值 | 题干原文 |
-|---|---|---|---|
-| **trace table 填表** | **61 / 18 / 43** | **4–5**（5 分 22 次、4 分 17 次）| *"Complete the trace table for the input data:"*（这一句在 51 份里逐字出现）|
-| **flowchart 流程图题** | **43 / 19 / 24** | 4–6 | *"The flowchart represents an algorithm."* / *"Complete the flowchart for this algorithm."* / *"Describe the purpose of this flowchart."* |
-| **找错并改正** | **43 / 20 / 23** | **4**（4 分 25 次；3 分 8 次）| *"Identify the line numbers of the four errors in the pseudocode and suggest a correction for each error."* |
-| **validation 验证** | **37 / 15 / 22** | 4 | *"Give a validation check that you can perform on each of these fields. Each validation check must be different."* |
-| **test data 测试数据** | **37 / 15 / 22** | **4** | *"Suggest suitable normal, abnormal, extreme and boundary test data to test if this validation check"* |
-| **说明算法用途** | 17 / 9 / 8 | **固定 2 分** | *"State the purpose of this pseudocode algorithm."* / *"Describe the purpose of the algorithm."* |
-| **PDLC 生命周期** | **10 / 10 / 0** | 1–4 | *"Tick one box to identify the first stage of the program development life cycle."*（**2023 才首次出现**）|
-| **verification 核对** | 23 / 10 / 13 | 1 或 3–4 | *"Explain the difference between a validation check and a verification check."* |
-| **structure diagram 结构图** | 8 / 6 / 2 | 2–4 | *"Complete the structure diagram for the given parts of the hotel booking system."* |
-| **bubble sort 冒泡排序** | **8 / 8 / 0** | 4 | *"Write an algorithm in pseudocode to sort the array Values[1:50] into ascending order using a bubble sort."* |
-| **分解 decomposition / 抽象 abstraction** | **6 / 6 / 0** | 1–4 | *"Identify three of the component parts when a problem has been decomposed at the analysis stage."*（**2023 才首次出现**）|
-| **linear search 线性查找** | **2 / 2 / 0** | 4 | *"A linear search and a bubble sort are standard methods of solution."*（**全 65 份只被点名 2 次**）|
-| **嵌套语句 nested** | **1 / 1 / 0** | — | 全文件仅 2019-23-O/N 提过一次 |
-
-## 🔑 从频次得到的四个硬结论
-
-1. **trace table + flowchart + 找错改错 = 三件套**，合计在新卷约占 **15–20 分**。这三个是"无论如何都会考"的题，必须练到条件反射。
-2. **PDLC / decomposition / abstraction 是 2023 年新增**（10 次和 6 次出现**全部在 2023+**）—— 老卷 44 份一次没考过。**只做老卷的人会完全没准备这三块**。
-3. **bubble sort 8 次全部在 2023+，linear search 只被点名 2 次**。所以：**冒泡排序必须能默写**；线性查找要会，但别以为它年年考。
-4. **"说明算法用途"是固定 2 分题**（9 次 2 分 / 6 次 1 分）—— 送分题，但**答法有格式**，见上面 7.4 的答题模板。
-
-## 📝 高频题干原文（一眼认出题型）
-
-**Trace table**
-- `Complete the trace table for the input data:` ← 最经典
-- `Complete a trace table for each of the two sets of input data.`
-- `Complete the headings for the trace table to show a dry-run for this algorithm.`
-
-**Flowchart**
-- `Complete this flowchart for the corrected algorithm:`
-- `Identify a problem with this flowchart and explain how to correct it.`
-- `Explain how the flowchart can be changed to produce the correct output.`
-- `Draw the flowchart symbol for Decision and the flowchart symbol for Process.` ← 纯送分
-
-**Purpose**
-- `Identify and describe the function being performed by the algorithm.`
-
-**Errors**
-- `Find the four errors in the pseudocode and suggest a correction for each error.`
-- `Identify four errors in the flowchart and suggest a correction for each error.` ← **流程图也会出找错题**
-
-**Test data**
-- `Name and describe the most appropriate programming data type for each of the examples of data given.`
-- `Give two different sets of test data for this algorithm and state the purpose of each set.`
-
----
-
-## 🧠 Unit 7 的命题规律（65 份卷子 + June 2026 汇总）
-
-| 规律 | 说明 |
-|---|---|
-| **一道大题往往跨 Unit 7 和 8** | Q5 = 算法设计（找错）+ 编程语法（数组、IF）；Q10 = 两者全考 |
-| **validation 年年考** | 而且形式固定：定义匹配 + Explain purpose + 写验证伪代码 |
-| **PDLC 是"背了就有分"的题** | 6 分纯记忆，性价比最高；且**是 2023 新增，老卷练习题里练不到** |
-| **找错题固定考 4 类错误** | 数据类型 / INPUT-OUTPUT / 语句用错 / 数组下标 |
-| **找错题 2024 起要求写行号** | *"Identify the **line numbers** of the four errors"* —— 只写改正不给分 |
-| **trace table 表格里一定有 OUTPUT 列** | 忘了就丢分 |
-| **15 分 scenario 题一定有"难点子任务"** | 2026 是"最长连续无雨天"，通常要**两个变量 + 归零逻辑** |
-| **"不用声明变量"这种话要看清** | 说了就是**真的不用写** —— 省时间 |
+> - **一道大题常跨 Unit 7 + 8**：算法设计（找错/流程）+ 编程语法（数组/IF）一起考。
+> - **validation 年年考**，形式固定：匹配定义 + explain purpose + 写验证伪代码。
+> - **找错题固定四类**：数据类型 / INPUT-OUTPUT / 语句用错 / 数组下标；要求写行号时缺行号不给分。
+> - **trace table 一定有 OUTPUT 列**；影响流程的变量（如 `Choice`）也要记录。
+> - **15 分 scenario 一定有难点子任务**：通常用「当前计数 + 最长记录 + 归零」模式。
+> - **PDLC / decomposition / abstraction 是 2023 新增**，老卷练不到；题目明说 `"不用声明变量"` 就真的不写。
+> - **Paper 2 只练 2023 年以后的卷子**；老卷只练 trace table / flowchart / 找错 / validation。
 
 ---
 
@@ -1218,13 +1000,12 @@ Trace table：每个变量一列，OUTPUT 单独一列，循环变量每轮都�
 
 **本地资源**
 - 伪代码完整语法 → [Pseudocode Reference.md](Pseudocode%20Reference.md)
-- 历年题型与频率 → 见上方 **📊 真题实证**
+- 考试策略与资源 → [Exam Guide.md](Exam%20Guide.md)
 - 下一单元 → [Unit 8 - Programming](Unit%208%20-%20Programming.md)
 
 **在线题库**
 - [Cambridge IGCSE Computer Science 0478 Past Papers](https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-igcse-computer-science-0478/past-papers/)
 - [Save My Exams — IGCSE Computer Science](https://www.savemyexams.com/igcse/computer-science/)
-- [Physics and Maths Tutor — Computer Science](https://www.physicsandmathstutor.com/computer-science-revision/igcse/)
 
 ---
 
